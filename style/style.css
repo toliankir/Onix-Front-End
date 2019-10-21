@@ -9,11 +9,91 @@ body {
   margin: 0;
   min-height: 100vh;
   display: flex;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 aside {
-  width: 300px;
+  min-width: 350px;
+  width: 22%;
   background-color: #000000;
+  display: flex;
+  flex-direction: column;
+}
+.aside-title {
+  margin: 2.5rem 1.5rem 2.5rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.aside-title h2 {
+  color: #FFFFFF;
+  margin: 0 0 0 3rem;
+  font-size: 1.3rem;
+}
+.aside-title h2::before {
+  position: absolute;
+  width: 40px;
+  height: 100%;
+  content: "";
+  background: url(../assets/Logo@3x.svg) no-repeat;
+  background-size: 32px;
+  left: -3rem;
+}
+.aside-title button {
+  cursor: pointer;
+  background-color: #000000;
+  border: none;
+  outline: none;
+}
+.aside-title button img {
+  width: 130%;
+}
+.aside-profile {
+  background-color: #202020;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+}
+.aside-profile .dots {
+  color: #9b9b9b;
+}
+.aside-profile .user-card {
+  display: flex;
+}
+.aside-profile .user-card img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+.aside-profile .user-card .user-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.aside-profile .user-card .user-data .user-name {
+  color: #FFFFFF;
+  margin: 0;
+}
+.aside-profile .user-card .user-data .user-state {
+  color: #9b9b9b;
+  margin: 0;
+}
+.aside-tasks {
+  padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.aside-tasks .task {
+  width: 48%;
+}
+.aside-tasks .task .task-count {
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  margin: 0;
+}
+.aside-tasks .task .task-description {
+  color: #9b9b9b;
+  margin: 0;
 }
 div.main-wrapper {
   flex-grow: 1;
@@ -21,23 +101,58 @@ div.main-wrapper {
   flex-direction: column;
 }
 header {
-  background-color: grey;
+  padding: 3rem 0 2rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+header .header-title {
+  padding-left: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+header .header-title .logo {
+  background-color: #ffc200;
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+  background-size: 102% 102%;
+  background-position: -1px -1px;
+  background-image: url(../assets/Shapes@2x.png);
+}
+header .header-title h1 {
+  margin: 0;
+  font-weight: normal;
+  margin-left: 1rem;
+  font-size: 2.7rem;
+}
+header .header-title h1::after {
+  position: absolute;
+  font-family: "Font Awesome 5 Free";
+  font-size: 2rem;
+  margin-top: -20px;
+  margin-left: 10px;
+  top: 50%;
+  left: 100%;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: red;
 }
 nav {
-  padding-left: 2rem;
+  padding-left: 2.5rem;
 }
 nav a {
   color: #5a5a5a;
-  font-size: 1rem;
+  font-size: 1.3rem;
   text-decoration: none;
-  margin-right: 2rem;
-  border-bottom: 2px solid white;
+  margin-right: 2.3rem;
+  border-bottom: 3px solid white;
   display: inline-block;
   padding-bottom: 1rem;
 }
 nav a:hover {
   color: #000000;
-  border-bottom: 2px solid #ffc200;
+  border-bottom: 3px solid #ffc200;
 }
 .icon::before {
   font-family: "Font Awesome 5 Free";
@@ -56,6 +171,13 @@ nav a:hover {
 .icon-profile::before {
   content: "\f007";
 }
+.icon-comment::before {
+  content: "\f27a";
+  font-weight: bold;
+}
+.icon-ok::before {
+  content: url(../assets/Icon@3x.svg);
+}
 .icon-yellow::before {
   background-color: #fff8dd;
 }
@@ -72,7 +194,7 @@ nav a:hover {
 }
 .container {
   background-color: white;
-  width: 60%;
+  width: 62%;
   margin: auto;
   padding: 2rem;
   border-radius: 1rem;
