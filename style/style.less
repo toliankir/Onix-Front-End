@@ -32,8 +32,9 @@ body {
 }
 
 aside {
-    min-width: 350px;
-    width: 22%;
+    // min-width: 250px;
+    // width: 20%;
+    width: 355px;
     background-color: @aside-background-color;
     display: flex;
     flex-direction: column;
@@ -116,13 +117,16 @@ aside {
         padding: 1.5rem 1.5rem 1.5rem 2.5rem;
         display: flex;
         justify-content: space-between;
+
         & .task {
             width: 48%;
+
             & .task-count {
                 color: @aside-main-text-main-color;
                 font-size: 1.5rem;
                 margin: 0;
             }
+
             & .task-description {
                 color: @aside-secondary-text-color;
                 margin: 0;
@@ -167,7 +171,6 @@ header {
                 position: absolute;
                 font-family: "Font Awesome 5 Free";
                 font-size: 2rem;
-
                 margin-top: -20px;
                 margin-left: 10px;
                 top: 50%;
@@ -208,9 +211,9 @@ nav {
         color: @icon-content-color;
         top: 0;
         left: -45px;
-        width: 40px;
-        height: 40px;
-        border-radius: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -258,18 +261,27 @@ nav {
     & section {
         min-height: 50px;
         margin-left: 50px;
+        margin-bottom: 2rem;
+        padding-left: 2.5rem;
         display: flex;
+        & .time {
+            min-width: 75px;
+            font-size: 1.2rem;
+        }
+        & .content {
+            & p {
+                margin: 0;
+                font-size: 1.3rem;
+                width: 78%;
 
-        & p {
-            margin: 0;
-            width: 60%;
-
-            &.coment {
-                margin: 1rem 0;
-                background-color: @main-content-background-color;
-                width: 100%;
-                padding: 2rem;
-                border-radius: 1rem;
+                &.coment {
+                    margin: 1rem 0;
+                    font-size: 1.25rem;
+                    background-color: @main-content-background-color;
+                    width: 100%;
+                    padding: 2rem;
+                    border-radius: 1rem;
+                }
             }
         }
     }

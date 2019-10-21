@@ -12,8 +12,7 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 aside {
-  min-width: 350px;
-  width: 22%;
+  width: 355px;
   background-color: #000000;
   display: flex;
   flex-direction: column;
@@ -161,9 +160,9 @@ nav a:hover {
   color: #3d3a2c;
   top: 0;
   left: -45px;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -202,14 +201,22 @@ nav a:hover {
 .container section {
   min-height: 50px;
   margin-left: 50px;
+  margin-bottom: 2rem;
+  padding-left: 2.5rem;
   display: flex;
 }
-.container section p {
-  margin: 0;
-  width: 60%;
+.container section .time {
+  min-width: 75px;
+  font-size: 1.2rem;
 }
-.container section p.coment {
+.container section .content p {
+  margin: 0;
+  font-size: 1.3rem;
+  width: 78%;
+}
+.container section .content p.coment {
   margin: 1rem 0;
+  font-size: 1.25rem;
   background-color: #eeebe5;
   width: 100%;
   padding: 2rem;
