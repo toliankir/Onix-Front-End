@@ -59,8 +59,22 @@ aside {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
-.aside-profile .dots {
-  color: #9b9b9b;
+.aside-profile .user-details {
+  margin-right: -0.5rem;
+}
+.aside-profile .user-details button {
+  height: 40px;
+  min-width: 40px;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 20px;
+  outline: none;
+  padding: 0;
+  margin: 0;
 }
 .aside-profile .user-card {
   display: flex;
@@ -271,16 +285,17 @@ div.main-wrapper .container section .content .images img {
 .btn {
   height: 40px;
   min-width: 40px;
-  margin: 0 2rem 0 0;
   background: none;
   border: none;
-  border-radius: 20px;
-  font-size: 1.1rem;
-  padding: 0 1.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border-radius: 20px;
+  outline: none;
+  font-size: 1.1rem;
+  padding: 0 1.3rem;
+  margin: 0 2rem 0 0;
 }
 .btn > img {
   height: 60%;
@@ -293,4 +308,34 @@ div.main-wrapper .container section .content .images img {
 .btn-yellow {
   background-color: #fff8dd;
   color: #ffc200;
+}
+.dots {
+  position: absolute;
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #9b9b9b;
+}
+.dots::before {
+  position: absolute;
+  left: -150%;
+  top: 0;
+  display: block;
+  content: "";
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  background-color: inherit;
+}
+.dots::after {
+  position: absolute;
+  left: 175%;
+  top: 0;
+  display: block;
+  content: "";
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  background-color: inherit;
 }

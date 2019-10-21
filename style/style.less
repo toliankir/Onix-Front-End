@@ -20,6 +20,7 @@
 @btn-yellow-background-color: #fff8dd;
 @btn-yellow-color: #ffc200;
 @btn-dark-grey-color: #9b9b9b;
+
 html {
     height: 100%;
 }
@@ -93,8 +94,23 @@ aside {
         padding-top: 1.5rem;
         padding-bottom: 1.5rem;
 
-        & .dots {
-            color: @aside-secondary-text-color;
+        & .user-details {
+            margin-right: -0.5rem;
+
+            & button {
+                height: 40px;
+                min-width: 40px;
+                background: none;
+                border: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                border-radius: 20px;
+                outline: none;
+                padding: 0;
+                margin: 0;
+            }
         }
 
         & .user-card {
@@ -150,7 +166,7 @@ aside {
     &-nav {
         display: flex;
         flex-direction: column;
-        
+
 
         & p {
             margin: 1rem 0;
@@ -163,6 +179,7 @@ aside {
             color: @aside-main-text-main-color;
             font-size: 1.1rem;
             text-decoration: none;
+
             & span {
                 display: inline-block;
                 margin-left: 1rem;
@@ -308,8 +325,6 @@ div.main-wrapper {
     }
 }
 
-
-
 .icon {
     &::before {
         font-family: "Font Awesome 5 Free";
@@ -355,16 +370,17 @@ div.main-wrapper {
 .btn {
     height: 40px;
     min-width: 40px;
-    margin: 0 2rem 0 0;
     background: none;
     border: none;
-    border-radius: 20px;
-    font-size: 1.1rem;
-    padding: 0 1.3rem;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    border-radius: 20px;
+    outline: none;
+    font-size: 1.1rem;
+    padding: 0 1.3rem;
+    margin: 0 2rem 0 0;
 
     &>img {
         height: 60%;
@@ -379,5 +395,38 @@ div.main-wrapper {
     &-yellow {
         background-color: @btn-yellow-background-color;
         color: @btn-yellow-color;
+    }
+}
+
+& .dots {
+    position: absolute;
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: @aside-secondary-text-color;
+
+    &::before {
+        position: absolute;
+        left: -150%;
+        top: 0;
+        display: block;
+        content: "";
+        width: inherit;
+        height: inherit;
+        border-radius: inherit;
+        background-color: inherit;
+    }
+
+    &::after {
+        position: absolute;
+        left: 175%;
+        top: 0;
+        display: block;
+        content: "";
+        width: inherit;
+        height: inherit;
+        border-radius: inherit;
+        background-color: inherit;
     }
 }
