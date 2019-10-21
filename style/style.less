@@ -1,0 +1,127 @@
+@icon-green-color: #cef9c6;
+@icon-blue-color: #e3efff;
+@icon-yellow-color: #fff8dd;
+@icon-content-color: #3d3a2c;
+@main-content-background-color: #eeebe5;
+
+@aside-background-color: #000000;
+
+@nav-color: #5a5a5a;
+@nav-active-color: #000000;
+@nav-active-line-color: #ffc200;
+
+html {
+    height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+    position: relative;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+aside {
+    width: 300px;
+    background-color: @aside-background-color;
+}
+
+div.main-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: grey;
+}
+
+nav {
+    padding-left: 2rem;
+
+    & a {
+        color: @nav-color;
+        font-size: 1rem;
+        text-decoration: none;
+        margin-right: 2rem;
+        border-bottom: 2px solid white;
+        display: inline-block;
+        padding-bottom: 1rem;
+        &:hover {
+            color: @nav-active-color;
+            border-bottom: 2px solid @nav-active-line-color;
+        }
+    }
+}
+
+.icon {
+    &::before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        position: absolute;
+        color: @icon-content-color;
+        top: 0;
+        left: -45px;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &-profile::before {
+        content: "\f007";
+    }
+
+    &-yellow::before {
+        background-color: @icon-yellow-color;
+    }
+
+    &-green::before {
+        background-color: @icon-green-color;
+    }
+
+    &-blue::before {
+        background-color: @icon-blue-color;
+    }
+}
+
+.content-wrapper {
+    background-color: @main-content-background-color;
+    flex-grow: 1;
+    padding-top: 2rem;
+}
+
+.container {
+    background-color: white;
+    width: 60%;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 1rem;
+
+    & section {
+        min-height: 50px;
+        margin-left: 50px;
+        display: flex;
+
+        & p {
+            margin: 0;
+            width: 60%;
+
+            &.coment {
+                margin: 1rem 0;
+                background-color: @main-content-background-color;
+                width: 100%;
+                padding: 2rem;
+                border-radius: 1rem;
+            }
+        }
+    }
+
+}

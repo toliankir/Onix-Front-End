@@ -1,0 +1,95 @@
+html {
+  height: 100%;
+}
+* {
+  box-sizing: border-box;
+  position: relative;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+}
+aside {
+  width: 300px;
+  background-color: #000000;
+}
+div.main-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+header {
+  background-color: grey;
+}
+nav {
+  padding-left: 2rem;
+}
+nav a {
+  color: #5a5a5a;
+  font-size: 1rem;
+  text-decoration: none;
+  margin-right: 2rem;
+  border-bottom: 2px solid white;
+  display: inline-block;
+  padding-bottom: 1rem;
+}
+nav a:hover {
+  color: #000000;
+  border-bottom: 2px solid #ffc200;
+}
+.icon::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  color: #3d3a2c;
+  top: 0;
+  left: -45px;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon-profile::before {
+  content: "\f007";
+}
+.icon-yellow::before {
+  background-color: #fff8dd;
+}
+.icon-green::before {
+  background-color: #cef9c6;
+}
+.icon-blue::before {
+  background-color: #e3efff;
+}
+.content-wrapper {
+  background-color: #eeebe5;
+  flex-grow: 1;
+  padding-top: 2rem;
+}
+.container {
+  background-color: white;
+  width: 60%;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+.container section {
+  min-height: 50px;
+  margin-left: 50px;
+  display: flex;
+}
+.container section p {
+  margin: 0;
+  width: 60%;
+}
+.container section p.coment {
+  margin: 1rem 0;
+  background-color: #eeebe5;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 1rem;
+}
