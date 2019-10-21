@@ -15,6 +15,11 @@
 @nav-active-line-color: #ffc200;
 @header-nav-padding-left: 2.5rem;
 
+@btn-grey-background-color: #eaeaea;
+@btn-grey-color: #000000;
+@btn-yellow-background-color: #fff8dd;
+@btn-yellow-color: #ffc200;
+@btn-dark-grey-color: #9b9b9b;
 html {
     height: 100%;
 }
@@ -32,17 +37,23 @@ body {
 }
 
 aside {
-    // min-width: 250px;
-    // width: 20%;
-    width: 355px;
+    min-width: 350px;
+    max-width: 455px;
+    width: 21%;
+
     background-color: @aside-background-color;
     display: flex;
     flex-direction: column;
 }
 
 .aside {
+    &-padding {
+        padding-right: 1.5rem;
+        padding-left: 2.5rem;
+    }
+
     &-title {
-        margin: 2.5rem 1.5rem 2.5rem 2.5rem;
+        margin: 2.5rem 0;
         display: flex;
         justify-content: space-between;
 
@@ -79,7 +90,8 @@ aside {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
 
         & .dots {
             color: @aside-secondary-text-color;
@@ -114,7 +126,7 @@ aside {
     }
 
     &-tasks {
-        padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+        margin: 1.5rem 0;
         display: flex;
         justify-content: space-between;
 
@@ -130,6 +142,37 @@ aside {
             & .task-description {
                 color: @aside-secondary-text-color;
                 margin: 0;
+                font-size: 0.95rem;
+            }
+        }
+    }
+
+    &-nav {
+        display: flex;
+        flex-direction: column;
+        
+
+        & p {
+            margin: 1rem 0;
+            color: @aside-secondary-text-color;
+            font-size: 1rem;
+        }
+
+        & a {
+            margin: 0.9rem 0;
+            color: @aside-main-text-main-color;
+            font-size: 1.1rem;
+            text-decoration: none;
+            & span {
+                display: inline-block;
+                margin-left: 1rem;
+                font-size: 1.05rem;
+                color: @nav-active-color;
+                background-color: @nav-active-line-color;
+                height: 1.5rem;
+                width: 1.5rem;
+                text-align: center;
+                border-radius: 50%;
             }
         }
     }
@@ -139,69 +182,133 @@ div.main-wrapper {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-}
 
-header {
-    padding: 3rem 0 2rem 0;
-    display: flex;
-    justify-content: space-between;
-
-    .header-title {
-        padding-left: @header-nav-padding-left;
+    header {
+        padding: 3rem 0 1.5rem 0;
         display: flex;
+        justify-content: space-between;
         align-items: center;
 
-        & .logo {
-            background-color: @nav-active-line-color;
-            width: 55px;
-            height: 55px;
-            border-radius: 10px;
-            background-size: 102% 102%;
-            background-position: -1px -1px;
-            background-image: url(../assets/Shapes@2x.png);
+        & .header-title {
+            padding-left: @header-nav-padding-left;
+            display: flex;
+            align-items: center;
+
+            & .logo {
+                background-color: @nav-active-line-color;
+                width: 55px;
+                height: 55px;
+                border-radius: 10px;
+                background-size: 102% 102%;
+                background-position: -1px -1px;
+                background-image: url(../assets/Shapes@2x.png);
+            }
+
+            & h1 {
+                font-weight: normal;
+                margin: 0 1rem;
+                font-size: 2.7rem;
+            }
         }
 
-        & h1 {
-            margin: 0;
-            font-weight: normal;
-            margin-left: 1rem;
-            font-size: 2.7rem;
+        & .header-controls {
+            display: flex;
 
-            &::after {
-                position: absolute;
-                font-family: "Font Awesome 5 Free";
-                font-size: 2rem;
-                margin-top: -20px;
-                margin-left: 10px;
-                top: 50%;
-                left: 100%;
-                width: 40px;
+            &>img {
                 height: 40px;
-                border-radius: 20px;
-                background-color: red;
+                border-radius: 50%;
+                margin-right: 0.6rem;
+                cursor: pointer;
             }
         }
     }
-}
 
-nav {
-    padding-left: @header-nav-padding-left;
+    nav {
+        padding-left: @header-nav-padding-left;
 
-    & a {
-        color: @nav-color;
-        font-size: 1.3rem;
-        text-decoration: none;
-        margin-right: 2.3rem;
-        border-bottom: 3px solid white;
-        display: inline-block;
-        padding-bottom: 1rem;
+        & a {
+            color: @nav-color;
+            font-size: 1.3rem;
+            text-decoration: none;
+            margin-right: 2.3rem;
+            border-bottom: 3px solid white;
+            display: inline-block;
+            padding-bottom: 1rem;
 
-        &:hover {
-            color: @nav-active-color;
-            border-bottom: 3px solid @nav-active-line-color;
+            &:hover {
+                color: @nav-active-color;
+                border-bottom: 3px solid @nav-active-line-color;
+            }
         }
     }
+
+    .content-wrapper {
+        background-color: @main-content-background-color;
+        flex-grow: 1;
+        padding: 2.5rem 0;
+    }
+
+    .container {
+        background-color: white;
+        width: 62%;
+        margin: auto;
+        padding: 2rem;
+        border-radius: 1rem;
+
+        & h4 {
+            margin: 1rem 0 2.5rem -2.5rem;
+            font-size: 1.1rem;
+
+            left: 45px;
+            font-weight: normal;
+        }
+
+        & section {
+            min-height: 50px;
+            margin-left: 50px;
+            margin-bottom: 2rem;
+            padding-left: 2.5rem;
+            display: flex;
+
+            & .time {
+                min-width: 80px;
+                font-size: 1.2rem;
+            }
+
+            & .content {
+                & p {
+                    margin: 0;
+                    font-size: 1.3rem;
+                    width: 80%;
+
+                    &.coment {
+                        margin: 1.5rem 0 0.5rem 0;
+                        font-size: 1.25rem;
+                        background-color: @main-content-background-color;
+                        width: 100%;
+                        padding: 2rem;
+                        border-radius: 1rem;
+                    }
+                }
+
+                & .images {
+                    width: 75%;
+                    display: flex;
+                    margin: 1.5rem 0 0 1.5rem;
+                    justify-content: space-between;
+
+                    & img {
+                        width: 23%;
+                        border-radius: 10%;
+                    }
+                }
+            }
+        }
+
+    }
 }
+
+
 
 .icon {
     &::before {
@@ -245,45 +352,32 @@ nav {
     }
 }
 
-.content-wrapper {
-    background-color: @main-content-background-color;
-    flex-grow: 1;
-    padding-top: 2rem;
-}
+.btn {
+    height: 40px;
+    min-width: 40px;
+    margin: 0 2rem 0 0;
+    background: none;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    padding: 0 1.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 
-.container {
-    background-color: white;
-    width: 62%;
-    margin: auto;
-    padding: 2rem;
-    border-radius: 1rem;
-
-    & section {
-        min-height: 50px;
-        margin-left: 50px;
-        margin-bottom: 2rem;
-        padding-left: 2.5rem;
-        display: flex;
-        & .time {
-            min-width: 75px;
-            font-size: 1.2rem;
-        }
-        & .content {
-            & p {
-                margin: 0;
-                font-size: 1.3rem;
-                width: 78%;
-
-                &.coment {
-                    margin: 1rem 0;
-                    font-size: 1.25rem;
-                    background-color: @main-content-background-color;
-                    width: 100%;
-                    padding: 2rem;
-                    border-radius: 1rem;
-                }
-            }
-        }
+    &>img {
+        height: 60%;
+        margin-right: 0.5rem;
     }
 
+    &-grey {
+        background-color: @btn-grey-background-color;
+        color: @btn-grey-color;
+    }
+
+    &-yellow {
+        background-color: @btn-yellow-background-color;
+        color: @btn-yellow-color;
+    }
 }
