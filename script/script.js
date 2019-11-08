@@ -15,11 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         //Decreases open task count if it is more than 0
         if (openTaskCounterElement.innerText !== '0') {
-            openTaskCounterElement.innerText = parseInt(openTaskCounterElement.innerText) - 1;
+            openTaskCounterElement.innerText--;
         }
 
         //Increment completed task counter
-        completedTaskCounterElement.innerText = parseInt(completedTaskCounterElement.innerText) + 1;
+        completedTaskCounterElement.innerText++;
     });
 
     //Sets event handlers for bottom side images
