@@ -107,6 +107,7 @@ aside {
   width: 48%;
 }
 .aside-tasks .task .task-count {
+  user-select: none;
   color: #FFFFFF;
   font-size: 1.5rem;
   margin: 0;
