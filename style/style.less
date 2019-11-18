@@ -37,10 +37,7 @@ body {
 }
 
 aside {
-    min-width: 320px;
-    max-width: 450px;
-    width: 21%;
-
+    width: 270px;
     background-color: @aside-background-color;
     display: flex;
     flex-direction: column;
@@ -48,19 +45,19 @@ aside {
 
 .aside {
     &-padding {
-        padding-right: 1.5rem;
-        padding-left: 2.5rem;
+        padding-left: 30px;
     }
 
     &-title {
-        margin: 2.5rem 0;
+        margin: 30px 0;
+        padding-right: 10px;
         display: flex;
         justify-content: space-between;
 
         & h2 {
             color: @aside-main-text-main-color;
-            margin: 0 0 0 3rem;
-            font-size: 1.3rem;
+            margin: 0 0 0 32px;
+            font-size: 16px;
 
             &::before {
                 position: absolute;
@@ -68,33 +65,35 @@ aside {
                 height: 100%;
                 content: "";
                 background: url(../assets/Logo@3x.svg) no-repeat;
-                background-size: 32px;
-                left: -3rem;
+                background-size: 24px;
+                left: -32px;
             }
         }
 
         & button {
+
             cursor: pointer;
             background-color: @aside-background-color;
             border: none;
             outline: none;
 
             & img {
-                width: 130%;
+                width: 16px;
             }
         }
     }
 
     &-profile {
+        padding-right: 10px;
         background-color: @aside-profile-background-color;
         display: flex;
         align-items: center;
+        height: 80px;
         justify-content: space-between;
-        padding-top: 1.5rem;
-        padding-bottom: 1.5rem;
+
 
         & .user-details {
-            margin-right: -0.5rem;
+            margin-right: -8px;
 
             & button {
                 height: 40px;
@@ -116,10 +115,10 @@ aside {
             display: flex;
 
             & img {
-                width: 64px;
-                height: 64px;
+                width: 48px;
+                height: 48px;
                 border-radius: 50%;
-                margin-right: 1rem;
+                margin-right: 16px;
             }
 
             & .user-data {
@@ -129,36 +128,38 @@ aside {
 
                 & .user-name {
                     color: @aside-main-text-main-color;
+                    font-size: 14px;
                     margin: 0;
                 }
 
                 & .user-state {
                     color: @aside-secondary-text-color;
-                    margin: 0;
+                    font-size: 12px;
+                    margin: 2px 0 0 0;
                 }
             }
         }
     }
 
     &-tasks {
-        margin: 1.5rem 0;
+        margin: 20px 0 32px 0;
         display: flex;
         justify-content: space-between;
 
         & .task {
-            width: 48%;
+            width: 49%;
 
             & .task-count {
-                user-select: none; 
+                user-select: none;
                 color: @aside-main-text-main-color;
-                font-size: 1.5rem;
+                font-size: 20px;
                 margin: 0;
             }
 
             & .task-description {
                 color: @aside-secondary-text-color;
                 margin: 0;
-                font-size: 0.95rem;
+                font-size: 12px;
             }
         }
     }
@@ -169,25 +170,29 @@ aside {
 
 
         & p {
-            margin: 1rem 0;
+            margin: 8px 0;
             color: @aside-secondary-text-color;
-            font-size: 1rem;
+            font-size: 12px;
+            line-height: 22px;
         }
 
         & a {
-            margin: 0.9rem 0;
+            margin: 8px 0;
             color: @aside-main-text-main-color;
-            font-size: 1.1rem;
+            font-size: 14px;
+            line-height: 22px;
             text-decoration: none;
 
             & span {
                 display: inline-block;
-                margin-left: 1rem;
-                font-size: 1.05rem;
+                margin-left: 9px;
+                font-size: 13px;
+                line-height: 20px;
                 color: @nav-active-color;
                 background-color: @nav-active-line-color;
-                height: 1.5rem;
-                width: 1.5rem;
+                height: 20px;
+                width: 20px;
+                text-indent: -1px;
                 text-align: center;
                 border-radius: 50%;
             }
@@ -202,7 +207,7 @@ div.main-wrapper {
     flex-direction: column;
 
     header {
-        padding: 3rem 0 1.5rem 0;
+        padding: 40px 30px 20px 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -211,10 +216,11 @@ div.main-wrapper {
             padding-left: @header-nav-padding-left;
             display: flex;
             align-items: center;
+
             & .logo {
                 background-color: @nav-active-line-color;
-                width: 55px;
-                height: 55px;
+                width: 40px;
+                height: 40px;
                 border-radius: 10px;
                 background-size: 102% 102%;
                 background-position: -1px -1px;
@@ -223,11 +229,8 @@ div.main-wrapper {
 
             & h1 {
                 font-weight: normal;
-                margin: 0 1rem;
-                font-size: 2.7rem;
-                @media screen and (max-width: 1350px){
-                    font-size: 2rem;
-                }
+                margin: 0 11px 0 15px;
+                font-size: 32px;
             }
         }
 
@@ -235,10 +238,11 @@ div.main-wrapper {
             display: flex;
 
             &>img {
-                height: 40px;
+                height: 30px;
                 border-radius: 50%;
-                margin-right: 0.6rem;
+                margin-right: 5px;
                 cursor: pointer;
+
             }
         }
     }
@@ -248,16 +252,16 @@ div.main-wrapper {
 
         & a {
             color: @nav-color;
-            font-size: 1.3rem;
+            font-size: 16px;
             text-decoration: none;
-            margin-right: 2.3rem;
-            border-bottom: 3px solid white;
+            margin-right: 30px;
+            border-bottom: 2px solid white;
             display: inline-block;
-            padding-bottom: 1rem;
+            padding-bottom: 14px;
 
             &:hover {
                 color: @nav-active-color;
-                border-bottom: 3px solid @nav-active-line-color;
+                border-bottom: 2px solid @nav-active-line-color;
             }
         }
     }
@@ -265,65 +269,70 @@ div.main-wrapper {
     .content-wrapper {
         background-color: @main-content-background-color;
         flex-grow: 1;
-        padding: 2.5rem 0;
+        padding: 30px 0;
     }
 
     .container {
         background-color: white;
         width: 62%;
         margin: auto;
-        padding: 2rem;
-        border-radius: 1rem;
+        padding: 35px 30px 60px 30px;
+        border-radius: 8px;
 
         & h4 {
-            margin: 1rem 0 2.5rem -2.5rem;
-            font-size: 1.1rem;
-            left: 45px;
+            margin: 0 0 32px 0;
+            font-size: 14px;
             font-weight: normal;
         }
 
         & section {
-            min-height: 50px;
-            margin-left: 50px;
-            margin-bottom: 2rem;
-            padding-left: 2.5rem;
+            min-height: 30px;
+            margin-left: 40px;
+            margin-bottom: 30px;
+            padding-left: 20px;
             display: flex;
+            justify-content: space-between;
 
             & .time {
                 min-width: 80px;
-                font-size: 1.2rem;
+                font-size: 14px;
             }
 
             & .content {
+
                 & p {
                     margin: 0;
-                    font-size: 1.3rem;
-                    width: 80%;
+                    font-size: 16px;
+                    line-height: 18px;
+                    width: 65%;
+                    min-height: 40px;
+                    display: flex;
+                    align-items: center;
 
                     &.coment {
-                        margin: 1.5rem 0 0.5rem 0;
-                        font-size: 1.25rem;
+                        margin: 20px 0 0 0;
+                        font-size: 15px;
+                        line-height: 20px;
                         background-color: @main-content-background-color;
                         width: 100%;
-                        padding: 2rem;
-                        border-radius: 1rem;
+                        padding: 20px 30px;
+                        border-radius: 10px;
                     }
                 }
 
                 & .images {
                     width: 75%;
-                    display: flex;
-                    margin: 1.5rem 0 0 1.5rem;
-                    justify-content: space-between;
+                    margin-top: 20px;
 
                     & img {
-                        width: 23%;
-                        border-radius: 10%;
+                        float: left;
+                        width: 100px;
+                        margin: 0 10px 10px 0;
+                        border-radius: 8px;
                     }
                 }
             }
         }
-
     }
 }
 
@@ -334,22 +343,24 @@ div.main-wrapper {
         position: absolute;
         color: @icon-content-color;
         top: 0;
-        left: -45px;
-        width: 50px;
-        height: 50px;
+        left: -40px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    &-profile::before {
-        content: "\f007";
+    &-download::before {
+        font-size: 12px;
+        content: "\f019";
     }
 
     &-comment::before {
-        content: "\f27a";
+        font-size: 12px;
         font-weight: bold;
+        content: "\f27a";
     }
 
     &-ok::before {
@@ -370,23 +381,22 @@ div.main-wrapper {
 }
 
 .btn {
-    height: 40px;
-    min-width: 40px;
+    height: 30px;
+    min-width: 30px;
     background: none;
     border: none;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    border-radius: 20px;
+    border-radius: 15px;
     outline: none;
-    font-size: 1.1rem;
-    padding: 0 1.3rem;
-    margin: 0 2rem 0 0;
+    font-size: 14px;
+    padding: 0 15px;
 
     &>img {
         height: 60%;
-        margin-right: 0.5rem;
+        margin-right: 8px;
     }
 
     &-grey {
@@ -403,14 +413,14 @@ div.main-wrapper {
 & .dots {
     position: absolute;
     display: block;
-    width: 5px;
-    height: 5px;
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
     background-color: @aside-secondary-text-color;
 
     &::before {
         position: absolute;
-        left: -150%;
+        left: -6px;
         top: 0;
         display: block;
         content: "";
@@ -422,7 +432,7 @@ div.main-wrapper {
 
     &::after {
         position: absolute;
-        left: 175%;
+        left: 6px;
         top: 0;
         display: block;
         content: "";
@@ -430,5 +440,13 @@ div.main-wrapper {
         height: inherit;
         border-radius: inherit;
         background-color: inherit;
+    }
+}
+
+.margin {
+    &-v {
+        &-15 {
+            margin: 0 15px;
+        }
     }
 }

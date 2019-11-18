@@ -12,26 +12,24 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 aside {
-  min-width: 320px;
-  max-width: 450px;
-  width: 21%;
+  width: 270px;
   background-color: #000000;
   display: flex;
   flex-direction: column;
 }
 .aside-padding {
-  padding-right: 1.5rem;
-  padding-left: 2.5rem;
+  padding-left: 30px;
 }
 .aside-title {
-  margin: 2.5rem 0;
+  margin: 30px 0;
+  padding-right: 10px;
   display: flex;
   justify-content: space-between;
 }
 .aside-title h2 {
   color: #FFFFFF;
-  margin: 0 0 0 3rem;
-  font-size: 1.3rem;
+  margin: 0 0 0 32px;
+  font-size: 16px;
 }
 .aside-title h2::before {
   position: absolute;
@@ -39,8 +37,8 @@ aside {
   height: 100%;
   content: "";
   background: url(../assets/Logo@3x.svg) no-repeat;
-  background-size: 32px;
-  left: -3rem;
+  background-size: 24px;
+  left: -32px;
 }
 .aside-title button {
   cursor: pointer;
@@ -49,18 +47,18 @@ aside {
   outline: none;
 }
 .aside-title button img {
-  width: 130%;
+  width: 16px;
 }
 .aside-profile {
+  padding-right: 10px;
   background-color: #202020;
   display: flex;
   align-items: center;
+  height: 80px;
   justify-content: space-between;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
 }
 .aside-profile .user-details {
-  margin-right: -0.5rem;
+  margin-right: -8px;
 }
 .aside-profile .user-details button {
   height: 40px;
@@ -80,10 +78,10 @@ aside {
   display: flex;
 }
 .aside-profile .user-card img {
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  margin-right: 1rem;
+  margin-right: 16px;
 }
 .aside-profile .user-card .user-data {
   display: flex;
@@ -92,54 +90,60 @@ aside {
 }
 .aside-profile .user-card .user-data .user-name {
   color: #FFFFFF;
+  font-size: 14px;
   margin: 0;
 }
 .aside-profile .user-card .user-data .user-state {
   color: #9b9b9b;
-  margin: 0;
+  font-size: 12px;
+  margin: 2px 0 0 0;
 }
 .aside-tasks {
-  margin: 1.5rem 0;
+  margin: 20px 0 32px 0;
   display: flex;
   justify-content: space-between;
 }
 .aside-tasks .task {
-  width: 48%;
+  width: 49%;
 }
 .aside-tasks .task .task-count {
   user-select: none;
   color: #FFFFFF;
-  font-size: 1.5rem;
+  font-size: 20px;
   margin: 0;
 }
 .aside-tasks .task .task-description {
   color: #9b9b9b;
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 12px;
 }
 .aside-nav {
   display: flex;
   flex-direction: column;
 }
 .aside-nav p {
-  margin: 1rem 0;
+  margin: 8px 0;
   color: #9b9b9b;
-  font-size: 1rem;
+  font-size: 12px;
+  line-height: 22px;
 }
 .aside-nav a {
-  margin: 0.9rem 0;
+  margin: 8px 0;
   color: #FFFFFF;
-  font-size: 1.1rem;
+  font-size: 14px;
+  line-height: 22px;
   text-decoration: none;
 }
 .aside-nav a span {
   display: inline-block;
-  margin-left: 1rem;
-  font-size: 1.05rem;
+  margin-left: 9px;
+  font-size: 13px;
+  line-height: 20px;
   color: #000000;
   background-color: #ffc200;
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 20px;
+  width: 20px;
+  text-indent: -1px;
   text-align: center;
   border-radius: 50%;
 }
@@ -150,7 +154,7 @@ div.main-wrapper {
   flex-direction: column;
 }
 div.main-wrapper header {
-  padding: 3rem 0 1.5rem 0;
+  padding: 40px 30px 20px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -162,8 +166,8 @@ div.main-wrapper header .header-title {
 }
 div.main-wrapper header .header-title .logo {
   background-color: #ffc200;
-  width: 55px;
-  height: 55px;
+  width: 40px;
+  height: 40px;
   border-radius: 10px;
   background-size: 102% 102%;
   background-position: -1px -1px;
@@ -171,21 +175,16 @@ div.main-wrapper header .header-title .logo {
 }
 div.main-wrapper header .header-title h1 {
   font-weight: normal;
-  margin: 0 1rem;
-  font-size: 2.7rem;
-}
-@media screen and (max-width: 1350px) {
-  div.main-wrapper header .header-title h1 {
-    font-size: 2rem;
-  }
+  margin: 0 11px 0 15px;
+  font-size: 32px;
 }
 div.main-wrapper header .header-controls {
   display: flex;
 }
 div.main-wrapper header .header-controls > img {
-  height: 40px;
+  height: 30px;
   border-radius: 50%;
-  margin-right: 0.6rem;
+  margin-right: 5px;
   cursor: pointer;
 }
 div.main-wrapper nav {
@@ -193,68 +192,73 @@ div.main-wrapper nav {
 }
 div.main-wrapper nav a {
   color: #5a5a5a;
-  font-size: 1.3rem;
+  font-size: 16px;
   text-decoration: none;
-  margin-right: 2.3rem;
-  border-bottom: 3px solid white;
+  margin-right: 30px;
+  border-bottom: 2px solid white;
   display: inline-block;
-  padding-bottom: 1rem;
+  padding-bottom: 14px;
 }
 div.main-wrapper nav a:hover {
   color: #000000;
-  border-bottom: 3px solid #ffc200;
+  border-bottom: 2px solid #ffc200;
 }
 div.main-wrapper .content-wrapper {
   background-color: #eeebe5;
   flex-grow: 1;
-  padding: 2.5rem 0;
+  padding: 30px 0;
 }
 div.main-wrapper .container {
   background-color: white;
   width: 62%;
   margin: auto;
-  padding: 2rem;
-  border-radius: 1rem;
+  padding: 35px 30px 60px 30px;
+  border-radius: 8px;
 }
 div.main-wrapper .container h4 {
-  margin: 1rem 0 2.5rem -2.5rem;
-  font-size: 1.1rem;
-  left: 45px;
+  margin: 0 0 32px 0;
+  font-size: 14px;
   font-weight: normal;
 }
 div.main-wrapper .container section {
-  min-height: 50px;
-  margin-left: 50px;
-  margin-bottom: 2rem;
-  padding-left: 2.5rem;
+  min-height: 30px;
+  margin-left: 40px;
+  margin-bottom: 30px;
+  padding-left: 20px;
   display: flex;
+  justify-content: space-between;
 }
 div.main-wrapper .container section .time {
   min-width: 80px;
-  font-size: 1.2rem;
+  font-size: 14px;
 }
 div.main-wrapper .container section .content p {
   margin: 0;
-  font-size: 1.3rem;
-  width: 80%;
+  font-size: 16px;
+  line-height: 18px;
+  width: 65%;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
 }
 div.main-wrapper .container section .content p.coment {
-  margin: 1.5rem 0 0.5rem 0;
-  font-size: 1.25rem;
+  margin: 20px 0 0 0;
+  font-size: 15px;
+  line-height: 20px;
   background-color: #eeebe5;
   width: 100%;
-  padding: 2rem;
-  border-radius: 1rem;
+  padding: 20px 30px;
+  border-radius: 10px;
 }
 div.main-wrapper .container section .content .images {
   width: 75%;
-  display: flex;
-  margin: 1.5rem 0 0 1.5rem;
-  justify-content: space-between;
+  margin-top: 20px;
 }
 div.main-wrapper .container section .content .images img {
-  width: 23%;
-  border-radius: 10%;
+  float: left;
+  width: 100px;
+  margin: 0 10px 10px 0;
+  border-radius: 8px;
 }
 .icon::before {
   font-family: "Font Awesome 5 Free";
@@ -262,20 +266,22 @@ div.main-wrapper .container section .content .images img {
   position: absolute;
   color: #3d3a2c;
   top: 0;
-  left: -45px;
-  width: 50px;
-  height: 50px;
+  left: -40px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.icon-profile::before {
-  content: "\f007";
+.icon-download::before {
+  font-size: 12px;
+  content: "\f019";
 }
 .icon-comment::before {
-  content: "\f27a";
+  font-size: 12px;
   font-weight: bold;
+  content: "\f27a";
 }
 .icon-ok::before {
   content: url(../assets/Icon@3x.svg);
@@ -290,23 +296,22 @@ div.main-wrapper .container section .content .images img {
   background-color: #e3efff;
 }
 .btn {
-  height: 40px;
-  min-width: 40px;
+  height: 30px;
+  min-width: 30px;
   background: none;
   border: none;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  border-radius: 20px;
+  border-radius: 15px;
   outline: none;
-  font-size: 1.1rem;
-  padding: 0 1.3rem;
-  margin: 0 2rem 0 0;
+  font-size: 14px;
+  padding: 0 15px;
 }
 .btn > img {
   height: 60%;
-  margin-right: 0.5rem;
+  margin-right: 8px;
 }
 .btn-grey {
   background-color: #eaeaea;
@@ -319,14 +324,14 @@ div.main-wrapper .container section .content .images img {
 .dots {
   position: absolute;
   display: block;
-  width: 5px;
-  height: 5px;
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
   background-color: #9b9b9b;
 }
 .dots::before {
   position: absolute;
-  left: -150%;
+  left: -6px;
   top: 0;
   display: block;
   content: "";
@@ -337,7 +342,7 @@ div.main-wrapper .container section .content .images img {
 }
 .dots::after {
   position: absolute;
-  left: 175%;
+  left: 6px;
   top: 0;
   display: block;
   content: "";
@@ -345,4 +350,7 @@ div.main-wrapper .container section .content .images img {
   height: inherit;
   border-radius: inherit;
   background-color: inherit;
+}
+.margin-v-15 {
+  margin: 0 15px;
 }
