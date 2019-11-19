@@ -27,6 +27,7 @@ export default {
 <style scoped>
 aside {
   width: 270px;
+  min-width: 270px;
   background-color: #000000;
   display: flex;
   flex-direction: column;

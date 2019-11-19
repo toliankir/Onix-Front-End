@@ -8,9 +8,13 @@
       </button>
     </div>
     <div class="header-controls">
-      <img src="@/assets/photos/2.jpg" alt="User photo" />
-      <img src="@/assets/photos/3.jpg" alt="User photo" />
-      <img src="@/assets/photos/4.jpg" alt="User photo" />
+      <img
+        v-for="(user, index) of users"
+        :key="index"
+        :src="'./assets/photos/' + user.image"
+        :alt="'User ' + user.name + ' photo'"
+      />
+
       <button class="btn btn-grey margin-v-15">Share</button>
       <button class="btn btn-yellow">
         <img src="@/assets/Combined Shape@1x.svg" alt="Button icon" />Chat
@@ -18,6 +22,20 @@
     </div>
   </header>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      users: [
+        { name: "1", image: "2.jpg" },
+        { name: "1", image: "3.jpg" },
+        { name: "1", image: "4.jpg" }
+      ]
+    };
+  }
+};
+</script>
 
 <style scoped>
 header {
@@ -40,7 +58,7 @@ header .header-title .logo {
   border-radius: 10px;
   background-size: 102% 102%;
   background-position: -1px -1px;
-  background-image: url('../assets/Shapes@2x.png');
+  background-image: url("../assets/Shapes@2x.png");
 }
 
 header .header-title h1 {

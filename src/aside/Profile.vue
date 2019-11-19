@@ -1,10 +1,10 @@
 <template>
   <div class="aside-profile aside-padding">
     <div class="user-card">
-      <img src="@/assets/photos/1.jpg" alt="User photo" />
+      <img :src="'./assets/photos/' + userProfile.image" alt="User photo" />
       <div class="user-data">
-        <p class="user-name">Jean Gonzales</p>
-        <p class="user-state">Product Owner</p>
+        <p class="user-name">{{userProfile.name}}</p>
+        <p class="user-state">{{userProfile.group}}</p>
       </div>
     </div>
     <div class="user-details">
@@ -14,6 +14,20 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      userProfile: {
+        name: "Jean Gonzales",
+        group: "Product Owner",
+        image: "1.jpg"
+      }
+    }
+  }
+}
+</script>
 
 <style scoped>
 .aside-profile {

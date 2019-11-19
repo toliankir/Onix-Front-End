@@ -24,8 +24,8 @@ export default {
 <style scoped>
 .main-wrapper {
   flex-grow: 1;
-  display: flex;
   min-width: 900px;
+  display: flex;  
   flex-direction: column;
 }
 </style>

@@ -1,5 +1,8 @@
 <template>
-  <section class="icon icon-download" :class="[getIconColorClass(article.icon), getIconTypeClass(article.icon)]">
+  <section
+    class="icon icon-download"
+    :class="[getIconColorClass(article.icon), getIconTypeClass(article.icon)]"
+  >
     <div class="content">
       <p>{{article.data}}</p>
       <div v-if="article.images.length !== 0" class="images">
@@ -10,10 +13,9 @@
           alt="Content image"
         />
       </div>
-      <p v-if="article.comments.length !== 0" class="coment">
-        During a project build, it is necessary to evaluate the product design and
-        development against project requirements and outcomes
-      </p>
+      <div v-if="article.comments.length !== 0" class="coment">
+        <p v-for="(comment, index) of article.comments" :key="index">{{comment}}</p>
+      </div>
     </div>
     <div class="time">{{article.date}}</div>
   </section>
@@ -47,7 +49,7 @@ export default {
         case "comment":
           return "icon-comment";
       }
-    },
+    }
   }
 };
 </script>
@@ -64,7 +66,7 @@ section .time {
   min-width: 80px;
   font-size: 14px;
 }
-section .content p {
+section .content > p {
   margin: 0;
   font-size: 16px;
   line-height: 18px;
@@ -73,14 +75,20 @@ section .content p {
   display: flex;
   align-items: center;
 }
-section .content p.coment {
+section .content div.coment {
   margin: 20px 0 0 0;
-  font-size: 15px;
-  line-height: 20px;
   background-color: #eeebe5;
   width: 100%;
   padding: 20px 30px;
   border-radius: 10px;
+}
+section .content div.coment p:first-child {
+  margin: 0;
+}
+section .content div.coment p {
+  margin-top: 15px;
+  font-size: 15px;
+  line-height: 20px;
 }
 section .content .images {
   width: 75%;
