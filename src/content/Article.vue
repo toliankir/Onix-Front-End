@@ -1,22 +1,36 @@
+<template>
+  <section class="icon icon-download icon-blue">
+    <div class="content">
+      <p>{{article.data}}</p>
+      <div v-if="article.images.length !== 0" class="images">
+        <img
+          v-for="(image, index) of article.images"
+          :key="index"
+          :src="'./assets/content-images/'+image"
+          alt="Content image"
+        />
+      </div>
+      <p v-if="article.comments.length !== 0" class="coment">
+        During a project build, it is necessary to evaluate the product design and
+        development against project requirements and outcomes
+      </p>
+    </div>
+    <div class="time">{{article.date}}</div>
+  </section>
+</template>
 
-div.main-wrapper .content-wrapper {
-  background-color: #eeebe5;
-  flex-grow: 1;
-  padding: 30px 0;
-}
-div.main-wrapper .container {
-  background-color: white;
-  width: 62%;
-  margin: auto;
-  padding: 35px 30px 60px 30px;
-  border-radius: 8px;
-}
-div.main-wrapper .container h4 {
-  margin: 0 0 32px 0;
-  font-size: 14px;
-  font-weight: normal;
-}
-div.main-wrapper .container section {
+<script>
+export default {
+  props: {
+    article: {
+      type: Object,
+      required: true
+    }
+  }
+};
+</script>
+<style scoped>
+section {
   min-height: 30px;
   margin-left: 40px;
   margin-bottom: 30px;
@@ -24,11 +38,11 @@ div.main-wrapper .container section {
   display: flex;
   justify-content: space-between;
 }
-div.main-wrapper .container section .time {
+section .time {
   min-width: 80px;
   font-size: 14px;
 }
-div.main-wrapper .container section .content p {
+section .content p {
   margin: 0;
   font-size: 16px;
   line-height: 18px;
@@ -37,7 +51,7 @@ div.main-wrapper .container section .content p {
   display: flex;
   align-items: center;
 }
-div.main-wrapper .container section .content p.coment {
+section .content p.coment {
   margin: 20px 0 0 0;
   font-size: 15px;
   line-height: 20px;
@@ -46,11 +60,11 @@ div.main-wrapper .container section .content p.coment {
   padding: 20px 30px;
   border-radius: 10px;
 }
-div.main-wrapper .container section .content .images {
+section .content .images {
   width: 75%;
   margin-top: 20px;
 }
-div.main-wrapper .container section .content .images img {
+section .content .images img {
   float: left;
   width: 100px;
   margin: 0 10px 10px 0;
@@ -91,29 +105,4 @@ div.main-wrapper .container section .content .images img {
 .icon-blue::before {
   background-color: #e3efff;
 }
-.btn {
-  height: 30px;
-  min-width: 30px;
-  background: none;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 15px;
-  outline: none;
-  font-size: 14px;
-  padding: 0 15px;
-}
-.btn > img {
-  height: 60%;
-  margin-right: 8px;
-}
-.btn-grey {
-  background-color: #eaeaea;
-  color: #000000;
-}
-.btn-yellow {
-  background-color: #fff8dd;
-  color: #ffc200;
-}
+</style>
