@@ -1,5 +1,5 @@
 <template>
-  <section class="icon icon-download icon-blue">
+  <section class="icon icon-download" :class="[getIconColorClass(article.icon), getIconTypeClass(article.icon)]">
     <div class="content">
       <p>{{article.data}}</p>
       <div v-if="article.images.length !== 0" class="images">
@@ -26,6 +26,28 @@ export default {
       type: Object,
       required: true
     }
+  },
+  methods: {
+    getIconColorClass(iconObj) {
+      switch (iconObj.color) {
+        case "blue":
+          return "icon-blue";
+        case "yellow":
+          return "icon-yellow";
+        case "green":
+          return "icon-green";
+      }
+    },
+    getIconTypeClass(iconObj) {
+      switch (iconObj.type) {
+        case "download":
+          return "icon-download";
+        case "ok":
+          return "icon-ok";
+        case "comment":
+          return "icon-comment";
+      }
+    },
   }
 };
 </script>
