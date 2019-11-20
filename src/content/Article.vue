@@ -91,7 +91,7 @@ section .content div.coment p {
   line-height: 20px;
 }
 section .content .images {
-  width: 75%;
+  width: 100%;
   margin-top: 20px;
 }
 section .content .images img {
