@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <a href="#">Tasks</a>
+    <router-link to="/tasks">Tasks</router-link>
     <a href="#">Kanban</a>
     <a href="#">Activity</a>
     <a href="#">Calendar</a>

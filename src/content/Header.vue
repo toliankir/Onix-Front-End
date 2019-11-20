@@ -17,7 +17,7 @@
 
       <button class="btn btn-grey margin-v-15">Share</button>
       <button class="btn btn-yellow">
-        <img src="@/assets/Combined Shape@1x.svg" alt="Button icon" />Chat
+        <img src="/assets/Combined Shape@1x.svg" alt="Button icon" />Chat
       </button>
     </div>
   </header>
@@ -58,7 +58,7 @@ header .header-title .logo {
   border-radius: 10px;
   background-size: 102% 102%;
   background-position: -1px -1px;
-  background-image: url("../assets/Shapes@2x.png");
+  background-image: url("/assets/Shapes@2x.png");
 }
 
 header .header-title h1 {
