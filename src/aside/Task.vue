@@ -1,6 +1,6 @@
 <template>
   <div class="task">
-    <p id="completed-task" class="task-count">{{count}}</p>
+    <p class="task-count">{{count}}</p>
     <p class="task-description">{{title}}</p>
   </div>
 </template>

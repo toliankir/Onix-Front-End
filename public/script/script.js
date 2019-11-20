@@ -2,8 +2,8 @@ const NOTIFY_MESSAGE = 'Are you sure you want to change the number of tasks?';
 
 document.addEventListener('DOMContentLoaded', () => {
     //Selects objects that be handle
-    const completedTaskCounterElement = document.querySelector('#completed-task');
-    const openTaskCounterElement = document.querySelector('#open-task');
+    const completedTaskCounterElement = document.querySelectorAll(".task-count")[0];
+    const openTaskCounterElement = document.querySelectorAll(".task-count")[1];
     const bottomImagesElements = document.querySelectorAll('.images img');
     const notifyElement = document.querySelector('#notify');
 
