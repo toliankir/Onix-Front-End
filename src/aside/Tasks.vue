@@ -1,7 +1,11 @@
 <template>
   <div class="aside-tasks aside-padding">
-    <Task :title="'Completed Tasks'"  :count="3"/>
-    <Task :title="'Open Tasks'" :count="22" />
+    <Task
+      @click.native="incrementCompletedTasks"
+      :title="'Completed Tasks'"
+      :count="completedTask"
+    />
+    <Task :title="'Open Tasks'" :count="openTask" />
   </div>
 </template>
 
@@ -12,6 +16,24 @@ export default {
   name: "Tasks",
   components: {
     Task
+  },
+  data() {
+    return {
+      openTask: 22,
+      completedTask: 3,
+      modalText: "Are you sure you want to change the number of tasks?"
+    };
+  },
+  methods: {
+    incrementCompletedTasks() {
+      if (!confirm(this.modalText)) {
+        return;
+      }
+      if (this.openTask !== 0) {
+        this.openTask--;
+      }
+      this.completedTask++;
+    }
   }
 };
 </script>

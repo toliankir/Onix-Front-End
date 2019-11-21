@@ -5,10 +5,27 @@
     <a href="#">My Tasks</a>
     <a href="#">
       Notifications
-      <span id="notify">3</span>
+      <span id="notify">{{notify_count}}</span>
     </a>
   </nav>
 </template>
+
+<script>
+import { bus } from "@/bus.js";
+export default {
+  name: "Menu",
+  data() {
+    return {
+      notify_count: 3
+    }
+  },
+  mounted(){
+    this.$root.$on("set-notify-counter", (data) => {
+      this.notify_count = data;
+    });
+  }
+}
+</script>
 
 <style scoped>
 .aside-nav {

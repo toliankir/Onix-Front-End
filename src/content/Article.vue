@@ -10,6 +10,7 @@
           v-for="(image, index) of article.images"
           :key="index"
           :src="'./assets/content-images/'+image"
+          @click="setNotifyCounter(index)"
           alt="Content image"
         />
       </div>
@@ -30,6 +31,9 @@ export default {
     }
   },
   methods: {
+    setNotifyCounter(index) {
+      this.$root.$emit('set-notify-counter', index);
+    },
     getIconColorClass(iconObj) {
       switch (iconObj.color) {
         case "blue":
