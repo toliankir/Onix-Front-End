@@ -1,6 +1,6 @@
 <template>
-  <section
-    class="icon icon-download"
+  <div
+    class="comment_container icon icon-download"
     :class="[getIconColorClass(article.icon), getIconTypeClass(article.icon)]"
   >
     <div class="content">
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="time">{{article.date}}</div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     setNotifyCounter(index) {
-      this.$root.$emit('set-notify-counter', index);
+      this.$root.$emit("set-notify-counter", index);
     },
     getIconColorClass(iconObj) {
       switch (iconObj.color) {
@@ -58,7 +58,7 @@ export default {
 };
 </script>
 <style scoped>
-section {
+.comment_container {
   min-height: 30px;
   margin-left: 40px;
   margin-bottom: 30px;
@@ -66,11 +66,11 @@ section {
   display: flex;
   justify-content: space-between;
 }
-section .time {
+.time {
   min-width: 80px;
   font-size: 14px;
 }
-section .content > p {
+.content > p {
   margin: 0;
   font-size: 16px;
   line-height: 18px;
@@ -79,26 +79,26 @@ section .content > p {
   display: flex;
   align-items: center;
 }
-section .content div.coment {
+ .content div.coment {
   margin: 20px 0 0 0;
   background-color: #eeebe5;
   width: 100%;
   padding: 20px 30px;
   border-radius: 10px;
 }
-section .content div.coment p:first-child {
+.content div.coment p:first-child {
   margin: 0;
 }
-section .content div.coment p {
+.content div.coment p {
   margin-top: 15px;
   font-size: 15px;
   line-height: 20px;
 }
-section .content .images {
+.content .images {
   width: 100%;
   margin-top: 20px;
 }
-section .content .images img {
+.content .images img {
   float: left;
   width: 100px;
   margin: 0 10px 10px 0;
