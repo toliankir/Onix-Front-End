@@ -220,7 +220,7 @@ div.main-wrapper .container h4 {
   font-size: 14px;
   font-weight: normal;
 }
-div.main-wrapper .container section {
+div.main-wrapper .container .comment_container {
   min-height: 30px;
   margin-left: 40px;
   margin-bottom: 30px;
@@ -228,11 +228,11 @@ div.main-wrapper .container section {
   display: flex;
   justify-content: space-between;
 }
-div.main-wrapper .container section .time {
+div.main-wrapper .container .comment_container .time {
   min-width: 80px;
   font-size: 14px;
 }
-div.main-wrapper .container section .content p {
+div.main-wrapper .container .comment_container .content p {
   margin: 0;
   font-size: 16px;
   line-height: 18px;
@@ -241,7 +241,7 @@ div.main-wrapper .container section .content p {
   display: flex;
   align-items: center;
 }
-div.main-wrapper .container section .content p.coment {
+div.main-wrapper .container .comment_container .content p.coment {
   margin: 20px 0 0 0;
   font-size: 15px;
   line-height: 20px;
@@ -250,11 +250,11 @@ div.main-wrapper .container section .content p.coment {
   padding: 20px 30px;
   border-radius: 10px;
 }
-div.main-wrapper .container section .content .images {
+div.main-wrapper .container .comment_container .content .images {
   width: 75%;
   margin-top: 20px;
 }
-div.main-wrapper .container section .content .images img {
+div.main-wrapper .container .comment_container .content .images img {
   float: left;
   width: 100px;
   margin: 0 10px 10px 0;
