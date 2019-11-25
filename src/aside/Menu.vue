@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import { bus } from "@/bus.js";
 export default {
   name: "Menu",
   data() {
