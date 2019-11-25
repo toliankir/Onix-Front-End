@@ -1,10 +1,8 @@
-<template>
-  <div class="aside-title aside-padding">
-    <router-link to="/">PROJECTUS</router-link>
-    <button>
-      <img src="/assets/Search@3x.svg" alt="Aside logo" />
-    </button>
-  </div>
+<template lang="pug">
+  div.aside-title.aside-padding
+    router-link(to="/") PROJECTUS
+    button
+      img(src="/assets/Search@3x.svg" alt="Aside logo")
 </template>
 
 <style scoped>

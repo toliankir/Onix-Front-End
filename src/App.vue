@@ -1,8 +1,7 @@
-<template>
-  <div id="app">
-    <Aside />
-    <Content />
-  </div>
+<template lang="pug">
+  div#app
+    Aside
+    Content
 </template>
 
 <script>

@@ -1,14 +1,11 @@
-<template>
-  <div>
-    <h4>Tasks</h4>
-    <table>
-      <tr v-for="(task, index) of tasks" :key="index">
-        <td>{{task.title}}</td>
-        <td>{{task.description}}</td>
-        <td>{{task.date}}</td>
-      </tr>
-    </table>
-  </div>
+<template lang="pug">
+  div
+    h4 Tasks
+    table
+      tr(v-for="(task, index) of tasks" :key="index")
+        td {{task.title}}
+        td {{task.description}}
+        td {{task.date}}
 </template>
 
 <script>

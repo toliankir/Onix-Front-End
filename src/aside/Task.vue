@@ -1,8 +1,7 @@
-<template>
-  <div class="task">
-    <p class="task-count">{{count}}</p>
-    <p class="task-description">{{title}}</p>
-  </div>
+<template lang="pug">
+  div.task
+    p.task-count {{count}}
+    p.task-description {{title}}
 </template>
 
 <script>

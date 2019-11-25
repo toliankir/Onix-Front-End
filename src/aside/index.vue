@@ -1,10 +1,9 @@
-<template>
-  <aside>
-    <Title />
-    <Profile />
-    <Tasks />
-    <Menu />
-  </aside>
+<template lang="pug">
+  aside
+    Title
+    Profile
+    Tasks
+    Menu
 </template>
 
 <script>

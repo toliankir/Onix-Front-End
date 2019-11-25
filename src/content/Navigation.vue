@@ -1,11 +1,10 @@
-<template>
-  <nav>
-    <router-link to="/tasks">Tasks</router-link>
-    <a href="#">Kanban</a>
-    <a href="#">Activity</a>
-    <a href="#">Calendar</a>
-    <a href="#">Files</a>
-  </nav>
+<template lang="pug">
+  nav
+    router-link(to="/tasks") Tasks
+    a(href="#") Kanban
+    a(href="#") Activity
+    a(href="#") Calendar
+    a(href="#") Files
 </template>
 
 <style scoped>

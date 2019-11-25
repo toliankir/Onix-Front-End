@@ -1,8 +1,7 @@
-<template>
-  <div>
-    <h4>TODAY</h4>
-    <Article v-for="(article, index) of articles" :article="article" :key="index" />
-  </div>
+<template lang="pug">
+  div
+    h4 TODAY
+    Article(v-for="(article, index) of articles" :article="article" :key="index")
 </template>
 
 <script>

@@ -1,26 +1,20 @@
-<template>
-  <header>
-    <div class="header-title">
-      <div class="logo"></div>
-      <h1>Website Redesign</h1>
-      <button class="btn btn-grey">
-        <span class="dots"></span>
-      </button>
-    </div>
-    <div class="header-controls">
-      <img
+<template lang="pug">
+  header
+    div.header-title
+      div.logo
+      h1 Website Redesign
+      button.btn.btn-grey
+        span.dots
+    div.header-controls
+      img(
         v-for="(user, index) of users"
         :key="index"
         :src="'./assets/photos/' + user.image"
-        :alt="'User ' + user.name + ' photo'"
-      />
-
-      <button class="btn btn-grey margin-v-15">Share</button>
-      <button class="btn btn-yellow">
-        <img src="/assets/Combined Shape@1x.svg" alt="Button icon" />Chat
-      </button>
-    </div>
-  </header>
+        :alt="'User ' + user.name + ' photo'")
+      button.btn.btn-grey.margin-v-15 Share
+      button.btn.btn-yellow
+        img(src="/assets/Combined Shape@1x.svg" alt="Button icon")
+        span Chat      
 </template>
 
 <script>

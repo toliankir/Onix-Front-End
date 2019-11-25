@@ -1,9 +1,8 @@
-<template>
-  <div class="main-wrapper">
-    <Header />
-    <Navigation />
-    <MainContent />
-  </div>
+<template lang="pug">
+  div.main-wrapper
+    Header
+    Navigation
+    MainContent
 </template>
 
 <script>

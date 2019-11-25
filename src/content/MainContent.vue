@@ -1,9 +1,7 @@
-<template>
-  <div class="content-wrapper">
-    <div class="container">
-      <router-view />
-    </div>
-  </div>
+<template lang="pug">
+  div.content-wrapper
+    div.container
+      router-view
 </template>
 
 <style>

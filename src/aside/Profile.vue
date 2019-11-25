@@ -1,18 +1,13 @@
-<template>
-  <div class="aside-profile aside-padding">
-    <div class="user-card">
-      <img :src="'./assets/photos/' + userProfile.image" alt="User photo" />
-      <div class="user-data">
-        <p class="user-name">{{userProfile.name}}</p>
-        <p class="user-state">{{userProfile.group}}</p>
-      </div>
-    </div>
-    <div class="user-details">
-      <button>
-        <span class="dots"></span>
-      </button>
-    </div>
-  </div>
+<template lang="pug">
+  div.aside-profile.aside-padding
+    div.user-card
+      img(:src="'./assets/photos/' + userProfile.image" alt="User photo")
+      div.user-data
+        p.user-name {{userProfile.name}}
+        p.user-state {{userProfile.group}}
+    div.user-details
+      button
+        span.dots
 </template>
 
 <script>

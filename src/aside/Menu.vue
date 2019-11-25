@@ -1,13 +1,10 @@
-<template>
-  <nav class="aside-nav aside-padding">
-    <p>MENU</p>
-    <a href="#">Home</a>
-    <a href="#">My Tasks</a>
-    <a href="#">
-      Notifications
-      <span id="notify">{{notify_count}}</span>
-    </a>
-  </nav>
+<template lang="pug">
+  nav.aside-nav.aside-padding
+    p MENU
+    a(href="#") Home
+    a(href="#") My Tasks
+    a(href="#") Notifications
+      span {{notify_count}}
 </template>
 
 <script>

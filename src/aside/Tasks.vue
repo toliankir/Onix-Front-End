@@ -1,12 +1,9 @@
-<template>
-  <div class="aside-tasks aside-padding">
-    <Task
-      @click.native="incrementCompletedTasks"
+<template lang="pug">
+  div.aside-tasks.aside-padding
+    Task(@click.native="incrementCompletedTasks"
       :title="'Completed Tasks'"
-      :count="completedTask"
-    />
-    <Task :title="'Open Tasks'" :count="openTask" />
-  </div>
+      :count="completedTask")
+    Task(:title="'Open Tasks'" :count="openTask")
 </template>
 
 <script>
