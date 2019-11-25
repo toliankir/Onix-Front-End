@@ -1,25 +1,16 @@
-<template>
-  <div
-    class="comment_container icon icon-download"
-    :class="[getIconColorClass(article.icon), getIconTypeClass(article.icon)]"
-  >
-    <div class="content">
-      <p>{{article.data}}</p>
-      <div v-if="article.images.length !== 0" class="images">
-        <img
-          v-for="(image, index) of article.images"
+<template lang="pug">
+div.comment_container.icon(:class="[getIconColorClass(article.icon), getIconTypeClass(article.icon)]")
+  div.content
+    p {{article.data}}
+    div.images(v-if="article.images.length !== 0")
+      img(v-for="(image, index) of article.images"
           :key="index"
           :src="'./assets/content-images/'+image"
           @click="setNotifyCounter(index)"
-          alt="Content image"
-        />
-      </div>
-      <div v-if="article.comments.length !== 0" class="coment">
-        <p v-for="(comment, index) of article.comments" :key="index">{{comment}}</p>
-      </div>
-    </div>
-    <div class="time">{{article.date}}</div>
-  </div>
+          alt="Content image")
+    div.coment(v-if="article.comments.length !== 0")
+      p(v-for="(comment, index) of article.comments" :key="index") {{comment}}
+  div.time {{article.date}}
 </template>
 
 <script>
@@ -29,6 +20,11 @@ export default {
       type: Object,
       required: true
     }
+  },
+  data() {
+    return {
+      test: "abc"
+    };
   },
   methods: {
     setNotifyCounter(index) {
@@ -79,7 +75,7 @@ export default {
   display: flex;
   align-items: center;
 }
- .content div.coment {
+.content div.coment {
   margin: 20px 0 0 0;
   background-color: #eeebe5;
   width: 100%;
