@@ -31,7 +31,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+@import "../constants.less";
+
 header {
   padding: 40px 30px 20px 0;
   display: flex;
@@ -46,7 +48,7 @@ header .header-title {
 }
 
 header .header-title .logo {
-  background-color: #ffc200;
+  background-color: @nav-active-line-color;
   width: 40px;
   height: 40px;
   border-radius: 10px;

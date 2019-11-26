@@ -4,9 +4,11 @@
       router-view
 </template>
 
-<style>
+<style lang="less">
+@import "../constants.less";
+
 .content-wrapper {
-  background-color: #eeebe5;
+  background-color: @main-content-background-color;
   flex-grow: 1;
   padding: 30px 0;
 }

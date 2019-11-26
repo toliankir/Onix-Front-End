@@ -23,20 +23,22 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+@import "../constants.less";
+
 .aside-nav {
   display: flex;
   flex-direction: column;
 }
 .aside-nav p {
   margin: 8px 0;
-  color: #9b9b9b;
+  color: @aside-secondary-text-color;
   font-size: 12px;
   line-height: 22px;
 }
 .aside-nav a {
   margin: 8px 0;
-  color: #ffffff;
+  color: @aside-main-text-main-color;
   font-size: 14px;
   line-height: 22px;
   text-decoration: none;
@@ -46,8 +48,8 @@ export default {
   margin-left: 9px;
   font-size: 13px;
   line-height: 20px;
-  color: #000000;
-  background-color: #ffc200;
+  color: @aside-background-color;
+  background-color: @nav-active-line-color;
   height: 20px;
   width: 20px;
   text-indent: -1px;

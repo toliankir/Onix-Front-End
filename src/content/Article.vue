@@ -53,7 +53,9 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style lang="less" scoped>
+@import "../constants.less";
+
 .comment_container {
   min-height: 30px;
   margin-left: 40px;
@@ -77,7 +79,7 @@ export default {
 }
 .content div.coment {
   margin: 20px 0 0 0;
-  background-color: #eeebe5;
+  background-color: @main-content-background-color;
   width: 100%;
   padding: 20px 30px;
   border-radius: 10px;
@@ -104,7 +106,7 @@ export default {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   position: absolute;
-  color: #3d3a2c;
+  color: @icon-content-color;
   top: 0;
   left: -40px;
   width: 40px;
@@ -127,12 +129,12 @@ export default {
   content: url(/assets/Icon@3x.svg);
 }
 .icon-yellow::before {
-  background-color: #fff8dd;
+  background-color: @icon-yellow-color;
 }
 .icon-green::before {
-  background-color: #cef9c6;
+  background-color: @icon-green-color;
 }
 .icon-blue::before {
-  background-color: #e3efff;
+  background-color: @icon-blue-color;
 }
 </style>

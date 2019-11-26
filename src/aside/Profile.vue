@@ -24,10 +24,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+@import "../constants.less";
+
 .aside-profile {
   padding-right: 10px;
-  background-color: #202020;
+  background-color: @aside-profile-background-color;
   display: flex;
   align-items: center;
   height: 80px;
@@ -65,12 +67,12 @@ export default {
   justify-content: center;
 }
 .aside-profile .user-card .user-data .user-name {
-  color: #ffffff;
+  color: @aside-main-text-main-color;
   font-size: 14px;
   margin: 0;
 }
 .aside-profile .user-card .user-data .user-state {
-  color: #9b9b9b;
+  color: @aside-secondary-text-color;
   font-size: 12px;
   margin: 2px 0 0 0;
 }

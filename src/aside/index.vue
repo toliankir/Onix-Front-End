@@ -23,11 +23,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+@import "../constants.less";
 aside {
   width: 270px;
   min-width: 270px;
-  background-color: #000000;
+  background-color: @aside-background-color;
   display: flex;
   flex-direction: column;
 }

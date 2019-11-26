@@ -17,7 +17,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less">
+@import "./constants.less"; 
+
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

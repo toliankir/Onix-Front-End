@@ -7,7 +7,9 @@
     a(href="#") Files
 </template>
 
-<style scoped>
+<style lang="less" scoped>
+@import "../constants.less";
+
 nav {
   padding-left: 2.5rem;
 }
@@ -22,6 +24,6 @@ nav a {
 }
 nav a:hover {
   color: #000000;
-  border-bottom: 2px solid #ffc200;
+  border-bottom: 2px solid @nav-active-line-color;
 }
 </style>

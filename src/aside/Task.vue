@@ -20,18 +20,20 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+@import "../constants.less";
+
 .task {
   width: 49%;
 }
 .task .task-count {
   user-select: none;
-  color: #ffffff;
+  color: @aside-main-text-main-color;
   font-size: 20px;
   margin: 0;
 }
 .task .task-description {
-  color: #9b9b9b;
+  color: @aside-secondary-text-color;
   margin: 0;
   font-size: 12px;
 }

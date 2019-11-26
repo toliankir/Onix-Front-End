@@ -39,13 +39,15 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+@import "../constants.less";
+
 table {
   width: 100%;
   border-spacing: 0;
   line-height: 25px;
 }
 table tr:nth-child(2n) {
-  background-color: #b4b4b4;
+  background-color: @btn-dark-grey-color;
 }
 </style>

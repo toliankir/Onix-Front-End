@@ -5,7 +5,9 @@
       img(src="/assets/Search@3x.svg" alt="Aside logo")
 </template>
 
-<style scoped>
+<style lang="less" scoped>
+@import "../constants.less";
+
 .aside-title {
   margin: 30px 0;
   padding-right: 10px;
@@ -13,7 +15,7 @@
   justify-content: space-between;
 }
 .aside-title a {
-  color: #ffffff;
+  color: @aside-main-text-main-color;
   margin: 0 0 0 32px;
   font-size: 16px;
   text-decoration: none;
@@ -30,7 +32,7 @@
 }
 .aside-title button {
   cursor: pointer;
-  background-color: #000000;
+  background-color: @aside-background-color;
   border: none;
   outline: none;
 }
