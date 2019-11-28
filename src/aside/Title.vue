@@ -5,6 +5,13 @@
       img(src="/assets/Search@3x.svg" alt="Aside logo")
 </template>
 
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator';
+
+@Component
+export default class Title extends Vue {}
+</script>
+
 <style lang="less" scoped>
 @import "../constants.less";
 

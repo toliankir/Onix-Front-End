@@ -1,27 +1,26 @@
 <template lang="pug">
   div.aside-profile.aside-padding
     div.user-card
-      img(:src="'./assets/photos/' + userProfile.image" alt="User photo")
+      img(:src="'./assets/photos/' + this.userProfile.image" alt="User photo")
       div.user-data
-        p.user-name {{userProfile.name}}
-        p.user-state {{userProfile.group}}
+        p.user-name {{this.userProfile.name}}
+        p.user-state {{this.userProfile.group}}
     div.user-details
       button
         span.dots
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      userProfile: {
-        name: 'Jean Gonzales',
-        group: 'Product Owner',
-        image: '1.jpg',
-      },
-    };
-  },
-};
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator';
+
+@Component
+export default class Profile extends Vue {
+  userProfile: any = {
+    name: 'Jean Gonzales',
+    group: 'Product Owner',
+    image: '1.jpg',
+  };
+}
 </script>
 
 <style lang="less" scoped>

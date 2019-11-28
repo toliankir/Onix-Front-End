@@ -6,21 +6,23 @@
     Menu
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
 import Title from '@/aside/Title.vue';
 import Profile from '@/aside/Profile.vue';
 import Tasks from '@/aside/Tasks.vue';
 import Menu from '@/aside/Menu.vue';
 
-export default {
-  name: 'Aside',
+@Component({
   components: {
     Title,
     Profile,
     Tasks,
     Menu,
   },
-};
+})
+
+export default class Aside extends Vue {}
 </script>
 
 <style lang="less" scoped>
