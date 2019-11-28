@@ -13,45 +13,41 @@ div.comment_container.icon(:class="[getColor(article.icon), getType(article.icon
   div.time {{article.date}}
 </template>
 
-<script>
-export default {
-  props: {
-    article: {
-      type: Object,
-      required: true,
-    },
-  },
-  methods: {
-    setNotifyCounter(index) {
-      this.$root.$emit('set-notify-counter', index);
-    },
-    getColor(iconObj) {
-      switch (iconObj.color) {
-        case 'blue':
-          return 'icon-blue';
-        case 'yellow':
-          return 'icon-yellow';
-        case 'green':
-          return 'icon-green';
-        default:
-          return 'icon-blue';
-      }
-    },
-    getType(iconObj) {
-      switch (iconObj.type) {
-        case 'download':
-          return 'icon-download';
-        case 'ok':
-          return 'icon-ok';
-        case 'comment':
-          return 'icon-comment';
-        default:
-          return 'icon-ok';
-      }
-    },
-  },
-};
+<script lang="ts">
+import { Vue, Component, Prop } from 'vue-property-decorator';
+
+@Component
+export default class Article extends Vue {
+@Prop() private article!: any;
+
+getColor = (iconObj: any) => {
+  switch (iconObj.color) {
+    case 'blue':
+      return 'icon-blue';
+    case 'yellow':
+      return 'icon-yellow';
+    case 'green':
+      return 'icon-green';
+    default:
+      return 'icon-blue';
+  }
+}
+
+getType = (iconObj: any) => {
+  switch (iconObj.type) {
+    case 'download':
+      return 'icon-download';
+    case 'ok':
+      return 'icon-ok';
+    case 'comment':
+      return 'icon-comment';
+    default:
+      return 'icon-ok';
+  }
+}
+}
 </script>
+
 <style lang="less" scoped>
 @import "../constants.less";
 

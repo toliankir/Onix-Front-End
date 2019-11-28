@@ -5,19 +5,20 @@
     MainContent
 </template>
 
-<script>
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator';
 import Header from '@/content/Header.vue';
 import Navigation from '@/content/Navigation.vue';
 import MainContent from '@/content/MainContent.vue';
 
-export default {
-  name: 'Content',
+@Component({
   components: {
     Header,
     Navigation,
     MainContent,
   },
-};
+})
+export default class Content extends Vue {}
 </script>
 
 <style scoped>
