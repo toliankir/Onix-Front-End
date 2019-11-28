@@ -6,17 +6,17 @@
 </template>
 
 <script>
-import Header from "@/content/Header.vue";
-import Navigation from "@/content/Navigation.vue";
-import MainContent from "@/content/MainContent.vue"
+import Header from '@/content/Header.vue';
+import Navigation from '@/content/Navigation.vue';
+import MainContent from '@/content/MainContent.vue';
 
 export default {
-  name: "Content",
+  name: 'Content',
   components: {
     Header,
     Navigation,
-    MainContent
-  }
+    MainContent,
+  },
 };
 </script>
 
@@ -24,7 +24,7 @@ export default {
 .main-wrapper {
   flex-grow: 1;
   min-width: 900px;
-  display: flex;  
+  display: flex;
   flex-direction: column;
 }
 </style>

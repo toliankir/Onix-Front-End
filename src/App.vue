@@ -5,20 +5,20 @@
 </template>
 
 <script>
-import Aside from "@/aside";
-import Content from "@/content";
+import Aside from '@/aside/index.vue';
+import Content from '@/content/index.vue';
 
 export default {
-  name: "app",
+  name: 'app',
   components: {
     Aside,
-    Content
-  }
+    Content,
+  },
 };
 </script>
 
 <style lang="less">
-@import "./constants.less"; 
+@import "./constants.less";
 
 #app {
   -webkit-font-smoothing: antialiased;

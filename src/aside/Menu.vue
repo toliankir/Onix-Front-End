@@ -9,18 +9,18 @@
 
 <script>
 export default {
-  name: "Menu",
+  name: 'Menu',
   data() {
     return {
-      notify_count: 3
-    }
+      notify_count: 3,
+    };
   },
-  mounted(){
-    this.$root.$on("set-notify-counter", (data) => {
+  mounted() {
+    this.$root.$on('set-notify-counter', (data) => {
       this.notify_count = data;
     });
-  }
-}
+  },
+};
 </script>
 
 <style lang="less" scoped>

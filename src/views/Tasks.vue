@@ -14,28 +14,28 @@ export default {
     return {
       tasks: [
         {
-          title: "Task 1",
-          description: "Description of Task 1",
-          date: "123"
+          title: 'Task 1',
+          description: 'Description of Task 1',
+          date: '123',
         },
         {
-          title: "Task 2",
-          description: "Description of Task 2",
-          date: "123"
+          title: 'Task 2',
+          description: 'Description of Task 2',
+          date: '123',
         },
         {
-          title: "Task 3",
-          description: "Description of Task 3",
-          date: "123"
+          title: 'Task 3',
+          description: 'Description of Task 3',
+          date: '123',
         },
         {
-          title: "Task 4",
-          description: "Description of Task 4",
-          date: "123"
-        }
-      ]
+          title: 'Task 4',
+          description: 'Description of Task 4',
+          date: '123',
+        },
+      ],
     };
-  }
+  },
 };
 </script>
 

@@ -15,13 +15,13 @@ export default {
   data() {
     return {
       userProfile: {
-        name: "Jean Gonzales",
-        group: "Product Owner",
-        image: "1.jpg"
-      }
-    }
-  }
-}
+        name: 'Jean Gonzales',
+        group: 'Product Owner',
+        image: '1.jpg',
+      },
+    };
+  },
+};
 </script>
 
 <style lang="less" scoped>

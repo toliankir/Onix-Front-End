@@ -7,19 +7,19 @@
 </template>
 
 <script>
-import Title from "@/aside/Title.vue";
-import Profile from "@/aside/Profile.vue";
-import Tasks from "@/aside/Tasks.vue";
-import Menu from "@/aside/Menu.vue";
+import Title from '@/aside/Title.vue';
+import Profile from '@/aside/Profile.vue';
+import Tasks from '@/aside/Tasks.vue';
+import Menu from '@/aside/Menu.vue';
 
 export default {
-  name: "Aside",
+  name: 'Aside',
   components: {
     Title,
     Profile,
     Tasks,
-    Menu
-  }
+    Menu,
+  },
 };
 </script>
 

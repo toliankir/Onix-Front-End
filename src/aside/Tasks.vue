@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import Task from "@/aside/Task.vue";
+import Task from '@/aside/Task.vue';
 
 export default {
-  name: "Tasks",
+  name: 'Tasks',
   components: {
     Task
   },
@@ -18,7 +18,7 @@ export default {
     return {
       openTask: 22,
       completedTask: 3,
-      modalText: "Are you sure you want to change the number of tasks?"
+      modalText: 'Are you sure you want to change the number of tasks?'
     };
   },
   methods: {
@@ -27,11 +27,11 @@ export default {
         return;
       }
       if (this.openTask !== 0) {
-        this.openTask--;
+        this.openTask = this.openTask - 1;
       }
-      this.completedTask++;
-    }
-  }
+      this.completedTask = this.completedTask + 1;
+    },
+  },
 };
 </script>
 

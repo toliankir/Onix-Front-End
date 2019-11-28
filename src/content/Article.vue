@@ -1,5 +1,5 @@
 <template lang="pug">
-div.comment_container.icon(:class="[getIconColorClass(article.icon), getIconTypeClass(article.icon)]")
+div.comment_container.icon(:class="[getColor(article.icon), getType(article.icon)]")
   div.content
     p {{article.data}}
     div.images(v-if="article.images.length !== 0")
@@ -18,39 +18,38 @@ export default {
   props: {
     article: {
       type: Object,
-      required: true
-    }
-  },
-  data() {
-    return {
-      test: "abc"
-    };
+      required: true,
+    },
   },
   methods: {
     setNotifyCounter(index) {
-      this.$root.$emit("set-notify-counter", index);
+      this.$root.$emit('set-notify-counter', index);
     },
-    getIconColorClass(iconObj) {
+    getColor(iconObj) {
       switch (iconObj.color) {
-        case "blue":
-          return "icon-blue";
-        case "yellow":
-          return "icon-yellow";
-        case "green":
-          return "icon-green";
+        case 'blue':
+          return 'icon-blue';
+        case 'yellow':
+          return 'icon-yellow';
+        case 'green':
+          return 'icon-green';
+        default:
+          return 'icon-blue';
       }
     },
-    getIconTypeClass(iconObj) {
+    getType(iconObj) {
       switch (iconObj.type) {
-        case "download":
-          return "icon-download";
-        case "ok":
-          return "icon-ok";
-        case "comment":
-          return "icon-comment";
+        case 'download':
+          return 'icon-download';
+        case 'ok':
+          return 'icon-ok';
+        case 'comment':
+          return 'icon-comment';
+        default:
+          return 'icon-ok';
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>

@@ -6,17 +6,17 @@
 
 <script>
 export default {
-  name: "Task",
+  name: 'Task',
   props: {
     count: {
       type: Number,
-      required: true
+      required: true,
     },
     title: {
       type: String,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 
