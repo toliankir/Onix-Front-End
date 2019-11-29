@@ -19,14 +19,15 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import { UserIcon } from '@/types';
 
 @Component
 export default class Header extends Vue {
-private users: Array<{name: string, image: string}> = [
-  { name: '1', image: '2.jpg' },
-  { name: '1', image: '3.jpg' },
-  { name: '1', image: '4.jpg' },
-];
+  private users: Array<UserIcon> = [
+    { name: '1', image: '2.jpg' },
+    { name: '1', image: '3.jpg' },
+    { name: '1', image: '4.jpg' },
+  ];
 }
 </script>
 

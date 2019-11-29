@@ -12,10 +12,11 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import { UserProfile } from '@/types';
 
 @Component
 export default class Profile extends Vue {
-  userProfile: any = {
+  userProfile: UserProfile = {
     name: 'Jean Gonzales',
     group: 'Product Owner',
     image: '1.jpg',

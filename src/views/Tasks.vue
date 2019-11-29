@@ -10,10 +10,11 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import { Task } from '@/types';
 
 @Component
 export default class Tasks extends Vue {
-  private tasks: Array<{ title: string; description: string; date: string }> = [
+  private tasks: Array<Task> = [
     {
       title: 'Task 1',
       description: 'Description of Task 1',

@@ -7,6 +7,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import Article from '@/content/Article.vue';
+import { Comment } from '@/types';
 
 @Component({
   components: {
@@ -14,7 +15,7 @@ import Article from '@/content/Article.vue';
   },
 })
 export default class Home extends Vue {
-private articles: Array<any> = [
+private articles: Array<Comment> = [
   {
     data: 'Darika Samak mark as done Listing on Product Hunt so that we can reach as many potential users',
     comments: [],
