@@ -47,7 +47,7 @@ export default {
   display: inline-block;
   margin-left: 9px;
   font-size: 13px;
-  line-height: 20px;
+  line-height: 21px;
   color: @aside-background-color;
   background-color: @nav-active-line-color;
   height: 20px;
