@@ -14,21 +14,20 @@
       button.btn.btn-grey.margin-v-15 Share
       button.btn.btn-yellow
         img(src="/assets/Combined Shape@1x.svg" alt="Button icon")
-        span Chat      
+        span Chat
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      users: [
-        { name: "1", image: "2.jpg" },
-        { name: "1", image: "3.jpg" },
-        { name: "1", image: "4.jpg" }
-      ]
-    };
-  }
-};
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator';
+
+@Component
+export default class Header extends Vue {
+private users: Array<{name: string, image: string}> = [
+  { name: '1', image: '2.jpg' },
+  { name: '1', image: '3.jpg' },
+  { name: '1', image: '4.jpg' },
+];
+}
 </script>
 
 <style lang="less" scoped>

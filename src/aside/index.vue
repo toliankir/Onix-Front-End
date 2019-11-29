@@ -2,25 +2,47 @@
   aside
     Title
     Profile
-    Tasks
+    div.aside-tasks.aside-padding
+      Task(@click.native="incrementCompletedTasks"
+        :title="'Completed Tasks'"
+        :count="completedTask")
+      Task(:title="'Open Tasks'" :count="openTask")
     Menu
 </template>
 
-<script>
-import Title from "@/aside/Title.vue";
-import Profile from "@/aside/Profile.vue";
-import Tasks from "@/aside/Tasks.vue";
-import Menu from "@/aside/Menu.vue";
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import Title from '@/aside/Title.vue';
+import Profile from '@/aside/Profile.vue';
+import Task from '@/aside/Task.vue';
+import Menu from '@/aside/Menu.vue';
 
-export default {
-  name: "Aside",
+@Component({
   components: {
     Title,
     Profile,
-    Tasks,
-    Menu
+    Task,
+    Menu,
+  },
+})
+
+export default class Aside extends Vue {
+  private openTask: number = 22;
+
+  private completedTask: number = 3;
+
+  private modalText: string = 'Are you sure you want to change the number of tasks?';
+
+  incrementCompletedTasks() {
+    if (!confirm(this.modalText)) {  // eslint-disable-line
+      return;
+    }
+    if (this.openTask !== 0) {
+      this.openTask = this.openTask - 1;
+    }
+    this.completedTask = this.completedTask + 1;
   }
-};
+}
 </script>
 
 <style lang="less" scoped>
@@ -34,5 +56,10 @@ aside {
 }
 .aside-padding {
   padding-left: 30px;
+}
+.aside-tasks {
+  margin: 20px 0 32px 0;
+  display: flex;
+  justify-content: space-between;
 }
 </style>

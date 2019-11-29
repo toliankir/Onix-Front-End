@@ -1,5 +1,5 @@
 <template lang="pug">
-div.comment_container.icon(:class="[getIconColorClass(article.icon), getIconTypeClass(article.icon)]")
+div.comment_container.icon(:class="[getColor(article.icon), getType(article.icon)]")
   div.content
     p {{article.data}}
     div.images(v-if="article.images.length !== 0")
@@ -13,46 +13,41 @@ div.comment_container.icon(:class="[getIconColorClass(article.icon), getIconType
   div.time {{article.date}}
 </template>
 
-<script>
-export default {
-  props: {
-    article: {
-      type: Object,
-      required: true
-    }
-  },
-  data() {
-    return {
-      test: "abc"
-    };
-  },
-  methods: {
-    setNotifyCounter(index) {
-      this.$root.$emit("set-notify-counter", index);
-    },
-    getIconColorClass(iconObj) {
-      switch (iconObj.color) {
-        case "blue":
-          return "icon-blue";
-        case "yellow":
-          return "icon-yellow";
-        case "green":
-          return "icon-green";
-      }
-    },
-    getIconTypeClass(iconObj) {
-      switch (iconObj.type) {
-        case "download":
-          return "icon-download";
-        case "ok":
-          return "icon-ok";
-        case "comment":
-          return "icon-comment";
-      }
-    }
+<script lang="ts">
+import { Vue, Component, Prop } from 'vue-property-decorator';
+
+@Component
+export default class Article extends Vue {
+@Prop() private article!: any;
+
+getColor = (iconObj: any) => {
+  switch (iconObj.color) {
+    case 'blue':
+      return 'icon-blue';
+    case 'yellow':
+      return 'icon-yellow';
+    case 'green':
+      return 'icon-green';
+    default:
+      return 'icon-blue';
   }
-};
+}
+
+getType = (iconObj: any) => {
+  switch (iconObj.type) {
+    case 'download':
+      return 'icon-download';
+    case 'ok':
+      return 'icon-ok';
+    case 'comment':
+      return 'icon-comment';
+    default:
+      return 'icon-ok';
+  }
+}
+}
 </script>
+
 <style lang="less" scoped>
 @import "../constants.less";
 

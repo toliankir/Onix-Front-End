@@ -1,23 +1,22 @@
 <template lang="pug">
   nav.aside-nav.aside-padding
     p MENU
-    a(href="#") Home
+    router-link(to="/") Home
     a(href="#") My Tasks
     a(href="#") Notifications
-      span {{notify_count}}
+      span {{this.notifyCount}}
 </template>
 
-<script>
-export default {
-  name: "Menu",
-  data() {
-    return {
-      notify_count: 3
-    }
-  },
-  mounted(){
-    this.$root.$on("set-notify-counter", (data) => {
-      this.notify_count = data;
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator';
+
+@Component
+export default class Menu extends Vue {
+  notifyCount: Number = 3;
+
+  mounted() {
+    this.$root.$on('set-notify-counter', (data: Number) => {
+      this.notifyCount = data;
     });
   }
 }

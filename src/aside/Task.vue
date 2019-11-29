@@ -1,23 +1,18 @@
 <template lang="pug">
   div.task
-    p.task-count {{count}}
-    p.task-description {{title}}
+    p.task-count {{this.count}}
+    p.task-description {{this.title}}
 </template>
 
-<script>
-export default {
-  name: "Task",
-  props: {
-    count: {
-      type: Number,
-      required: true
-    },
-    title: {
-      type: String,
-      required: true
-    }
-  }
-};
+<script lang="ts">
+import { Vue, Component, Prop } from 'vue-property-decorator';
+
+@Component
+export default class Task extends Vue {
+@Prop() private count!: Number;
+
+@Prop() private title!: String;
+}
 </script>
 
 <style lang="less" scoped>

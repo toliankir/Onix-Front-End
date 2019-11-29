@@ -4,29 +4,28 @@
     Content
 </template>
 
-<script>
-import Aside from "@/aside";
-import Content from "@/content";
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import Content from '@/content/index.vue';
+import Aside from '@/aside/index.vue';
 
-export default {
-  name: "app",
+@Component({
   components: {
     Aside,
-    Content
-  }
-};
+    Content,
+  },
+})
+export default class App extends Vue {}
 </script>
 
 <style lang="less">
-@import "./constants.less"; 
-
+@import "./constants.less";
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   display: flex;
 }
-
 .dots {
   position: absolute;
   display: block;
@@ -60,7 +59,6 @@ export default {
 .margin-v-15 {
   margin: 0 15px;
 }
-
 .btn {
   height: 30px;
   min-width: 30px;
