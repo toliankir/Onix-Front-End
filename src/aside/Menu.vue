@@ -4,21 +4,16 @@
     router-link(to="/") Home
     a(href="#") My Tasks
     a(href="#") Notifications
-      span {{this.notifyCount}}
+      span {{this.getImageNotify}}
 </template>
 
 <script lang="ts">
+import { Getter } from 'vuex-class';
 import { Vue, Component } from 'vue-property-decorator';
 
 @Component
 export default class Menu extends Vue {
-  notifyCount: Number = 3;
-
-  mounted() {
-    this.$root.$on('set-notify-counter', (data: Number) => {
-      this.notifyCount = data;
-    });
-  }
+  @Getter getImageNotify!: number;
 }
 </script>
 

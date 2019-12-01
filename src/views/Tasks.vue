@@ -2,40 +2,23 @@
   div
     h4 Tasks
     table
-      tr(v-for="(task, index) of tasks" :key="index")
+      tr(v-for="(task, index) of this.getTasks" :key="index")
         td {{task.title}}
         td {{task.description}}
         td {{task.date}}
+    button Change
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import { Getter, Mutation } from 'vuex-class';
 import { Task } from '@/types';
 
 @Component
 export default class Tasks extends Vue {
-  private tasks: Array<Task> = [
-    {
-      title: 'Task 1',
-      description: 'Description of Task 1',
-      date: '123',
-    },
-    {
-      title: 'Task 2',
-      description: 'Description of Task 2',
-      date: '123',
-    },
-    {
-      title: 'Task 3',
-      description: 'Description of Task 3',
-      date: '123',
-    },
-    {
-      title: 'Task 4',
-      description: 'Description of Task 4',
-      date: '123',
-    },
-  ];
+  @Getter getTasks!: Task[];
+
+  @Mutation('changeTest') changeTest: any;
 }
 </script>
 

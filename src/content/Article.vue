@@ -6,7 +6,7 @@ div.comment_container.icon(:class="[getColor(article.icon), getType(article.icon
       img(v-for="(image, index) of article.images"
           :key="index"
           :src="'./assets/content-images/'+image"
-          @click="setNotifyCounter(index)"
+          @click="setImageNotify(index)"
           alt="Content image")
     div.coment(v-if="article.comments.length !== 0")
       p(v-for="(comment, index) of article.comments" :key="index") {{comment}}
@@ -14,11 +14,14 @@ div.comment_container.icon(:class="[getColor(article.icon), getType(article.icon
 </template>
 
 <script lang="ts">
+import { Mutation } from 'vuex-class';
 import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
 export default class Article extends Vue {
 @Prop() private article!: any;
+
+@Mutation('setImageNotify') setImageNotify: any;
 
 getColor = (iconObj: any) => {
   switch (iconObj.color) {
@@ -90,6 +93,7 @@ getType = (iconObj: any) => {
 .content .images {
   width: 100%;
   margin-top: 20px;
+  cursor: pointer;
 }
 .content .images img {
   float: left;
