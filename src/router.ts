@@ -8,10 +8,12 @@ export default new Router({
   mode: 'history',
   routes: [
     {
+      name: 'root',
       path: '/',
       component: Home,
     },
     {
+      name: 'tasks',
       path: '/tasks',
       component: Tasks,
     },

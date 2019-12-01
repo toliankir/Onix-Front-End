@@ -1,7 +1,10 @@
 <template lang="pug">
   div.aside-profile.aside-padding
     div.user-card
-      img(:src="'./assets/photos/' + this.userProfile.image" alt="User photo")
+      img(
+        :src="'./assets/photos/' + this.userProfile.image"
+        alt="User photo"
+        )
       div.user-data
         p.user-name {{this.userProfile.name}}
         p.user-state {{this.userProfile.group}}
@@ -11,16 +14,12 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Prop } from 'vue-property-decorator';
 import { UserProfile } from '@/types';
 
 @Component
 export default class Profile extends Vue {
-  userProfile: UserProfile = {
-    name: 'Jean Gonzales',
-    group: 'Product Owner',
-    image: '1.jpg',
-  };
+  @Prop() userProfile!: UserProfile;
 }
 </script>
 
