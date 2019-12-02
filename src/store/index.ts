@@ -39,7 +39,7 @@ const actions: ActionTree<State, any> = {
       { title: 'Task 3', description: 'Task 3 description', date: '3' },
       { title: 'Task 4', description: 'Task 4 description', date: '4' },
     ];
-    setTimeout(() => store.commit('setTasks', tasks), 1000);
+    setTimeout(() => store.commit('setTasks', tasks), Math.random() * 1000);
   },
   fetchCurrentUser(store) {
     const userProfile = {
@@ -47,7 +47,7 @@ const actions: ActionTree<State, any> = {
       group: 'Product Owner',
       image: '1.jpg',
     };
-    setTimeout(() => store.commit('setUserProfile', userProfile), 1000);
+    setTimeout(() => store.commit('setUserProfile', userProfile), Math.random() * 1000);
   },
 };
 

@@ -51,9 +51,9 @@ export default class Aside extends Vue {
       return;
     }
     if (this.openTask !== 0) {
-      this.openTask = this.openTask - 1;
+      this.openTask -= 1;
     }
-    this.completedTask = this.completedTask + 1;
+    this.completedTask += 1;
   }
 }
 </script>
