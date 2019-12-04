@@ -7,7 +7,12 @@
         td {{task.title}}
         td {{task.description}}
         td {{task.date}}
-    button Change
+    form
+      span Task title:
+      input(v-model="title")
+      span Task description:
+      input
+      button(@click.prevent="test") Change
 </template>
 
 <script lang="ts">
@@ -15,6 +20,7 @@ import { Vue, Component } from 'vue-property-decorator';
 import { Getter, Mutation, Action } from 'vuex-class';
 import Loader from '@/aside/Loader.vue';
 import { Task } from '@/types';
+import db from '@/firestore';
 
 @Component({
   components: {
@@ -28,8 +34,35 @@ export default class Tasks extends Vue {
 
   @Action('fetchTasks') fetchTasks: any;
 
+  private taskTitle: string = '';
+
+  private taskDescription: string = '';
+
+  get title(): string {
+    return this.taskTitle;
+  }
+
+  set title(value: string) {
+    console.log(value);
+    this.taskTitle = value;
+    console.log(this.taskTitle);
+  }
+
+  test() {
+    console.log(this.taskTitle);
+    // console.log('123');
+    // db.collection('test').add({
+    //   test: 'abc',
+    // });
+  }
+
   mounted() {
     this.fetchTasks();
+    db.collection('test').onSnapshot((data) => {
+      data.forEach((el) => {
+        console.log(el.data().test);
+      });
+    });
   }
 }
 </script>
