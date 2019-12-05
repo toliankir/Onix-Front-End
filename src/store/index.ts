@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex, { GetterTree, ActionTree, MutationTree } from 'vuex';
 import { Task, UserProfile } from '@/types';
+import db from '@/firestore';
 
 Vue.use(Vuex);
 
@@ -21,6 +22,7 @@ const mutations: MutationTree<State> = {
     state.tasks[0].date = payload;
   },
   setTasks(state, payload) {
+    console.log('Fetch tasks from firebase');
     state.tasks = payload;
   },
   setUserProfile(state, payload) {
@@ -48,6 +50,20 @@ const actions: ActionTree<State, any> = {
       image: '1.jpg',
     };
     setTimeout(() => store.commit('setUserProfile', userProfile), Math.random() * 1000);
+  },
+  fetchTasksFirestore(store) {
+    db.collection('test').onSnapshot((data) => {
+      const tasks: Task[] = [];
+      data.forEach((el) => {
+        tasks.push({
+          id: el.id,
+          title: el.data().title,
+          description: el.data().description,
+          date: '',
+        });
+      });
+      store.commit('setTasks', tasks);
+    });
   },
 };
 

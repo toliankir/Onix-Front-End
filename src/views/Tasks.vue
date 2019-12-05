@@ -4,15 +4,18 @@
     Loader(v-if="this.getTasks.length === 0")
     table(v-else)
       tr(v-for="(task, index) of this.getTasks" :key="index")
+        td {{task.id}}
         td {{task.title}}
         td {{task.description}}
         td {{task.date}}
+        td
+          button(@click="deleteTask(task.id)") Delete
     form
       span Task title:
       input(v-model="title")
       span Task description:
-      input
-      button(@click.prevent="test") Change
+      input(v-model="description")
+      button(@click.prevent="addTask") Add
 </template>
 
 <script lang="ts">
@@ -32,7 +35,7 @@ export default class Tasks extends Vue {
 
   @Mutation('changeTest') changeTest: any;
 
-  @Action('fetchTasks') fetchTasks: any;
+  @Action('fetchTasksFirestore') fetchTasks: any;
 
   private taskTitle: string = '';
 
@@ -43,26 +46,34 @@ export default class Tasks extends Vue {
   }
 
   set title(value: string) {
-    console.log(value);
     this.taskTitle = value;
-    console.log(this.taskTitle);
   }
 
-  test() {
-    console.log(this.taskTitle);
-    // console.log('123');
-    // db.collection('test').add({
-    //   test: 'abc',
-    // });
+  get description(): string {
+    return this.taskDescription;
+  }
+
+  set description(value: string) {
+    this.taskDescription = value;
+  }
+
+  addTask() {
+    const task: Task = {
+      id: '',
+      title: this.taskTitle,
+      description: this.taskDescription,
+      date: '',
+    };
+    db.collection('test').add(task);
+  }
+
+  deleteTask = (taskId: string) => {
+    console.log(taskId);
+    db.collection('test').doc(taskId).delete();
   }
 
   mounted() {
     this.fetchTasks();
-    db.collection('test').onSnapshot((data) => {
-      data.forEach((el) => {
-        console.log(el.data().test);
-      });
-    });
   }
 }
 </script>
