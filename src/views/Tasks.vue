@@ -4,7 +4,6 @@
     Loader(v-if="this.getTasks.length === 0")
     table(v-else)
       tr(v-for="(task, index) of this.getTasks" :key="index")
-        td {{task.id}}
         td {{task.title}}
         td {{task.description}}
         td {{task.date}}
