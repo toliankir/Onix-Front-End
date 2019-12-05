@@ -11,9 +11,9 @@
           button(@click="deleteTask(task.id)") Delete
     form
       span Task title:
-      input(v-model="title")
+      input(v-model="taskTitle")
       span Task description:
-      input(v-model="description")
+      input(v-model="taskDescription")
       button(@click.prevent="addTask") Add
 </template>
 
@@ -32,29 +32,15 @@ import db from '@/firestore';
 export default class Tasks extends Vue {
   @Getter getTasks!: Task[];
 
-  @Mutation('changeTest') changeTest: any;
+  @Mutation('setTasks') setTasks: any;
 
   @Action('fetchTasksFirestore') fetchTasks: any;
 
-  private taskTitle: string = '';
+  private unsubscribeFirebase!: any;
 
-  private taskDescription: string = '';
+  public taskTitle: string = '';
 
-  get title(): string {
-    return this.taskTitle;
-  }
-
-  set title(value: string) {
-    this.taskTitle = value;
-  }
-
-  get description(): string {
-    return this.taskDescription;
-  }
-
-  set description(value: string) {
-    this.taskDescription = value;
-  }
+  public taskDescription: string = '';
 
   addTask() {
     const task: Task = {
@@ -72,7 +58,22 @@ export default class Tasks extends Vue {
   }
 
   mounted() {
-    this.fetchTasks();
+    this.unsubscribeFirebase = db.collection('test').onSnapshot((data: any) => {
+      const tasks: Task[] = [];
+      data.forEach((el: any) => {
+        tasks.push({
+          id: el.id,
+          title: el.data().title,
+          description: el.data().description,
+          date: '',
+        });
+      });
+      this.setTasks(tasks);
+    });
+  }
+
+  destroyed() {
+    this.unsubscribeFirebase();
   }
 }
 </script>

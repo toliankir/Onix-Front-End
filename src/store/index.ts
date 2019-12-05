@@ -52,9 +52,9 @@ const actions: ActionTree<State, any> = {
     setTimeout(() => store.commit('setUserProfile', userProfile), Math.random() * 1000);
   },
   fetchTasksFirestore(store) {
-    db.collection('test').onSnapshot((data) => {
+    db.collection('test').onSnapshot((data: any) => {
       const tasks: Task[] = [];
-      data.forEach((el) => {
+      data.forEach((el: any) => {
         tasks.push({
           id: el.id,
           title: el.data().title,
