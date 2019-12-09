@@ -1,16 +1,8 @@
 <template lang="pug">
   nav
-    router-link(
-      to="/"
-      @click.native="setLink"
-      :class="{ activelink : this.link === 'tasks' }"
-      ) Tasks
+    router-link(to="/tasks") Tasks
     router-link(to="/kanban") Kanban
-    router-link(
-      to="/activity"
-      @click.native="setLink"
-      :class="{ activelink : this.link === 'root' }"
-      ) Activity
+    router-link(to="/activity") Activity
     router-link(to="/calendar") Calendar
     router-link(to="/files") Files
 </template>
@@ -51,7 +43,7 @@ nav a {
   display: inline-block;
   padding-bottom: 14px;
 }
-.activelink {
+.router-link-active {
   color: #000000;
   border-bottom: 2px solid @nav-active-line-color;
 }

@@ -20,6 +20,7 @@ export default class Task extends Vue {
 
 .task {
   width: 49%;
+  cursor: pointer;
 }
 .task .task-count {
   user-select: none;

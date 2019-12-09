@@ -12,6 +12,11 @@ export default new Router({
     {
       name: 'root',
       path: '/',
+      redirect: '/tasks',
+    },
+    {
+      name: 'tasks',
+      path: '/tasks',
       component: Tasks,
     },
     {

@@ -62,7 +62,7 @@ export default class Aside extends Vue {
       console.log('No open tasks!');
       return;
     }
-    this.$router.push('/').catch((err) => {});
+    this.$router.push('/tasks').catch((err) => {});
   }
 }
 </script>
