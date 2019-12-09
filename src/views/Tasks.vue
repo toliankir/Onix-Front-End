@@ -19,6 +19,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import { Route } from 'vue-router';
 import { Getter, Mutation, Action } from 'vuex-class';
 import Loader from '@/aside/Loader.vue';
 import { Task } from '@/types';

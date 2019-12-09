@@ -28,6 +28,7 @@ export default class Task extends Vue {
   margin: 0;
 }
 .task .task-description {
+  user-select: none;
   color: @aside-secondary-text-color;
   margin: 0;
   font-size: 12px;

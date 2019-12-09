@@ -7,7 +7,8 @@
       Task(@click.native="incrementCompletedTasks"
         :title="'Completed Tasks'"
         :count="completedTask")
-      Task(:title="'Open Tasks'" :count="openTask")
+      Task(@click.native="redirectToTasks"
+        :title="'Open Tasks'" :count="openTask")
     Menu
 </template>
 
@@ -54,6 +55,14 @@ export default class Aside extends Vue {
       this.openTask -= 1;
     }
     this.completedTask += 1;
+  }
+
+  redirectToTasks() {
+    if (this.openTask === 0) {
+      console.log('No open tasks!');
+      return;
+    }
+    this.$router.push('/').catch((err) => {});
   }
 }
 </script>

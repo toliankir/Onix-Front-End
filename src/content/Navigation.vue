@@ -1,18 +1,18 @@
 <template lang="pug">
   nav
     router-link(
-      to="/tasks"
+      to="/"
       @click.native="setLink"
       :class="{ activelink : this.link === 'tasks' }"
       ) Tasks
-    a(href="#") Kanban
+    router-link(to="/kanban") Kanban
     router-link(
-      to="/"
+      to="/activity"
       @click.native="setLink"
       :class="{ activelink : this.link === 'root' }"
       ) Activity
-    a(href="#") Calendar
-    a(href="#") Files
+    router-link(to="/calendar") Calendar
+    router-link(to="/files") Files
 </template>
 
 <script lang="ts">
