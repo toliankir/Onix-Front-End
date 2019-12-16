@@ -1,5 +1,6 @@
 <template lang="pug">
   div
+    Modal(v-if="showModal" @close="showModal = false")
     h4 Tasks
     Loader(v-if="this.tasks.length === 0")
     table(v-else)
@@ -40,16 +41,19 @@ import { Vue, Component, Watch } from 'vue-property-decorator';
 import Loader from '@/aside/Loader.vue';
 import { randomTasks, getUnixTimeStamp } from '@/service/randomTasks';
 import { Task } from '@/types';
+import Modal from '@/components/Modal.vue';
 
 @Component({
   components: {
-    Loader,
+    Loader, Modal,
   },
 })
 export default class Tasks extends Vue {
   taskTitle: string = '';
 
   taskDesc: string = '';
+
+  showModal: boolean = false;
 
   taskTitleChange: boolean = false;
 
@@ -73,6 +77,7 @@ export default class Tasks extends Vue {
 
   addTaskToArray() {
     if (!this.allRequiredDataEntered) {
+      this.showModal = true;
       return;
     }
     const newTask: Task = {
