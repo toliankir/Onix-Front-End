@@ -25,9 +25,9 @@
         input(placeholder="Task title. Required." v-model="taskTitle")
       p
         span(
-          :class="[(this.taskDescription.length === 0 && this.taskDescChange) ? 'input-warning' : '']"
+          :class="[(this.taskDesc.length === 0 && this.taskDescChange) ? 'input-warning' : '']"
         ) Task description:
-        input(placeholder="Task description. Required." v-model="taskDescription")
+        input(placeholder="Task description. Required." v-model="taskDesc")
       p.action
         button(
           class="btn"
@@ -49,7 +49,7 @@ import { Task } from '@/types';
 export default class Tasks extends Vue {
   taskTitle: string = '';
 
-  taskDescription: string = '';
+  taskDesc: string = '';
 
   taskTitleChange: boolean = false;
 
@@ -68,7 +68,7 @@ export default class Tasks extends Vue {
   }
 
   get allRequiredDataEntered() {
-    return (this.taskTitle.length !== 0 && this.taskDescription.length !== 0);
+    return (this.taskTitle.length !== 0 && this.taskDesc.length !== 0);
   }
 
   addTaskToArray() {
@@ -78,7 +78,7 @@ export default class Tasks extends Vue {
     const newTask: Task = {
       id: (parseInt(this.getLastTaskId(), 10) + 1).toString(),
       title: this.taskTitle,
-      description: this.taskDescription,
+      description: this.taskDesc,
       date: getUnixTimeStamp(),
     };
     this.tasks.push(newTask);
