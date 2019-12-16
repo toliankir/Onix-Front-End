@@ -19,10 +19,14 @@
     form
       p.title Add new task
       p
-        span Task title:
+        span(
+          :class="[(this.taskTitle.length === 0 && this.taskTitleChange) ? 'input-warning' : '']"
+          ) Task title:
         input(placeholder="Task title. Required." v-model="taskTitle")
       p
-        span Task description:
+        span(
+          :class="[(this.taskDescription.length === 0 && this.taskDescChange) ? 'input-warning' : '']"
+        ) Task description:
         input(placeholder="Task description. Required." v-model="taskDescription")
       p.action
         button(
@@ -32,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Watch } from 'vue-property-decorator';
 import Loader from '@/aside/Loader.vue';
 import { randomTasks, getUnixTimeStamp } from '@/service/randomTasks';
 import { Task } from '@/types';
@@ -43,11 +47,25 @@ import { Task } from '@/types';
   },
 })
 export default class Tasks extends Vue {
-  public taskTitle: string = '';
+  taskTitle: string = '';
 
-  public taskDescription: string = '';
+  taskDescription: string = '';
 
-  private tasks:Task[] = [];
+  taskTitleChange: boolean = false;
+
+  taskDescChange: boolean = false;
+
+  tasks:Task[] = [];
+
+  @Watch('taskTitle')
+  onTaskTitleChanged(value: string, oldValue: string) {
+    this.taskTitleChange = true;
+  }
+
+  @Watch('taskDescription')
+  onTaskDescriptionChanged(value: string, oldValue: string) {
+    this.taskDescChange = true;
+  }
 
   get allRequiredDataEntered() {
     return (this.taskTitle.length !== 0 && this.taskDescription.length !== 0);
@@ -97,6 +115,7 @@ form {
       text-align: center;
     }
     & span {
+      position: relative;
       font-size: 14px;
       display: inline-block;
       width: 120px;
@@ -106,6 +125,16 @@ form {
     &::placeholder {
       font-size: 12px;
     }
+  }
+}
+
+.input-warning {
+  &::before {
+    position: absolute;
+    left: -6px;
+    content: '!';
+    color: red;
+    font-weight: bold;
   }
 }
 
