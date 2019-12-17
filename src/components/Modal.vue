@@ -1,27 +1,15 @@
-<template>
-  <transition name="modal">
-    <div class="modal-mask">
-      <div class="modal-wrapper">
-        <div class="modal-container">
-          F
-          <div class="modal-header">
-            <slot name="header">default header</slot>
-          </div>
-
-          <div class="modal-body">
-            <slot name="body">default body</slot>
-          </div>
-
-          <div class="modal-footer">
-            <slot name="footer">
-              default footer
-              <button class="modal-default-button" @click="$emit('close')">OK</button>
-            </slot>
-          </div>
-        </div>
-      </div>
-    </div>
-  </transition>
+<template lang="pug">
+  transition(name="modal")
+    div.modal-mask
+      div.modal-wrapper
+        div.modal-container
+          div.modal-header
+            slot(name="header") default header
+          div.modal-body
+            slot(name="body") default body
+          div.modal-footer
+            slot(name="footer") default footer
+              button.modal-default-button(@click="$emit('close')") OK
 </template>
 
 <script lang="ts">
