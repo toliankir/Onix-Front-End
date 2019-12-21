@@ -6,7 +6,7 @@ class RandomTasks {
   getRandomTasks(count = 3): Promise<Task[]> {
     return new Promise(async (resolve, reject) => {
       let randomSentaces = [];
-      for (let i = 0; i < count; i += 1) {
+      for (let i = 0; i < (count < 3 ? 3 : count); i += 1) {
         randomSentaces.push(this.getRandomSentaces());
       }
       randomSentaces = await Promise.all(randomSentaces);
@@ -35,10 +35,11 @@ class RandomTasks {
         method: 'GET',
       });
       jsonData = await response.json();
+      return resolve(jsonData.slip.advice);
     } catch (err) {
+      console.log('Fetch:', err);
       return reject(err);
     }
-    return resolve(jsonData.slip.advice);
   });
 }
 

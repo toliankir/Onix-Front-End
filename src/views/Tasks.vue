@@ -1,22 +1,34 @@
 <template lang="pug">
   div
-    Modal(v-if="showModal" @close="showModal = false")
+    Modal(
+      v-if="showModal"
+      @close="showModal = false"
+      :header="'Input ERROR!'"
+      :body="'Fill all needed inputs!!!'"
+      :footer="'push for close ->'"
+      )
     h4 Tasks
     Loader(v-if="this.tasks.length === 0")
-    table(v-else)
-      thead
-        tr
-          td Title
-          td Description
-          td(class="center-text") Time
-          td(class="center-text") Action
-      tbody
-        tr(v-for="(task, index) of tasks" :key="index")
-          td(class="title") {{task.title}}
-          td {{task.description}}
-          td(class="center-text") {{task.date}}
-          td(class="action center-text")
-            i(@click="deleteTaskFromArray(task.id)" class="fas fa-trash-alt" title="Delete")
+    transition
+      table(v-if="this.tasks.length !== 0")
+        thead
+          tr
+            td Title
+            td Description
+            td(class="center-text") Time
+            td(class="center-text") Action
+        tbody
+          tr(
+            v-for="(task, index) of tasks"
+            :style="{'--delay': index + 's'}"
+            :key="index"
+            class="enlarge-animation"
+            :ref="'test'")
+            td(class="title") {{task.title}}
+            td {{task.description}}
+            td(class="center-text") {{task.date}}
+            td(class="action center-text")
+              i(@click="deleteTaskFromArray(task.id)" class="fas fa-trash-alt" title="Delete")
     form
       p.title Add new task
       p
@@ -49,6 +61,10 @@ import Modal from '@/components/Modal.vue';
   },
 })
 export default class Tasks extends Vue {
+  $refs!: {
+    test: HTMLElement[],
+  }
+
   taskTitle: string = '';
 
   taskDesc: string = '';
@@ -76,6 +92,7 @@ export default class Tasks extends Vue {
   }
 
   addTaskToArray() {
+    console.log(this.$refs);
     if (!this.allRequiredDataEntered) {
       this.showModal = true;
       return;
@@ -100,15 +117,42 @@ export default class Tasks extends Vue {
   async created() {
     try {
       this.tasks = await randomTasks.getRandomTasks(Math.floor(Math.random() * 10));
+      console.log('Tasks loaded');
     } catch (err) {
-      console.log(err);
+      console.log('Tasks error:', err);
     }
   }
+
+  // updated() {
+  //   Object.values(this.$refs.test).forEach((el, index) => {
+  //     setTimeout(() => {
+  //       el.classList.add('enlarge-animation');
+  //     }, 500 * index);
+  //   });
+  //   setTimeout(() => {
+  //     Object.values(this.$refs.test).forEach((el, index) => {
+  //       el.classList.remove('enlarge-animation');
+  //     });
+  //   }, this.$refs.test.length * 500 + 2000);
+  // }
 }
 </script>
 
 <style lang="less" scoped>
 @import "../constants.less";
+
+.enlarge-animation td{
+  animation-name: enlarge;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes enlarge {
+  0% {font-size: 12px}
+  100% {font-size: 18px;}
+}
 
 form {
   & p {

@@ -4,19 +4,25 @@
       div.modal-wrapper
         div.modal-container
           div.modal-header
-            slot(name="header") default header
+            slot(name="header") {{header}}
           div.modal-body
-            slot(name="body") default body
+            slot(name="body") {{body}}
           div.modal-footer
-            slot(name="footer") default footer
+            slot(name="footer") {{footer}}
               button.modal-default-button(@click="$emit('close')") OK
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
-export default class Modal extends Vue {}
+export default class Modal extends Vue {
+@Prop() header!: string;
+
+@Prop() body!: string;
+
+@Prop() footer!: string;
+}
 </script>
 
 <style scoped>
