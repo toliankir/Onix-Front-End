@@ -2,7 +2,7 @@
   div.aside-title.aside-padding
     router-link(to="/") PROJECTUS
     button
-      img(src="/assets/Search@3x.svg" alt="Aside logo")
+      img(src="@/assets/Search@3x.svg" alt="Aside logo")
 </template>
 
 <script lang="ts">
@@ -32,7 +32,7 @@ export default class Title extends Vue {}
   width: 40px;
   height: 100%;
   content: "";
-  background: url(/assets/Logo@3x.svg) no-repeat;
+  background: url('~@/assets/Logo@3x.svg') no-repeat;
   background-size: 24px;
   top: -2px;
   left: -32px;

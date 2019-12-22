@@ -20,7 +20,7 @@
         tbody
           tr(
             v-for="(task, index) of tasks"
-            :style="{'--delay': index + 's'}"
+            :style="{'--delay': (index * 0.25) + 's'}"
             :key="index"
             class="enlarge-animation"
             :ref="'test'")
@@ -143,7 +143,7 @@ export default class Tasks extends Vue {
 
 .enlarge-animation td{
   animation-name: enlarge;
-  animation-duration: 3s;
+  animation-duration: 1s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   animation-delay: var(--delay);

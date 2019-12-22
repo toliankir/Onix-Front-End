@@ -125,7 +125,7 @@ getType = (iconObj: any) => {
   content: "\f27a";
 }
 .icon-ok::before {
-  content: url(/assets/Icon@3x.svg);
+  content: url('~@/assets/Icon@3x.svg');
 }
 .icon-yellow::before {
   background-color: @icon-yellow-color;
