@@ -20,13 +20,13 @@
         tbody
           tr(
             v-for="(task, index) of tasks"
-            :style="{'--delay': (index * 0.25) + 's'}"
+            :style="{'--delay': (index * 0.15) + 's'}"
             :key="index"
             class="enlarge-animation"
             :ref="'test'")
             td(class="title") {{task.title}}
             td {{task.description}}
-            td(class="center-text") {{task.date}}
+            td(class="center-text") {{timestampToDate(task.date)}}
             td(class="action center-text")
               i(@click="deleteTaskFromArray(task.id)" class="fas fa-trash-alt" title="Delete")
     form
@@ -91,6 +91,11 @@ export default class Tasks extends Vue {
     return (this.taskTitle.length !== 0 && this.taskDesc.length !== 0);
   }
 
+  timestampToDate = (timestamp: string): string => {
+    const date = new Date(parseInt(timestamp, 10) * 1000);
+    return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+  }
+
   addTaskToArray() {
     console.log(this.$refs);
     if (!this.allRequiredDataEntered) {
@@ -143,15 +148,16 @@ export default class Tasks extends Vue {
 
 .enlarge-animation td{
   animation-name: enlarge;
-  animation-duration: 1s;
+  animation-duration: 0.6s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   animation-delay: var(--delay);
 }
 
 @keyframes enlarge {
-  0% {font-size: 12px}
-  100% {font-size: 18px;}
+  0% {transform: scale(1)}
+  50% {transform: scale(1.3)}
+  100% {transform: scale(1)}
 }
 
 form {
