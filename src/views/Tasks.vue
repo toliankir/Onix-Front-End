@@ -9,7 +9,7 @@
       )
     h4 Tasks
     Loader(v-if="this.tasks.length === 0")
-    transition
+    div
       table(v-if="this.tasks.length !== 0")
         thead
           tr
@@ -20,9 +20,7 @@
         tbody
           tr(
             v-for="(task, index) of tasks"
-            :style="{'--delay': (index * 0.15) + 's'}"
             :key="index"
-            class="enlarge-animation"
             :ref="'test'")
             td(class="title") {{task.title}}
             td {{task.description}}
@@ -128,36 +126,36 @@ export default class Tasks extends Vue {
     }
   }
 
-  // updated() {
-  //   Object.values(this.$refs.test).forEach((el, index) => {
-  //     setTimeout(() => {
-  //       el.classList.add('enlarge-animation');
-  //     }, 500 * index);
-  //   });
-  //   setTimeout(() => {
-  //     Object.values(this.$refs.test).forEach((el, index) => {
-  //       el.classList.remove('enlarge-animation');
-  //     });
-  //   }, this.$refs.test.length * 500 + 2000);
-  // }
+  updated() {
+    Object.values(this.$refs.test).forEach((el, index) => {
+      setTimeout(() => {
+        el.classList.add('enlarge-animation');
+      }, 200 * index);
+    });
+    setTimeout(() => {
+      Object.values(this.$refs.test).forEach((el, index) => {
+        el.classList.remove('enlarge-animation');
+      });
+    }, this.$refs.test.length * 500 + 2000);
+  }
 }
 </script>
 
 <style lang="less" scoped>
 @import "../constants.less";
 
+
 .enlarge-animation td{
   animation-name: enlarge;
-  animation-duration: 0.6s;
+  animation-duration: 0.3s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  animation-delay: var(--delay);
 }
 
 @keyframes enlarge {
   0% {transform: scale(1)}
-  50% {transform: scale(1.3)}
-  100% {transform: scale(1)}
+  100% {transform: scale(1.3)}
+  // 100% {transform: scale(1)}
 }
 
 form {
