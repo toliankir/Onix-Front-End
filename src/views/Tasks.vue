@@ -63,6 +63,8 @@ export default class Tasks extends Vue {
     test: HTMLElement[],
   }
 
+  enlargeOnStart: boolean = true;
+
   taskTitle: string = '';
 
   taskDesc: string = '';
@@ -91,7 +93,8 @@ export default class Tasks extends Vue {
 
   timestampToDate = (timestamp: string): string => {
     const date = new Date(parseInt(timestamp, 10) * 1000);
-    return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+    const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
+    return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${minutes}`;
   }
 
   addTaskToArray() {
@@ -127,6 +130,10 @@ export default class Tasks extends Vue {
   }
 
   updated() {
+    console.log('updated');
+    if (!this.enlargeOnStart) {
+      return;
+    }
     Object.values(this.$refs.test).forEach((el, index) => {
       setTimeout(() => {
         el.classList.add('enlarge-animation');
@@ -136,7 +143,8 @@ export default class Tasks extends Vue {
       Object.values(this.$refs.test).forEach((el, index) => {
         el.classList.remove('enlarge-animation');
       });
-    }, this.$refs.test.length * 500 + 2000);
+      this.enlargeOnStart = false;
+    }, this.$refs.test.length * 200 + 2000);
   }
 }
 </script>
