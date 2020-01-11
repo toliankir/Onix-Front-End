@@ -9,24 +9,23 @@
       )
     h4 Tasks
     Loader(v-if="this.tasks.length === 0")
-    div
-      table(v-if="this.tasks.length !== 0")
-        thead
-          tr
-            td Title
-            td Description
-            td(class="center-text") Time
-            td(class="center-text") Action
-        tbody
-          tr(
-            v-for="(task, index) of tasks"
-            :key="index"
-            :ref="'test'")
-            td(class="title") {{task.title}}
-            td {{task.description}}
-            td(class="center-text") {{timestampToDate(task.date)}}
-            td(class="action center-text")
-              i(@click="deleteTaskFromArray(task.id)" class="fas fa-trash-alt" title="Delete")
+    table(v-if="this.tasks.length !== 0")
+      thead
+        tr
+          td Title
+          td Description
+          td(class="center-text") Time
+          td(class="center-text") Action
+      transition-group(name="list" tag="tbody")
+        tr(
+          v-for="(task, index) of tasks"
+          :key="task.id"
+          :ref="'test'")
+          td(class="title") {{task.title}}
+          td {{task.description}}
+          td(class="center-text") {{timestampToDate(task.date)}}
+          td(class="action center-text")
+            i(@click="deleteTaskFromArray(task.id)" class="fas fa-trash-alt" title="Delete")
     form
       p.title Add new task
       p
@@ -130,10 +129,11 @@ export default class Tasks extends Vue {
   }
 
   updated() {
-    console.log('updated');
-    if (!this.enlargeOnStart) {
+    if (!this.enlargeOnStart || this.tasks.length === 0) {
       return;
     }
+    this.enlargeOnStart = false;
+
     Object.values(this.$refs.test).forEach((el, index) => {
       setTimeout(() => {
         el.classList.add('enlarge-animation');
@@ -143,8 +143,7 @@ export default class Tasks extends Vue {
       Object.values(this.$refs.test).forEach((el, index) => {
         el.classList.remove('enlarge-animation');
       });
-      this.enlargeOnStart = false;
-    }, this.$refs.test.length * 200 + 2000);
+    }, this.$refs.test.length * 200 + 1000);
   }
 }
 </script>
@@ -152,6 +151,15 @@ export default class Tasks extends Vue {
 <style lang="less" scoped>
 @import "../constants.less";
 
+.list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-enter-active, .list-leave-active {
+  // transition: all 1s;
+  animation-name: taskblink;
+  animation-duration: 1s;
+}
 
 .enlarge-animation td{
   animation-name: enlarge;
@@ -160,10 +168,16 @@ export default class Tasks extends Vue {
   animation-fill-mode: forwards;
 }
 
+@keyframes taskblink {
+  0% {color: @nav-active-line-color}
+  33% {color:black}
+  66% {color: @nav-active-line-color}
+  100% {color:black}
+}
+
 @keyframes enlarge {
   0% {transform: scale(1)}
-  100% {transform: scale(1.3)}
-  // 100% {transform: scale(1)}
+  100% {transform: scale(1.2)}
 }
 
 form {
