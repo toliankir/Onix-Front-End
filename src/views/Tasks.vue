@@ -15,6 +15,7 @@
           td Title
           td Description
           td(class="center-text") Time
+          td(class="center-text") Status
           td(class="center-text") Action
       transition-group(name="list" tag="tbody")
         tr(
@@ -24,6 +25,7 @@
           td(class="title") {{task.title}}
           td {{task.description}}
           td(class="center-text") {{timestampToDate(task.date)}}
+          td {{task.status}}
           td(class="action center-text")
             i(@click="deleteTaskFromArray(task.id)" class="fas fa-trash-alt" title="Delete")
     form
@@ -49,7 +51,7 @@
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import Loader from '@/aside/Loader.vue';
 import { randomTasks, getUnixTimeStamp } from '@/service/randomTasks';
-import { Task } from '@/types';
+import { Task, TaskStatus } from '@/types';
 import Modal from '@/components/Modal.vue';
 
 @Component({
@@ -107,6 +109,7 @@ export default class Tasks extends Vue {
       title: this.taskTitle,
       description: this.taskDesc,
       date: getUnixTimeStamp(),
+      status: TaskStatus.todo,
     };
     this.tasks.push(newTask);
   }

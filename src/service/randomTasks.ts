@@ -1,4 +1,4 @@
-import { Task } from '@/types';
+import { Task, TaskStatus } from '@/types';
 
 export const getUnixTimeStamp = (): string => Math.floor(Date.now() / 1000).toString();
 
@@ -17,6 +17,7 @@ class RandomTasks {
           title: `${this.getRandomWord(words)} ${this.getRandomWord(words)}`,
           description: el,
           date: getUnixTimeStamp(),
+          status: TaskStatus.todo,
         };
         return task;
       });

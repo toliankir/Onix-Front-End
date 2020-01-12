@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Activity from '@/views/Home.vue';
 import Tasks from '@/views/Tasks.vue';
+import Kanban from '@/views/Kanban.vue';
 import NotFound from '@/views/NotFound.vue';
 import UnderConstruction from '@/views/UnderConstruction.vue';
 
@@ -27,7 +28,7 @@ export default new Router({
     {
       name: 'kanban',
       path: '/kanban',
-      component: UnderConstruction,
+      component: Kanban,
       props: { linkDescription: 'Kanban' },
     },
     {

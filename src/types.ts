@@ -3,6 +3,7 @@ export interface Task {
     title: string,
     description: string,
     date: string,
+    status: TaskStatus,
 }
 
 export interface Comment {
@@ -25,4 +26,10 @@ export interface UserProfile {
 export interface UserIcon {
     name: string,
     image: string,
+}
+
+export enum TaskStatus {
+    todo = 'Todo',
+    inprogress = 'Inprogress',
+    done = 'Done',
 }

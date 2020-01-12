@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex, { GetterTree, ActionTree, MutationTree } from 'vuex';
-import { Task, UserProfile } from '@/types';
+import { Task, UserProfile, TaskStatus } from '@/types';
 import db from '@/firestore';
 
 Vue.use(Vuex);
@@ -60,6 +60,7 @@ const actions: ActionTree<State, any> = {
           title: el.data().title,
           description: el.data().description,
           date: '',
+          status: TaskStatus.todo,
         });
       });
       store.commit('setTasks', tasks);
