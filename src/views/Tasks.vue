@@ -25,7 +25,8 @@
           td(class="title") {{task.title}}
           td {{task.description}}
           td(class="center-text") {{timestampToDate(task.date)}}
-          td {{task.status}}
+          td
+            span(@click="changeStatus(task.id)") {{task.status}}
           td(class="action center-text")
             i(@click="deleteTaskFromArray(task.id)" class="fas fa-trash-alt" title="Delete")
     form
@@ -50,9 +51,10 @@
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import Loader from '@/aside/Loader.vue';
-import { randomTasks, getUnixTimeStamp } from '@/service/randomTasks';
+import randomTasks from '@/service/randomTasks';
 import { Task, TaskStatus } from '@/types';
 import Modal from '@/components/Modal.vue';
+import getUnixTimeStamp from '@/service/helper';
 
 @Component({
   components: {
@@ -99,7 +101,6 @@ export default class Tasks extends Vue {
   }
 
   addTaskToArray() {
-    console.log(this.$refs);
     if (!this.allRequiredDataEntered) {
       this.showModal = true;
       return;
@@ -114,6 +115,13 @@ export default class Tasks extends Vue {
     this.tasks.push(newTask);
   }
 
+  changeStatus(id: string) {
+    const task = this.tasks.find(el => el.id === id);
+    if (task) {
+      task.status = TaskStatus.done;
+    }
+  }
+
   getLastTaskId(): string {
     return this.tasks[this.tasks.length - 1].id;
   }
@@ -123,12 +131,14 @@ export default class Tasks extends Vue {
   }
 
   async created() {
-    try {
-      this.tasks = await randomTasks.getRandomTasks(Math.floor(Math.random() * 10));
-      console.log('Tasks loaded');
-    } catch (err) {
-      console.log('Tasks error:', err);
+    if (!randomTasks.getRandomTasks()) {
+      try {
+        await randomTasks.fetchRandomTasks(Math.floor(Math.random() * 10));
+      } catch (err) {
+        console.log('Tasks error:', err);
+      }
     }
+    this.tasks = randomTasks.getRandomTasks();
   }
 
   updated() {

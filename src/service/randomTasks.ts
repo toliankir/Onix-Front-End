@@ -1,9 +1,14 @@
 import { Task, TaskStatus } from '@/types';
-
-export const getUnixTimeStamp = (): string => Math.floor(Date.now() / 1000).toString();
+import getUnixTimeStamp from '@/service/helper';
 
 class RandomTasks {
-  getRandomTasks(count = 3): Promise<Task[]> {
+  private randomTasks!:Task[];
+
+  getRandomTasks():Task[] {
+    return this.randomTasks;
+  }
+
+  fetchRandomTasks(count = 3): Promise<Task[]> {
     return new Promise(async (resolve, reject) => {
       let randomSentaces = [];
       for (let i = 0; i < (count < 3 ? 3 : count); i += 1) {
@@ -21,6 +26,7 @@ class RandomTasks {
         };
         return task;
       });
+      this.randomTasks = tasks;
       return resolve(tasks);
     });
   }
@@ -44,4 +50,4 @@ class RandomTasks {
   });
 }
 
-export const randomTasks = new RandomTasks();
+export default new RandomTasks();
