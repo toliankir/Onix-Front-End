@@ -28,7 +28,7 @@ export interface UserIcon {
     image: string,
 }
 
-export enum TaskStatus {
+export enum TaskStatus {  // eslint-disable-line
     todo = 'Todo',
     inprogress = 'Inprogress',
     done = 'Done',

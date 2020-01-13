@@ -28,7 +28,7 @@
           td
             span(@click="changeStatus(task.id)") {{task.status}}
           td(class="action center-text")
-            i(@click="deleteTaskFromArray(task.id)" class="fas fa-trash-alt" title="Delete")
+            i(@click="deleteTaskFromArray(index)" class="fas fa-trash-alt" title="Delete")
     form
       p.title Add new task
       p
@@ -126,8 +126,9 @@ export default class Tasks extends Vue {
     return this.tasks[this.tasks.length - 1].id;
   }
 
-  deleteTaskFromArray(id: string) {
-    this.tasks = this.tasks.filter((task: Task) => (task.id !== id));
+  deleteTaskFromArray(id: number) {
+    // this.tasks = this.tasks.filter((task: Task) => (task.id !== id));
+    this.tasks.splice(id, 1);
   }
 
   async created() {
