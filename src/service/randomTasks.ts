@@ -1,5 +1,5 @@
 import { Task, TaskStatus } from '@/types';
-import getUnixTimeStamp from '@/service/helper';
+import { getUnixTimeStamp } from '@/service/helper';
 
 class RandomTasks {
   private randomTasks!:Task[];

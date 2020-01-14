@@ -1,6 +1,7 @@
 <template lang="pug">
-div
+div.tasks-tables
   KanbanTasksTable(:tasks="todoTasks" :title="'Todo tasks'")
+  KanbanTasksTable(:tasks="inprogressTasks" :title="'Inprogress tasks'")
   KanbanTasksTable(:tasks="doneTasks" :title="'Done tasks'")
 </template>
 
@@ -16,17 +17,26 @@ import KanbanTasksTable from '@/components/KanbanTasksTable.vue';
   },
 })
 export default class Kanban extends Vue {
-  tasks!: Task[];
+  tasks: Task[] = [];
 
   get doneTasks():Task[] {
+    if (!this.tasks) {
+      return [];
+    }
     return this.tasks.filter(el => el.status === TaskStatus.done) || [];
   }
 
   get todoTasks():Task[] {
+    if (!this.tasks) {
+      return [];
+    }
     return this.tasks.filter(el => el.status === TaskStatus.todo) || [];
   }
 
   get inprogressTasks():Task[] {
+    if (!this.tasks) {
+      return [];
+    }
     return this.tasks.filter(el => el.status === TaskStatus.inprogress) || [];
   }
 
@@ -44,4 +54,9 @@ export default class Kanban extends Vue {
 </script>
 
 <style lang="less" scoped>
+.tasks-tables {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 </style>

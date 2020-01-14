@@ -24,7 +24,7 @@
           :ref="'test'")
           td(class="title") {{task.title}}
           td {{task.description}}
-          td(class="center-text") {{timestampToDate(task.date)}}
+          td(class="center-text") {{getDateString(task.date)}}
           td
             span(@click="changeStatus(task.id)") {{task.status}}
           td(class="action center-text")
@@ -54,7 +54,7 @@ import Loader from '@/aside/Loader.vue';
 import randomTasks from '@/service/randomTasks';
 import { Task, TaskStatus } from '@/types';
 import Modal from '@/components/Modal.vue';
-import getUnixTimeStamp from '@/service/helper';
+import { getUnixTimeStamp, timestampToDate } from '@/service/helper';
 
 @Component({
   components: {
@@ -90,14 +90,10 @@ export default class Tasks extends Vue {
     this.taskDescChange = true;
   }
 
+  getDateString = (date:string): string => timestampToDate(date);
+
   get allRequiredDataEntered() {
     return (this.taskTitle.length !== 0 && this.taskDesc.length !== 0);
-  }
-
-  timestampToDate = (timestamp: string): string => {
-    const date = new Date(parseInt(timestamp, 10) * 1000);
-    const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
-    return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${minutes}`;
   }
 
   addTaskToArray() {
@@ -117,8 +113,22 @@ export default class Tasks extends Vue {
 
   changeStatus(id: string) {
     const task = this.tasks.find(el => el.id === id);
-    if (task) {
-      task.status = TaskStatus.done;
+    if (!task) {
+      return;
+    }
+    switch (task.status) {
+      case TaskStatus.todo:
+        task.status = TaskStatus.inprogress;
+        break;
+      case TaskStatus.inprogress:
+        task.status = TaskStatus.done;
+        break;
+      case TaskStatus.done:
+        task.status = TaskStatus.todo;
+        break;
+      default:
+        task.status = TaskStatus.todo;
+        break;
     }
   }
 
