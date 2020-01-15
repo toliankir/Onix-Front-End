@@ -14,9 +14,9 @@
         tr
           td Title
           td Description
-          td(class="center-text") Time
-          td(class="center-text") Status
-          td(class="center-text") Action
+          td.center-text Time
+          td.center-text Status
+          td.center-text Action
       transition-group(name="list" tag="tbody")
         tr(
           v-for="(task, index) of tasks"
@@ -25,8 +25,9 @@
           td(class="title") {{task.title}}
           td {{task.description}}
           td(class="center-text") {{getDateString(task.date)}}
-          td
-            span(@click="changeStatus(task.id)") {{task.status}}
+          td.status
+            span {{task.status}}
+            i.fas.fa-sync(@click="changeStatus(task.id)")
           td(class="action center-text")
             i(@click="deleteTaskFromArray(index)" class="fas fa-trash-alt" title="Delete")
     form
@@ -250,6 +251,16 @@ table {
     font-size: 13px;
     font-weight: bold;
     border-bottom: 2px solid @nav-active-line-color;
+  }
+
+  .status {
+    width: 100px;
+    margin: 0;
+    & i {
+      cursor: pointer;
+      float: right;
+      line-height: 25px;
+    }
   }
 
   & .center-text {
