@@ -24,7 +24,7 @@
           :ref="'test'")
           td(class="title") {{task.title}}
           td {{task.description}}
-          td(class="center-text") {{getDateString(task.date)}}
+          td(class="center-text") {{task.date|humanDate}}
           td.status
             span {{task.status}}
             i.fas.fa-sync(@click="changeStatus(task.id)")
@@ -55,7 +55,7 @@ import Loader from '@/aside/Loader.vue';
 import randomTasks from '@/service/randomTasks';
 import { Task, TaskStatus } from '@/types';
 import Modal from '@/components/Modal.vue';
-import { getUnixTimeStamp, timestampToDate } from '@/service/helper';
+import { getUnixTimeStamp } from '@/service/helper';
 
 @Component({
   components: {
@@ -68,6 +68,8 @@ export default class Tasks extends Vue {
   }
 
   enlargeOnStart: boolean = true;
+
+  test = 'abc';
 
   taskTitle: string = '';
 
@@ -90,8 +92,6 @@ export default class Tasks extends Vue {
   onTaskDescriptionChanged(value: string, oldValue: string) {
     this.taskDescChange = true;
   }
-
-  getDateString = (date:string): string => timestampToDate(date);
 
   get allRequiredDataEntered() {
     return (this.taskTitle.length !== 0 && this.taskDesc.length !== 0);

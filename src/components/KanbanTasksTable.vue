@@ -6,7 +6,7 @@ table
   tbody
     tr(v-for="(task, index) of tasks")
       td {{task.title}}
-      td.date {{getDateString(task.date)}}
+      td.date {{task.date|humanDate}}
 </template>
 
 <script lang="ts">
@@ -19,8 +19,6 @@ export default class KanbanTasksTable extends Vue {
   @Prop() tasks!: Task[];
 
   @Prop() title!: string;
-
-  getDateString = (date:string): string => timestampToDate(date);
 }
 </script>
 
