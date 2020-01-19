@@ -31,22 +31,7 @@
           td(class="action center-text")
             i(@click="deleteTaskFromArray(index)" class="fas fa-trash-alt" title="Delete")
     form
-      p.title Add new task
-      p
-        span(
-          :class="[(this.taskTitle.length === 0 && this.taskTitleChange) ? 'input-warning' : '']"
-          ) Task title:
-        input(placeholder="Task title. Required." v-model="taskTitle")
-      p
-        span(
-          :class="[(this.taskDesc.length === 0 && this.taskDescChange) ? 'input-warning' : '']"
-        ) Task description:
-        input(placeholder="Task description. Required." v-model="taskDesc")
-      p.action
-        button(
-          class="btn"
-          :class="[allRequiredDataEntered ? 'btn-yellow' : 'btn-grey']"
-          @click.prevent="addTaskToArray") Add
+      button.btn.btn-yellow(@click.prevent="setShowModal()") Add
 </template>
 
 <script lang="ts">
@@ -56,10 +41,11 @@ import randomTasks from '@/service/randomTasks';
 import { Task, TaskStatus } from '@/types';
 import Modal from '@/components/Modal.vue';
 import { getUnixTimeStamp } from '@/service/helper';
+import AddTask from '@/components/AddTask.vue';
 
 @Component({
   components: {
-    Loader, Modal,
+    Loader, Modal, AddTask,
   },
 })
 export default class Tasks extends Vue {
@@ -67,50 +53,13 @@ export default class Tasks extends Vue {
     test: HTMLElement[],
   }
 
+  callbackFunc!: Function;
+
   enlargeOnStart: boolean = true;
-
-  test = 'abc';
-
-  taskTitle: string = '';
-
-  taskDesc: string = '';
 
   showModal: boolean = false;
 
-  taskTitleChange: boolean = false;
-
-  taskDescChange: boolean = false;
-
   tasks:Task[] = [];
-
-  @Watch('taskTitle')
-  onTaskTitleChanged(value: string, oldValue: string) {
-    this.taskTitleChange = true;
-  }
-
-  @Watch('taskDescription')
-  onTaskDescriptionChanged(value: string, oldValue: string) {
-    this.taskDescChange = true;
-  }
-
-  get allRequiredDataEntered() {
-    return (this.taskTitle.length !== 0 && this.taskDesc.length !== 0);
-  }
-
-  addTaskToArray() {
-    if (!this.allRequiredDataEntered) {
-      this.showModal = true;
-      return;
-    }
-    const newTask: Task = {
-      id: (parseInt(this.getLastTaskId(), 10) + 1).toString(),
-      title: this.taskTitle,
-      description: this.taskDesc,
-      date: getUnixTimeStamp(),
-      status: TaskStatus.todo,
-    };
-    this.tasks.push(newTask);
-  }
 
   changeStatus(id: string) {
     const task = this.tasks.find(el => el.id === id);
@@ -133,32 +82,30 @@ export default class Tasks extends Vue {
     }
   }
 
-  getLastTaskId(): string {
-    return this.tasks[this.tasks.length - 1].id;
-  }
-
   deleteTaskFromArray(id: number) {
-    // this.tasks = this.tasks.filter((task: Task) => (task.id !== id));
     this.tasks.splice(id, 1);
   }
 
   async created() {
-    if (!randomTasks.getRandomTasks()) {
-      try {
-        await randomTasks.fetchRandomTasks(Math.floor(Math.random() * 10));
-      } catch (err) {
-        console.log('Tasks error:', err);
-      }
-    }
-    this.tasks = randomTasks.getRandomTasks();
+    this.tasks = await randomTasks.getRandomTasks();
+    this.callbackFunc = randomTasks.onTaskChange(async () => {
+      this.tasks = await randomTasks.getRandomTasks();
+    });
   }
 
-  updated() {
+  setShowModal() {
+    this.showModal = true;
+  }
+
+  destroyed() {
+    randomTasks.unsubscribe(this.callbackFunc);
+  }
+
+  runStartupAnimation() {
     if (!this.enlargeOnStart || this.tasks.length === 0) {
       return;
     }
     this.enlargeOnStart = false;
-
     Object.values(this.$refs.test).forEach((el, index) => {
       setTimeout(() => {
         el.classList.add('enlarge-animation');
@@ -169,6 +116,14 @@ export default class Tasks extends Vue {
         el.classList.remove('enlarge-animation');
       });
     }, this.$refs.test.length * 200 + 1000);
+  }
+
+  mounted() {
+    this.runStartupAnimation();
+  }
+
+  updated() {
+    this.runStartupAnimation();
   }
 }
 </script>
@@ -181,7 +136,6 @@ export default class Tasks extends Vue {
   margin-right: 10px;
 }
 .list-enter-active, .list-leave-active {
-  // transition: all 1s;
   animation-name: taskblink;
   animation-duration: 1s;
 }

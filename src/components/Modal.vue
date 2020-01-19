@@ -6,7 +6,8 @@
           div.modal-header
             slot(name="header") {{header}}
           div.modal-body
-            slot(name="body") {{body}}
+            //- slot(name="body") {{body}}
+            AddTask
           div.modal-footer
             slot(name="footer") {{footer}}
               button.modal-default-button(@click="$emit('close')") OK
@@ -14,8 +15,13 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
+import AddTask from '@/components/AddTask.vue';
 
-@Component
+@Component({
+  components: {
+    AddTask,
+  },
+})
 export default class Modal extends Vue {
 @Prop() header!: string;
 

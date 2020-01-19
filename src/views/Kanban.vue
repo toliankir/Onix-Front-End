@@ -19,6 +19,8 @@ import KanbanTasksTable from '@/components/KanbanTasksTable.vue';
 export default class Kanban extends Vue {
   tasks: Task[] = [];
 
+  callbackFunc!:Function;
+
   get doneTasks():Task[] {
     if (!this.tasks) {
       return [];
@@ -40,15 +42,15 @@ export default class Kanban extends Vue {
     return this.tasks.filter(el => el.status === TaskStatus.inprogress) || [];
   }
 
+  destroyed() {
+    randomTasks.unsubscribe(this.callbackFunc);
+  }
+
   async created() {
-    if (!randomTasks.getRandomTasks()) {
-      try {
-        await randomTasks.fetchRandomTasks(Math.floor(Math.random() * 10));
-      } catch (err) {
-        console.log('Tasks error:', err);
-      }
-    }
-    this.tasks = randomTasks.getRandomTasks();
+    this.tasks = await randomTasks.getRandomTasks();
+    this.callbackFunc = randomTasks.onTaskChange(async () => {
+      this.tasks = await randomTasks.getRandomTasks();
+    });
   }
 }
 </script>

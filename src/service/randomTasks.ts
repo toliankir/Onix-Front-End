@@ -4,8 +4,16 @@ import { getUnixTimeStamp } from '@/service/helper';
 class RandomTasks {
   private randomTasks!:Task[];
 
-  getRandomTasks():Task[] {
-    return this.randomTasks;
+  private func:Function[] = [];
+
+  getRandomTasks():Promise<Task[]> {
+    return new Promise(async (resolve, reject) => {
+      if (this.randomTasks) {
+        return resolve(this.randomTasks);
+      }
+      await this.fetchRandomTasks(Math.trunc(Math.random() * 10));
+      return resolve(this.randomTasks);
+    });
   }
 
   fetchRandomTasks(count = 3): Promise<Task[]> {
@@ -29,6 +37,37 @@ class RandomTasks {
       this.randomTasks = tasks;
       return resolve(tasks);
     });
+  }
+
+  getLastTaskId(): string {
+    return this.randomTasks[this.randomTasks.length - 1].id;
+  }
+
+  addTask(title: string, description: string) {
+    const task: Task = {
+      id: (parseInt(this.getLastTaskId(), 10) + 1).toString(),
+      title,
+      description,
+      date: getUnixTimeStamp(),
+      status: TaskStatus.todo,
+    };
+    this.randomTasks.push(task);
+    this.runAllCallbacks();
+  }
+
+  runAllCallbacks() {
+    this.func.forEach(el => el());
+  }
+
+  unsubscribe(func:Function):boolean {
+    const prevLength = this.func.length;
+    this.func = this.func.filter(el => el !== func);
+    return prevLength - this.func.length === 1;
+  }
+
+  onTaskChange(func:Function):Function {
+    this.func.push(func);
+    return func;
   }
 
   getRandomWord = (wordArray: string[]): string => wordArray[
