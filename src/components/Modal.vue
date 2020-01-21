@@ -7,15 +7,17 @@
             slot(name="header") {{header}}
           div.modal-body
             //- slot(name="body") {{body}}
-            AddTask
+            AddTask(v-if="component==='AddTask'")
+            TaskDetails(v-if="component==='TaskDetails'")
           div.modal-footer
             slot(name="footer") {{footer}}
-              button.modal-default-button(@click="$emit('close')") OK
+              button.modal-default-button(@click="$emit('close')") Close
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import AddTask from '@/components/AddTask.vue';
+import TaskDetails from '@/components/TaskDetails.vue';
 
 @Component({
   components: {
@@ -28,6 +30,8 @@ export default class Modal extends Vue {
 @Prop() body!: string;
 
 @Prop() footer!: string;
+
+@Prop() component!: string;
 }
 </script>
 

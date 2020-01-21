@@ -52,23 +52,23 @@ class RandomTasks {
       status: TaskStatus.todo,
     };
     this.randomTasks.push(task);
-    this.runAllCallbacks();
+    // this.runAllCallbacks();
   }
 
-  runAllCallbacks() {
-    this.func.forEach(el => el());
-  }
+  // runAllCallbacks() {
+  //   this.func.forEach(el => el());
+  // }
 
-  unsubscribe(func:Function):boolean {
-    const prevLength = this.func.length;
-    this.func = this.func.filter(el => el !== func);
-    return prevLength - this.func.length === 1;
-  }
+  // unsubscribe(func:Function):boolean {
+  //   const prevLength = this.func.length;
+  //   this.func = this.func.filter(el => el !== func);
+  //   return prevLength - this.func.length === 1;
+  // }
 
-  onTaskChange(func:Function):Function {
-    this.func.push(func);
-    return func;
-  }
+  // onTaskChange(func:Function):Function {
+  //   this.func.push(func);
+  //   return func;
+  // }
 
   getRandomWord = (wordArray: string[]): string => wordArray[
     Math.floor(Math.random() * wordArray.length)

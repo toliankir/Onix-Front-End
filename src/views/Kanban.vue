@@ -8,11 +8,17 @@ div.tasks-tables(
     :tasks="todoTasks"
     :title="'Todo tasks'"
     )
-  KanbanTasksTable(:tasks="inprogressTasks" :title="'Inprogress tasks'")
-  KanbanTasksTable(:tasks="doneTasks" :title="'Done tasks'")
+  KanbanTasksTable(
+    :tasks="inprogressTasks"
+    :title="'Inprogress tasks'"
+    )
+  KanbanTasksTable(
+    :tasks="doneTasks"
+    :title="'Done tasks'"
+    )
   div.dragable(
     v-bind:style="{left: dragableX + 'px', top: dragableY + 'px', display: showDraggable()}"
-    ) this drag
+    ) {{dragableTaskTitle}}
 </template>
 
 <script lang="ts">
@@ -37,20 +43,18 @@ export default class Kanban extends Vue {
 
   dragElementId: number = -1;
 
-  startDragBlcok: string = '';
+  startDragBlock: string = '';
 
-  endDragBlcok: string = '';
+  endDragBlock: string = '';
 
   callbackFunc!:Function;
 
   mouseMove(event: MouseEvent) {
-    this.dragableX = event.pageX - 10;
-    this.dragableY = event.pageY - 20;
-  }
-
-  test = (): TaskStatus => {
-    console.log(123, TaskStatus.todo);
-    return TaskStatus.todo;
+    if (!this.isDragged) {
+      return;
+    }
+    this.dragableX = event.x - 30;
+    this.dragableY = event.y - 10;
   }
 
   mousePress(event: MouseEvent) {
@@ -64,6 +68,11 @@ export default class Kanban extends Vue {
 
   mouseUp(event: MouseEvent) {
     this.isDragged = false;
+  }
+
+  get dragableTaskTitle(): string {
+    const task = this.tasks.find(el => el.id === this.dragElementId.toString());
+    return task ? task.title : '';
   }
 
   get doneTasks():Task[] {
@@ -87,15 +96,8 @@ export default class Kanban extends Vue {
     return this.tasks.filter(el => el.status === TaskStatus.inprogress) || [];
   }
 
-  destroyed() {
-    randomTasks.unsubscribe(this.callbackFunc);
-  }
-
   async created() {
     this.tasks = await randomTasks.getRandomTasks();
-    this.callbackFunc = randomTasks.onTaskChange(async () => {
-      this.tasks = await randomTasks.getRandomTasks();
-    });
   }
 
   taskStatusByTitle = (title: string) => {
@@ -114,16 +116,21 @@ export default class Kanban extends Vue {
   mounted() {
     this.$root.$on('dragDown', (dragElementId:number, startBlockName: string) => {
       this.dragElementId = dragElementId;
-      this.startDragBlcok = startBlockName;
+      this.startDragBlock = startBlockName;
     });
 
     this.$root.$on('dragUp', (endBlockName: string) => {
-      this.endDragBlcok = endBlockName;
+      if (this.dragElementId === -1 || this.isDragged) {
+        return;
+      }
+      this.endDragBlock = endBlockName;
       const task:Task | undefined = this.tasks.find(el => el.id === this.dragElementId.toString());
       if (task) {
-        task.status = this.taskStatusByTitle(this.endDragBlcok);
+        task.status = this.taskStatusByTitle(this.endDragBlock);
       }
-      console.log(this.startDragBlcok, this.endDragBlcok, this.dragElementId);
+      this.startDragBlock = '';
+      this.endDragBlock = '';
+      this.dragElementId = -1;
     });
   }
 }

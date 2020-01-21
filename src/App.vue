@@ -2,20 +2,44 @@
   div#app
     Aside
     Content
+    Modal(
+      v-if="showModal"
+      @close="showModal = false"
+      :header="'Input ERROR!'"
+      :body="'Fill all needed inputs!!!'"
+      :footer="'push for close ->'"
+      :component="component"
+      )
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Content from '@/content/index.vue';
 import Aside from '@/aside/index.vue';
+import Modal from '@/components/Modal.vue';
 
 @Component({
   components: {
     Aside,
     Content,
+    Modal,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  showModal: boolean = false;
+
+  component!:string;
+
+  mounted() {
+    this.$root.$on('showModal', (...values: any) => {
+      console.log(values[0]);
+      if (values[0] === 'AddTask') {
+        this.showModal = true;
+        [this.component] = values;
+      }
+    });
+  }
+}
 </script>
 
 <style lang="less">

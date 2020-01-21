@@ -41,7 +41,7 @@ export default class AddTask extends Vue {
     this.taskTitleChange = true;
   }
 
-  @Watch('taskDescription')
+  @Watch('taskDesc')
   onTaskDescriptionChanged(value: string, oldValue: string) {
     this.taskDescChange = true;
   }
@@ -60,5 +60,36 @@ export default class AddTask extends Vue {
 </script>
 
 <style lang="less" scoped>
+form {
+  & p {
+    &.title {
+      font-size: 14px;
+      font-weight: bold;
+    }
+    &.action {
+      text-align: center;
+    }
+    & span {
+      position: relative;
+      font-size: 14px;
+      display: inline-block;
+      width: 120px;
+    }
+  }
+  & input {
+    &::placeholder {
+      font-size: 12px;
+    }
+  }
+}
 
+.input-warning {
+  &::before {
+    position: absolute;
+    left: -6px;
+    content: '!';
+    color: red;
+    font-weight: bold;
+  }
+}
 </style>

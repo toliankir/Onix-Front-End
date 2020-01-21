@@ -1,13 +1,11 @@
 <template lang="pug">
-div(
-  @mouseup="blockMouseUp(title)"
-  )
+div(@mousemove="blockMove(title)")
   p {{title}}
-  p {{draggedElementId}}
   ul
     li(
       v-for="(task, index) of tasks"
-      @mousedown="mouseDown(task.id)")
+      @mousedown="mouseDown(task.id, $event)"
+      )
       span {{task.title}}
       span {{task.date|humanDate}}
 </template>
@@ -22,27 +20,21 @@ export default class KanbanTasksTable extends Vue {
 
   @Prop() title!: string;
 
-  @Prop() test!: TaskStatus;
-
   draggedElementId:number = -1;
 
   blockName:string = '';
 
-  dragElement(elementId: string) {
-    this.draggedElementId = parseInt(elementId, 10);
+  test = (id: string) => {
+    console.log(id);
   }
 
-  blockMouseUp = (blockName: string) => {
-    this.sendUpEvent();
+  blockMove(blockName: string) {
+    this.$root.$emit('dragUp', this.title);
   }
 
   mouseDown(elementId:string, event: MouseEvent) {
     this.draggedElementId = parseInt(elementId, 10);
     this.$root.$emit('dragDown', this.draggedElementId, this.title);
-  }
-
-  sendUpEvent() {
-    this.$root.$emit('dragUp', this.title);
   }
 }
 </script>
