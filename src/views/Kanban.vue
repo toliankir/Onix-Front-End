@@ -2,10 +2,12 @@
 div.tasks-tables(
   @mousedown="mousePress"
   @mouseup="mouseUp"
+  @mouseleave="mouseUp"
   @mousemove="mouseMove")
   KanbanTasksTable(
     :tasks="todoTasks"
-    :title="'Todo tasks'")
+    :title="'Todo tasks'"
+    )
   KanbanTasksTable(:tasks="inprogressTasks" :title="'Inprogress tasks'")
   KanbanTasksTable(:tasks="doneTasks" :title="'Done tasks'")
   div.dragable(
@@ -33,15 +35,22 @@ export default class Kanban extends Vue {
 
   isDragged: boolean = false;
 
-  callbackFunc!:Function;
+  dragElementId: number = -1;
 
-  test = (test:string, event: MouseEvent) => {
-    // console.log(test);
-  }
+  startDragBlcok: string = '';
+
+  endDragBlcok: string = '';
+
+  callbackFunc!:Function;
 
   mouseMove(event: MouseEvent) {
     this.dragableX = event.pageX - 10;
     this.dragableY = event.pageY - 20;
+  }
+
+  test = (): TaskStatus => {
+    console.log(123, TaskStatus.todo);
+    return TaskStatus.todo;
   }
 
   mousePress(event: MouseEvent) {
@@ -86,6 +95,35 @@ export default class Kanban extends Vue {
     this.tasks = await randomTasks.getRandomTasks();
     this.callbackFunc = randomTasks.onTaskChange(async () => {
       this.tasks = await randomTasks.getRandomTasks();
+    });
+  }
+
+  taskStatusByTitle = (title: string) => {
+    switch (title) {
+      case 'Todo tasks':
+        return TaskStatus.todo;
+      case 'Inprogress tasks':
+        return TaskStatus.inprogress;
+      case 'Done tasks':
+        return TaskStatus.done;
+      default:
+        return TaskStatus.todo;
+    }
+  }
+
+  mounted() {
+    this.$root.$on('dragDown', (dragElementId:number, startBlockName: string) => {
+      this.dragElementId = dragElementId;
+      this.startDragBlcok = startBlockName;
+    });
+
+    this.$root.$on('dragUp', (endBlockName: string) => {
+      this.endDragBlcok = endBlockName;
+      const task:Task | undefined = this.tasks.find(el => el.id === this.dragElementId.toString());
+      if (task) {
+        task.status = this.taskStatusByTitle(this.endDragBlcok);
+      }
+      console.log(this.startDragBlcok, this.endDragBlcok, this.dragElementId);
     });
   }
 }

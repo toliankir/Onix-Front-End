@@ -1,7 +1,6 @@
 <template lang="pug">
 div(
   @mouseup="blockMouseUp(title)"
-  @mousedown="blockMouseDown(title)"
   )
   p {{title}}
   p {{draggedElementId}}
@@ -15,7 +14,7 @@ div(
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import { Task } from '@/types';
+import { Task, TaskStatus } from '@/types';
 
 @Component
 export default class KanbanTasksTable extends Vue {
@@ -23,26 +22,27 @@ export default class KanbanTasksTable extends Vue {
 
   @Prop() title!: string;
 
+  @Prop() test!: TaskStatus;
+
   draggedElementId:number = -1;
+
+  blockName:string = '';
 
   dragElement(elementId: string) {
     this.draggedElementId = parseInt(elementId, 10);
   }
 
-  test = (test: string, event: UIEvent) => {
-    // console.log(test);
-  }
-
   blockMouseUp = (blockName: string) => {
-    console.log('Up at', blockName);
-  }
-
-  blockMouseDown = (blockName: string) => {
-    console.log('Down at', blockName);
+    this.sendUpEvent();
   }
 
   mouseDown(elementId:string, event: MouseEvent) {
     this.draggedElementId = parseInt(elementId, 10);
+    this.$root.$emit('dragDown', this.draggedElementId, this.title);
+  }
+
+  sendUpEvent() {
+    this.$root.$emit('dragUp', this.title);
   }
 }
 </script>
