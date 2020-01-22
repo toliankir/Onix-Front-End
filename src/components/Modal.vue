@@ -4,17 +4,15 @@
       div.modal-wrapper
         div.modal-container
           div.modal-header
-            slot(name="header") {{header}}
+            slot(name="header") {{component[1]}}
           div.modal-body
-            //- slot(name="body") {{body}}
-            AddTask(v-if="component[0]==='AddTask'")
+            AddTask(v-if="component[0]==='AddTask'" @close="$emit('close')")
             TaskDetails(
               v-if="component[0]==='TaskDetails'"
-              :taskId="component[1]"
-              )
+              :taskId="component[2]"
+              @close="$emit('close')")
           div.modal-footer
-            slot(name="footer") {{footer}}
-              button.modal-default-button(@click="$emit('close')") Close
+            slot(name="footer")
 </template>
 
 <script lang="ts">
@@ -29,17 +27,13 @@ import TaskDetails from '@/components/TaskDetails.vue';
   },
 })
 export default class Modal extends Vue {
-@Prop() header!: string;
-
-@Prop() body!: string;
-
 @Prop() footer!: string;
 
 @Prop() component!: string;
 }
 </script>
 
-<style scoped>
+<style lang="less">
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -58,7 +52,7 @@ export default class Modal extends Vue {
 }
 
 .modal-container {
-  width: 300px;
+  width: 400px;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
@@ -102,5 +96,9 @@ export default class Modal extends Vue {
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+
+.input-warning {
+  background-color: #ca5660;
 }
 </style>

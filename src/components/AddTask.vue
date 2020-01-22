@@ -2,27 +2,30 @@
   form
     p.title Add new task
       p
-        span(
+        span Task title:
+        input(
+          placeholder="Task title. Required."
           :class="[(this.taskTitle.length === 0 && this.taskTitleChange) ? 'input-warning' : '']"
-          ) Task title:
-        input(placeholder="Task title. Required." v-model="taskTitle")
+          v-model="taskTitle"
+          )
       p
-        span(
+        span Task description:
+        input(
+          placeholder="Task description. Required."
           :class="[(this.taskDesc.length === 0 && this.taskDescChange) ? 'input-warning' : '']"
-        ) Task description:
-        input(placeholder="Task description. Required." v-model="taskDesc")
+          v-model="taskDesc"
+          )
       p.action
-        button(
-          class="btn"
+        button.btn(
           :class="[allRequiredDataEntered ? 'btn-yellow' : 'btn-grey']"
           @click.prevent="addTaskToArray") Add
+        button.btn.btn-red(@click.prevent="$emit('close')") Close
 </template>
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import randomTasks from '@/service/randomTasks';
 import { Task, TaskStatus } from '@/types';
-import { getUnixTimeStamp } from '@/service/helper';
 
 @Component
 export default class AddTask extends Vue {
@@ -55,6 +58,7 @@ export default class AddTask extends Vue {
       return;
     }
     randomTasks.addTask(this.taskTitle, this.taskDesc);
+    this.$emit('close');
   }
 }
 </script>
@@ -68,6 +72,7 @@ form {
     }
     &.action {
       text-align: center;
+      display: flex;
     }
     & span {
       position: relative;
@@ -77,19 +82,10 @@ form {
     }
   }
   & input {
+    outline: none;
     &::placeholder {
       font-size: 12px;
     }
-  }
-}
-
-.input-warning {
-  &::before {
-    position: absolute;
-    left: -6px;
-    content: '!';
-    color: red;
-    font-weight: bold;
   }
 }
 </style>

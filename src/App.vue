@@ -6,7 +6,6 @@
       v-if="showModal"
       @close="showModal = false"
       :header="'Input ERROR!'"
-      :body="'Fill all needed inputs!!!'"
       :footer="'push for close ->'"
       :component="component"
       )
@@ -105,5 +104,10 @@ export default class App extends Vue {
 .btn-yellow {
   background-color: #fff8dd;
   color: #ffc200;
+}
+.btn-red {
+  margin-left: 10px;
+  background-color: #ca5660;
+  color: #000000;
 }
 </style>

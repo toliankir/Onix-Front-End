@@ -81,11 +81,11 @@ export default class Tasks extends Vue {
   }
 
   showModalAdd() {
-    this.$root.$emit('showModal', 'AddTask');
+    this.$root.$emit('showModal', 'AddTask', 'Add task');
   }
 
   showModalDetails(taskId: string) {
-    this.$root.$emit('showModal', 'TaskDetails', taskId);
+    this.$root.$emit('showModal', 'TaskDetails', 'Task details', taskId);
   }
 
   runStartupAnimation() {
@@ -150,6 +150,7 @@ table {
   width: 100%;
   border-spacing: 0;
   line-height: 25px;
+  margin-bottom: 10px;
 
   & tr:nth-child(2n) {
     background-color: @btn-dark-grey-color;

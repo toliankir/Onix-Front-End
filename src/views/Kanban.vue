@@ -16,9 +16,10 @@ div.tasks-tables(
     :tasks="doneTasks"
     :title="'Done tasks'"
     )
-  div.dragable(
+  div.dragable-wrapper(
     v-bind:style="{left: dragableX + 'px', top: dragableY + 'px', display: showDraggable()}"
-    ) {{dragableTaskTitle}}
+    )
+    div {{dragableTaskTitle}}
 </template>
 
 <script lang="ts">
@@ -53,8 +54,8 @@ export default class Kanban extends Vue {
     if (!this.isDragged) {
       return;
     }
-    this.dragableX = event.x - 30;
-    this.dragableY = event.y - 10;
+    this.dragableX = event.x - 120;
+    this.dragableY = event.y - 110;
   }
 
   mousePress(event: MouseEvent) {
@@ -63,7 +64,7 @@ export default class Kanban extends Vue {
   }
 
   showDraggable() {
-    return this.isDragged ? 'block' : 'none';
+    return this.isDragged && this.dragableTaskTitle !== '' ? 'block' : 'none';
   }
 
   mouseUp(event: MouseEvent) {
@@ -141,15 +142,26 @@ export default class Kanban extends Vue {
 </script>
 
 <style lang="less" scoped>
+@import "../constants.less";
+
 .tasks-tables {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  border: 1px solid black;
 }
 
-.dragable {
+.dragable-wrapper {
   position: fixed;
   display: none;
-  user-select: none;
+  padding: 100px;
+  cursor: all-scroll;
+  & div {
+    user-select: none;
+    padding: 5px;
+    background-color: @nav-active-line-color;
+    border-radius: 5px;
+    opacity: 0.7;
+  }
 }
 </style>

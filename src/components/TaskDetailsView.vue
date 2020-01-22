@@ -1,8 +1,12 @@
 <template lang="pug">
   div
-    div(v-if="task")
-      p {{task.title}}
-      p {{task.description}}
+    div.wrapper(v-if="task")
+      p Title
+      span {{task.title}}
+      p Description
+      span {{task.description}}
+    p.action
+      button.btn.btn-grey(@click="$emit('editMode')") Edit
 </template>
 
 <script lang="ts">
@@ -11,7 +15,7 @@ import randomTasks from '@/service/randomTasks';
 import { Task } from '@/types';
 
 @Component
-export default class TaskDetailsVuew extends Vue {
+export default class TaskDetailsView extends Vue {
   tasks: Task[] = [];
 
   @Prop() taskId!: string;
@@ -27,5 +31,18 @@ export default class TaskDetailsVuew extends Vue {
 </script>
 
 <style lang="less" scoped>
+@import "../constants.less";
 
+.wrapper {
+  & p {
+    border-bottom: 1px solid @nav-active-line-color;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  & span {
+    font-size: 13px;
+  }
+}
 </style>

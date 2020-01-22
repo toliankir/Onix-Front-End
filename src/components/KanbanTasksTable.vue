@@ -7,7 +7,7 @@ div(@mousemove="blockMove(title)")
       @mousedown="mouseDown(task.id, $event)"
       )
       span {{task.title}}
-      span {{task.date|humanDate}}
+      span.date {{task.date|humanDate}}
 </template>
 
 <script lang="ts">
@@ -51,11 +51,17 @@ p {
   border-bottom: 2px solid @nav-active-line-color;
 }
 
+ul {
+  list-style: none;
+  padding: 0 5px;
+}
+
 span {
   user-select: none;
   font-size: 12px;
   &.date {
     font-size: 10px;
+    margin-left: 5px;
     text-align: center;
   }
 }
