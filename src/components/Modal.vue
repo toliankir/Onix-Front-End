@@ -7,8 +7,11 @@
             slot(name="header") {{header}}
           div.modal-body
             //- slot(name="body") {{body}}
-            AddTask(v-if="component==='AddTask'")
-            TaskDetails(v-if="component==='TaskDetails'")
+            AddTask(v-if="component[0]==='AddTask'")
+            TaskDetails(
+              v-if="component[0]==='TaskDetails'"
+              :taskId="component[1]"
+              )
           div.modal-footer
             slot(name="footer") {{footer}}
               button.modal-default-button(@click="$emit('close')") Close
@@ -22,6 +25,7 @@ import TaskDetails from '@/components/TaskDetails.vue';
 @Component({
   components: {
     AddTask,
+    TaskDetails,
   },
 })
 export default class Modal extends Vue {

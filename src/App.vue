@@ -32,11 +32,8 @@ export default class App extends Vue {
 
   mounted() {
     this.$root.$on('showModal', (...values: any) => {
-      console.log(values[0]);
-      if (values[0] === 'AddTask') {
-        this.showModal = true;
-        [this.component] = values;
-      }
+      this.showModal = true;
+      this.component = values;
     });
   }
 }

@@ -43,9 +43,9 @@ export default class Kanban extends Vue {
 
   dragElementId: number = -1;
 
-  startDragBlock: string = '';
+  startDragBlock: TaskStatus | undefined = undefined;
 
-  endDragBlock: string = '';
+  endDragBlock: TaskStatus | undefined = undefined;
 
   callbackFunc!:Function;
 
@@ -116,20 +116,24 @@ export default class Kanban extends Vue {
   mounted() {
     this.$root.$on('dragDown', (dragElementId:number, startBlockName: string) => {
       this.dragElementId = dragElementId;
-      this.startDragBlock = startBlockName;
+      this.startDragBlock = this.taskStatusByTitle(startBlockName);
     });
 
     this.$root.$on('dragUp', (endBlockName: string) => {
-      if (this.dragElementId === -1 || this.isDragged) {
+      this.endDragBlock = this.taskStatusByTitle(endBlockName);
+      if (this.dragElementId === -1 || this.isDragged || !this.startDragBlock
+          || (this.startDragBlock === TaskStatus.done && this.endDragBlock === TaskStatus.todo)) {
+        this.startDragBlock = undefined;
+        this.endDragBlock = undefined;
+        this.dragElementId = -1;
         return;
       }
-      this.endDragBlock = endBlockName;
       const task:Task | undefined = this.tasks.find(el => el.id === this.dragElementId.toString());
-      if (task) {
-        task.status = this.taskStatusByTitle(this.endDragBlock);
+      if (task && this.endDragBlock) {
+        task.status = this.endDragBlock;
       }
-      this.startDragBlock = '';
-      this.endDragBlock = '';
+      this.startDragBlock = undefined;
+      this.endDragBlock = undefined;
       this.dragElementId = -1;
     });
   }

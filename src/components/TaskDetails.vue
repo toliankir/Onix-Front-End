@@ -1,13 +1,20 @@
 <template lang="pug">
-  div 123
+  div
+    h3 TaskDetails
+    TaskDetailsView(:taskId="taskId")
 </template>
 
 <script lang="ts">
-import { Vue, Component} from 'vue-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator';
+import TaskDetailsView from '@/components/TaskDetailsView.vue';
 
-@Component
-export default class TaskDetails extends Vue{
-    
+@Component({
+  components: {
+    TaskDetailsView,
+  },
+})
+export default class TaskDetails extends Vue {
+  @Prop() taskId!: string;
 }
 </script>
 

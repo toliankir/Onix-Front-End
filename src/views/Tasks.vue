@@ -15,7 +15,10 @@
           v-for="(task, index) of tasks"
           :key="task.id"
           :ref="'refTasks'")
-          td(class="title") {{task.title}}
+          td(
+            class="title"
+            @click="showModalDetails(task.id)"
+            ) {{task.title}}
           td {{task.description}}
           td(class="center-text") {{task.date|humanDate}}
           td.status
@@ -24,7 +27,7 @@
           td(class="action center-text")
             i(@click="deleteTaskFromArray(index)" class="fas fa-trash-alt" title="Delete")
     form
-      button.btn.btn-yellow(@click.prevent="setShowModal()") Add
+      button.btn.btn-yellow(@click.prevent="showModalAdd") Add
 </template>
 
 <script lang="ts">
@@ -77,8 +80,12 @@ export default class Tasks extends Vue {
     this.tasks = await randomTasks.getRandomTasks();
   }
 
-  setShowModal() {
+  showModalAdd() {
     this.$root.$emit('showModal', 'AddTask');
+  }
+
+  showModalDetails(taskId: string) {
+    this.$root.$emit('showModal', 'TaskDetails', taskId);
   }
 
   runStartupAnimation() {
@@ -172,6 +179,8 @@ table {
     font-size: 12px;
     &.title {
       font-weight: bold;
+      user-select: none;
+      cursor: pointer;
     }
     &.action {
       & i {
