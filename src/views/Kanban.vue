@@ -3,6 +3,7 @@ div.tasks-tables(
   @mousedown="mousePress"
   @mouseup="mouseUp"
   @mouseleave="mouseUp"
+  @mouseenter="resetDragVariables"
   @mousemove="mouseMove")
   KanbanTasksTable(
     :tasks="todoTasks"
@@ -34,7 +35,11 @@ import KanbanTasksTable from '@/components/KanbanTasksTable.vue';
   },
 })
 export default class Kanban extends Vue {
+  TIMEDELAY_FOR_MODAL_OPEN = 250;
+
   tasks: Task[] = [];
+
+  startTime = 0;
 
   dragableX: number = 0;
 
@@ -58,8 +63,15 @@ export default class Kanban extends Vue {
     this.dragableY = event.y - 110;
   }
 
+  resetDragVariables() {
+    this.startDragBlock = undefined;
+    this.endDragBlock = undefined;
+    this.dragElementId = -1;
+  }
+
   mousePress(event: MouseEvent) {
     this.isDragged = true;
+    this.startTime = Date.now();
     this.mouseMove(event);
   }
 
@@ -69,6 +81,10 @@ export default class Kanban extends Vue {
 
   mouseUp(event: MouseEvent) {
     this.isDragged = false;
+    if (Date.now() - this.startTime < this.TIMEDELAY_FOR_MODAL_OPEN) {
+      this.$root.$emit('showModal', 'TaskDetails', 'Task details', this.dragElementId.toString());
+    }
+    // this.dragElementId = -1;
   }
 
   get dragableTaskTitle(): string {
@@ -148,7 +164,6 @@ export default class Kanban extends Vue {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  border: 1px solid black;
 }
 
 .dragable-wrapper {
