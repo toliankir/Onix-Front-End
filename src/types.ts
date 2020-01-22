@@ -4,6 +4,7 @@ export interface Task {
     description: string,
     date: string,
     status: TaskStatus,
+    expdate: string,
 }
 
 export interface Comment {

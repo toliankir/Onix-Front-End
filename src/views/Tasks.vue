@@ -8,6 +8,7 @@
           td Title
           td Description
           td.center-text Time
+          td.center-text Exp Time
           td.center-text Status
           td.center-text Action
       transition-group(name="list" tag="tbody")
@@ -21,6 +22,7 @@
             ) {{task.title}}
           td {{task.description}}
           td(class="center-text") {{task.date|humanDate}}
+          td(class="center-text") {{task.expdate|humanDate}}
           td.status
             span {{task.status}}
             i.fas.fa-sync(@click="changeStatus(task.id)")

@@ -31,6 +31,7 @@ class RandomTasks {
           description: el,
           date: getUnixTimeStamp(),
           status: TaskStatus.todo,
+          expdate: this.getRandomExpdate(),
         };
         return task;
       });
@@ -38,6 +39,12 @@ class RandomTasks {
       return resolve(tasks);
     });
   }
+
+  getRandomExpdate = (): string => {
+    const addtionalTime = Math.floor(Math.random() * 864000);
+    const nowTime = Math.floor(Date.now() / 1000);
+    return (nowTime + addtionalTime).toString();
+  };
 
   getLastTaskId(): string {
     return this.randomTasks[this.randomTasks.length - 1].id;
@@ -50,6 +57,7 @@ class RandomTasks {
       description,
       date: getUnixTimeStamp(),
       status: TaskStatus.todo,
+      expdate: '123',
     };
     this.randomTasks.push(task);
     // this.runAllCallbacks();

@@ -72,6 +72,7 @@ export default class TaskDetailsEdit extends Vue {
 
 textarea {
   width: 340px;
+  font-size: 13px;
   resize: vertical;
 }
 </style>

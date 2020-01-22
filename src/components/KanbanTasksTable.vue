@@ -7,7 +7,7 @@ div(@mousemove="blockMove(title)")
       @mousedown="mouseDown(task.id, $event)"
       )
       span {{task.title}}
-      span.date {{task.date|humanDate}}
+      span.date {{task.expdate|humanDate}}
 </template>
 
 <script lang="ts">

@@ -61,6 +61,7 @@ const actions: ActionTree<State, any> = {
           description: el.data().description,
           date: '',
           status: TaskStatus.todo,
+          expdate: '',
         });
       });
       store.commit('setTasks', tasks);
