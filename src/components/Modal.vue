@@ -1,8 +1,8 @@
 <template lang="pug">
   transition(name="modal")
     div.modal-mask
-      div.modal-wrapper
-        div.modal-container
+      div.modal-wrapper(@click="closeOnOutClick")
+        div.modal-container()
           div.modal-header
             slot(name="header") {{component[1]}}
           div.modal-body
@@ -30,6 +30,12 @@ export default class Modal extends Vue {
 @Prop() footer!: string;
 
 @Prop() component!: string;
+
+closeOnOutClick(event: any) {
+  if (event.target.classList.contains('modal-wrapper')) {
+    this.$emit('close');
+  }
+}
 }
 </script>
 

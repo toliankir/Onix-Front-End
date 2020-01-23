@@ -13,7 +13,7 @@
         span Task description:
         input(
           placeholder="Task description. Required."
-          @input="taskDescCheck"
+          @input="taskDescriptionCheck"
           :class="[taskDescOk ? '' : 'input-warning']"
           v-model="taskDesc"
           )
