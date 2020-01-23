@@ -5,14 +5,16 @@
         span Task title:
         input(
           placeholder="Task title. Required."
-          :class="[(this.taskTitle.length === 0 && this.taskTitleChange) ? 'input-warning' : '']"
+          :class="[taskTitleOk ? '' : 'input-warning']"
+          @input="taskTitleCheck"
           v-model="taskTitle"
           )
       p
         span Task description:
         input(
           placeholder="Task description. Required."
-          :class="[(this.taskDesc.length === 0 && this.taskDescChange) ? 'input-warning' : '']"
+          @input="taskDescCheck"
+          :class="[taskDescOk ? '' : 'input-warning']"
           v-model="taskDesc"
           )
       p.action
@@ -23,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Watch } from 'vue-property-decorator';
+import { Vue, Component } from 'vue-property-decorator';
 import randomTasks from '@/service/randomTasks';
 import { Task, TaskStatus } from '@/types';
 
@@ -31,22 +33,20 @@ import { Task, TaskStatus } from '@/types';
 export default class AddTask extends Vue {
   tasks:Task[] = [];
 
-  taskTitle: string = '';
+  taskTitle = '';
 
-  taskDesc: string = '';
+  taskDesc = '';
 
-  taskTitleChange: boolean = false;
+  taskTitleOk = true;
 
-  taskDescChange: boolean = false;
+  taskDescOk = true;
 
-  @Watch('taskTitle')
-  onTaskTitleChanged(value: string, oldValue: string) {
-    this.taskTitleChange = true;
+  taskTitleCheck() {
+    this.taskTitleOk = this.taskTitle.length > 0;
   }
 
-  @Watch('taskDesc')
-  onTaskDescriptionChanged(value: string, oldValue: string) {
-    this.taskDescChange = true;
+  taskDescriptionCheck() {
+    this.taskDescOk = this.taskDesc.length > 0;
   }
 
   get allRequiredDataEntered() {
@@ -83,6 +83,7 @@ form {
   }
   & input {
     outline: none;
+    border-bottom: ;
     &::placeholder {
       font-size: 12px;
     }
