@@ -83,7 +83,6 @@ form {
   }
   & input {
     outline: none;
-    border-bottom: ;
     &::placeholder {
       font-size: 12px;
     }
