@@ -31,7 +31,7 @@ export default class TaskDetailsView extends Vue {
 </script>
 
 <style lang="less" scoped>
-@import "../constants.less";
+@import "../../../constants.less";
 
 .wrapper {
   & p {

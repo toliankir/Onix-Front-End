@@ -27,7 +27,7 @@ div.tasks-tables(
 import { Vue, Component } from 'vue-property-decorator';
 import { Task, TaskStatus } from '@/types';
 import randomTasks from '@/service/randomTasks';
-import KanbanTasksTable from '@/components/KanbanTasksTable.vue';
+import KanbanTasksTable from '@/components/Kanban/KanbanTasksTable.vue';
 
 @Component({
   components: {
@@ -52,8 +52,6 @@ export default class Kanban extends Vue {
   startDragBlock: TaskStatus | undefined = undefined;
 
   endDragBlock: TaskStatus | undefined = undefined;
-
-  callbackFunc!:Function;
 
   mouseMove(event: MouseEvent) {
     if (!this.isDragged) {

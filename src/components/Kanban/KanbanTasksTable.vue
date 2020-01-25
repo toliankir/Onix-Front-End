@@ -40,7 +40,7 @@ export default class KanbanTasksTable extends Vue {
 </script>
 
 <style lang="less" scoped>
-@import "../constants.less";
+@import "../../constants.less";
 
 div {
   width: 30%;

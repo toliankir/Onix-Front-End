@@ -15,7 +15,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Content from '@/content/index.vue';
 import Aside from '@/aside/index.vue';
-import Modal from '@/components/Modal.vue';
+import Modal from '@/components/Modal/Modal.vue';
 
 @Component({
   components: {

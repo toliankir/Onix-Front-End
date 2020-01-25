@@ -17,8 +17,8 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import AddTask from '@/components/AddTask.vue';
-import TaskDetails from '@/components/TaskDetails.vue';
+import AddTask from '@/components/Modal/AddTask.vue';
+import TaskDetails from '@/components/Modal/TaskDetails/TaskDetails.vue';
 
 @Component({
   components: {

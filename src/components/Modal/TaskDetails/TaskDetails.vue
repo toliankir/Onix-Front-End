@@ -6,8 +6,8 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import TaskDetailsView from '@/components/TaskDetailsView.vue';
-import TaskDetailsEdit from '@/components/TaskDetailsEdit.vue';
+import TaskDetailsView from '@/components/Modal/TaskDetails/TaskDetailsView.vue';
+import TaskDetailsEdit from '@/components/Modal/TaskDetails/TaskDetailsEdit.vue';
 
 @Component({
   components: {
