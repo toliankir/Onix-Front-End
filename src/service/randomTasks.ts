@@ -4,16 +4,22 @@ import { getUnixTimeStamp } from '@/service/helper';
 class RandomTasks {
   private randomTasks!:Task[];
 
-  private func:Function[] = [];
+  private fetching:boolean = false;;
 
   getRandomTasks():Promise<Task[]> {
     return new Promise(async (resolve, reject) => {
       if (this.randomTasks) {
         return resolve(this.randomTasks);
       }
+      this.fetching = true;
       await this.fetchRandomTasks(Math.trunc(Math.random() * 10));
+      this.fetching = false;
       return resolve(this.randomTasks);
     });
+  }
+
+  get getFetching():boolean {
+    return this.fetching;
   }
 
   fetchRandomTasks(count = 3): Promise<Task[]> {
@@ -60,23 +66,7 @@ class RandomTasks {
       expdate: '123',
     };
     this.randomTasks.push(task);
-    // this.runAllCallbacks();
   }
-
-  // runAllCallbacks() {
-  //   this.func.forEach(el => el());
-  // }
-
-  // unsubscribe(func:Function):boolean {
-  //   const prevLength = this.func.length;
-  //   this.func = this.func.filter(el => el !== func);
-  //   return prevLength - this.func.length === 1;
-  // }
-
-  // onTaskChange(func:Function):Function {
-  //   this.func.push(func);
-  //   return func;
-  // }
 
   getRandomWord = (wordArray: string[]): string => wordArray[
     Math.floor(Math.random() * wordArray.length)

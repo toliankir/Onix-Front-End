@@ -17,10 +17,8 @@ div.tasks-tables(
     :tasks="doneTasks"
     :title="'Done tasks'"
     )
-  div.dragable-wrapper(
-    v-bind:style="{left: dragableX + 'px', top: dragableY + 'px', display: showDraggable()}"
-    )
-    div {{dragableTaskTitle}}
+  div.dragable-wrapper(:style="dragableStyle")
+    TaskItem.drag-width(:taskId="dragElementId.toString()")
 </template>
 
 <script lang="ts">
@@ -28,10 +26,12 @@ import { Vue, Component } from 'vue-property-decorator';
 import { Task, TaskStatus } from '@/types';
 import randomTasks from '@/service/randomTasks';
 import KanbanTasksTable from '@/components/Kanban/KanbanTasksTable.vue';
+import TaskItem from '@/components/Kanban/TaskItem.vue';
 
 @Component({
   components: {
     KanbanTasksTable,
+    TaskItem,
   },
 })
 export default class Kanban extends Vue {
@@ -53,12 +53,23 @@ export default class Kanban extends Vue {
 
   endDragBlock: TaskStatus | undefined = undefined;
 
+  darggedElemet:any = {};
+
+  get dragableStyle():any {
+    return {
+      left: `${this.dragableX}px`,
+      top: `${this.dragableY}px`,
+      display: this.isDragged && this.dragableTaskTitle !== '' ? 'block' : 'none',
+      width: `${this.darggedElemet.width + 200}px`,
+    };
+  }
+
   mouseMove(event: MouseEvent) {
     if (!this.isDragged) {
       return;
     }
-    this.dragableX = event.x - 120;
-    this.dragableY = event.y - 110;
+    this.dragableX = event.x - 100 - this.darggedElemet.offsetX;
+    this.dragableY = event.y - 100 - this.darggedElemet.offsetY;
   }
 
   resetDragVariables() {
@@ -71,10 +82,6 @@ export default class Kanban extends Vue {
     this.isDragged = true;
     this.startTime = Date.now();
     this.mouseMove(event);
-  }
-
-  showDraggable() {
-    return this.isDragged && this.dragableTaskTitle !== '' ? 'block' : 'none';
   }
 
   mouseUp(event: MouseEvent) {
@@ -129,7 +136,8 @@ export default class Kanban extends Vue {
   }
 
   mounted() {
-    this.$root.$on('dragDown', (dragElementId:number, startBlockName: string) => {
+    this.$root.$on('dragDown', (dragElementId:number, startBlockName: string, element: any) => {
+      this.darggedElemet = element;
       this.dragElementId = dragElementId;
       this.startDragBlock = this.taskStatusByTitle(startBlockName);
     });
@@ -169,7 +177,7 @@ export default class Kanban extends Vue {
   display: none;
   padding: 100px;
   cursor: all-scroll;
-  & div {
+  & .drag-width {
     user-select: none;
     padding: 5px;
     background-color: @nav-active-line-color;

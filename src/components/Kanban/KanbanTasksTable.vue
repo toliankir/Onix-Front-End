@@ -1,20 +1,24 @@
 <template lang="pug">
 div(@mousemove="blockMove(title)")
   p {{title}}
-  ul
-    li(
-      v-for="(task, index) of tasks"
-      @mousedown="mouseDown(task.id, $event)"
-      )
-      span {{task.title}}
-      span.date {{task.expdate|humanDate}}
+  TaskItem(
+    v-for="(task, index) of tasks"
+    :taskId="task.id"
+    :key="task.id"
+    @mousedown.native="mouseDown(task.id, $event)"
+    )
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import { Task, TaskStatus } from '@/types';
+import TaskItem from '@/components/Kanban/TaskItem.vue';
 
-@Component
+@Component({
+  components: {
+    TaskItem,
+  },
+})
 export default class KanbanTasksTable extends Vue {
   @Prop() tasks!: Task[];
 
@@ -24,17 +28,37 @@ export default class KanbanTasksTable extends Vue {
 
   blockName:string = '';
 
-  test = (id: string) => {
-    console.log(id);
-  }
-
   blockMove(blockName: string) {
     this.$root.$emit('dragUp', this.title);
   }
 
-  mouseDown(elementId:string, event: MouseEvent) {
+  getTaskItem = (item: any):any => {
+    let taskItem = item;
+    while (!taskItem.classList.contains('task-item')) {
+      taskItem = taskItem.parentElement;
+    }
+    return taskItem;
+  }
+
+  getYOffset = (item: any):number => {
+    let taskItem = item;
+    let offset = 0;
+    while (!taskItem.classList.contains('task-item')) {
+      offset += taskItem.offsetTop;
+      taskItem = taskItem.parentElement;
+    }
+    return offset;
+  }
+
+  mouseDown(elementId:string, event: any) {
+    const viewportOffset = this.getTaskItem(event.target).getBoundingClientRect();
     this.draggedElementId = parseInt(elementId, 10);
-    this.$root.$emit('dragDown', this.draggedElementId, this.title);
+    this.$root.$emit('dragDown', this.draggedElementId, this.title,
+      {
+        width: this.getTaskItem(event.target).offsetWidth,
+        offsetX: event.clientX - viewportOffset.left,
+        offsetY: event.clientY - viewportOffset.top,
+      });
   }
 }
 </script>
@@ -44,6 +68,7 @@ export default class KanbanTasksTable extends Vue {
 
 div {
   width: 30%;
+  position: relative;
 }
 
 p {
