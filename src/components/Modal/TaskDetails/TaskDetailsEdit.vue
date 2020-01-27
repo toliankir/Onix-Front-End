@@ -10,6 +10,7 @@
       :class="[descriptionOk ? '' : 'input-warning']"
       @input="checkDescription"
       )
+    v-calendar
     p.action
       button.btn(
         @click.prevent="saveTask"

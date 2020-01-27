@@ -103,6 +103,7 @@ export default class KanbanTasksTable extends Vue {
     font-size: 22px;
     color: @nav-active-line-color;
     margin: 0 10px;
+    cursor: pointer;
     }
 }
 
