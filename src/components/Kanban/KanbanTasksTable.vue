@@ -21,6 +21,7 @@ div(@mousemove="blockMove(title)")
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import { Task, TaskStatus } from '@/types';
 import TaskItem from '@/components/Kanban/TaskItem.vue';
+import { dateToTimestamp } from '@/service/helper';
 
 @Component({
   components: {
@@ -45,7 +46,6 @@ export default class KanbanTasksTable extends Vue {
       return [];
     }
     return this.tasks.filter((el) => {
-      // console.log(this.dateToTimestamp(this.dateRange.start) < parseInt(el.date, 10));
       if (el.title.indexOf(this.titleFilter) !== -1
         && this.minRange < parseInt(el.date, 10) && this.maxRange > parseInt(el.date, 10)) {
         return true;
@@ -58,21 +58,19 @@ export default class KanbanTasksTable extends Vue {
     if (!this.dateRange) {
       return Infinity;
     }
-    return this.dateToTimestamp(this.dateRange.end);
+    return dateToTimestamp(this.dateRange.end);
   }
 
   get minRange(): number {
     if (!this.dateRange) {
       return 0;
     }
-    return this.dateToTimestamp(this.dateRange.start);
+    return dateToTimestamp(this.dateRange.start);
   }
 
   blockMove(blockName: string) {
     this.$root.$emit('dragUp', this.title);
   }
-
-  dateToTimestamp = (dateString: string): number => Math.trunc(Date.parse(dateString) / 1000);
 
   getTaskItem = (item: any):any => {
     let taskItem = item;

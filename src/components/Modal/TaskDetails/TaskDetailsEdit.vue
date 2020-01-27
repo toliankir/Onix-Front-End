@@ -1,5 +1,6 @@
 <template lang="pug">
-  div EditMode {{taskTitle}}
+  div
+    span EditMode
     textarea(
       v-model="taskTitle"
       :class="[titleOk ? '' : 'input-warning']"
@@ -10,7 +11,7 @@
       :class="[descriptionOk ? '' : 'input-warning']"
       @input="checkDescription"
       )
-    v-calendar
+    v-date-picker(v-model="date")
     p.action
       button.btn(
         @click.prevent="saveTask"
@@ -23,6 +24,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import randomTasks from '@/service/randomTasks';
 import { Task } from '@/types';
+import { dateToTimestamp } from '@/service/helper';
 
 @Component
 export default class TaskDetailsEdit extends Vue {
@@ -31,6 +33,8 @@ export default class TaskDetailsEdit extends Vue {
   taskTitle = '';
 
   taskDescription = '';
+
+  date: any = null;
 
   titleOk = true;
 
@@ -43,6 +47,7 @@ export default class TaskDetailsEdit extends Vue {
     if (task) {
       task.title = this.taskTitle;
       task.description = this.taskDescription;
+      task.expdate = dateToTimestamp(this.date).toString();
       this.$emit('close');
     }
   }
@@ -61,12 +66,19 @@ export default class TaskDetailsEdit extends Vue {
     if (task) {
       this.taskTitle = task.title;
       this.taskDescription = task.description;
+      this.date = new Date(parseInt(task.expdate, 10) * 1000);
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
+div {
+  & span {
+    font-weight: bold;
+  }
+}
+
 .action {
   display: flex;
 }

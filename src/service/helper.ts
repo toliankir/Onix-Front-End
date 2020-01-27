@@ -5,3 +5,5 @@ export const timestampToDate = (timestamp: string):string => {
   const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
   return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${minutes}`;
 };
+
+export const dateToTimestamp = (d: string): number => Math.trunc(Date.parse(d) / 1000);

@@ -53,9 +53,9 @@ export default class TaskItem extends Vue {
     return 'grey-border';
   }
 
-  get timeRemain(): number | undefined {
+  get timeRemain(): number {
     if (!this.task) {
-      return undefined;
+      return 0;
     }
     return parseInt(this.task.expdate, 10) - parseInt(getUnixTimeStamp(), 10);
   }

@@ -1,6 +1,6 @@
 <template lang="pug">
   div#app
-    Aside
+    LeftMenu
     Content
     Modal(
       v-if="showModal"
@@ -14,12 +14,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Content from '@/content/index.vue';
-import Aside from '@/aside/index.vue';
+import LeftMenu from '@/components/LeftMenu/index';
 import Modal from '@/components/Modal/Modal.vue';
 
 @Component({
   components: {
-    Aside,
+    LeftMenu,
     Content,
     Modal,
   },

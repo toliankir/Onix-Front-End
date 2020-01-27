@@ -15,7 +15,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Action } from 'vuex-class';
-import Title from '@/aside/Title.vue';
+import Title from '@/components/LeftMenu/Title';
 import Loader from '@/aside/Loader.vue';
 import Profile from '@/aside/Profile.vue';
 import Task from '@/aside/Task.vue';
@@ -32,7 +32,7 @@ import { UserProfile } from '@/types';
   },
 })
 
-export default class Aside extends Vue {
+export default class LeftMenu extends Vue {
   @Getter getUserProfile!: UserProfile;
 
   @Action('fetchCurrentUser') fetchCurrentUser: any;
