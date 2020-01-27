@@ -86,7 +86,7 @@ export default class Kanban extends Vue {
 
   mouseUp(event: MouseEvent) {
     this.isDragged = false;
-    if (Date.now() - this.startTime < this.TIMEDELAY_FOR_MODAL_OPEN) {
+    if (Date.now() - this.startTime < this.TIMEDELAY_FOR_MODAL_OPEN && this.dragElementId > -1) {
       this.$root.$emit('showModal', 'TaskDetails', 'Task details', this.dragElementId.toString());
     }
     // this.dragElementId = -1;
@@ -180,7 +180,6 @@ export default class Kanban extends Vue {
   & .drag-width {
     user-select: none;
     padding: 5px;
-    background-color: @nav-active-line-color;
     border-radius: 5px;
     opacity: 0.7;
   }

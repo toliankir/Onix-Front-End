@@ -1,8 +1,15 @@
 <template lang="pug">
-div(@mousemove="blockMove(title)")
-  p {{title}}
+div(@mousemove="blockMove(title)") {{dateRange}}
+  p {{title}} {{this.filterdTasks.length}}/{{this.tasks.length}}
+  div.filter-bar
+    input(v-model="titleFilter")
+    v-date-picker(
+      mode="range"
+      v-model="dateRange"
+      :popover="{placement: 'bottom', visibility: 'click'}")
+       i.far.fa-calendar-alt.calendar-icon
   TaskItem(
-    v-for="(task, index) of tasks"
+    v-for="(task, index) of filterdTasks"
     :taskId="task.id"
     :key="task.id"
     @mousedown.native="mouseDown(task.id, $event)"
@@ -26,11 +33,30 @@ export default class KanbanTasksTable extends Vue {
 
   draggedElementId:number = -1;
 
-  blockName:string = '';
+  dateRange: any = null;
+
+  blockName = '';
+
+  titleFilter = '';
+
+  get filterdTasks(): Task[] {
+    if (!this.tasks) {
+      return [];
+    }
+    return this.tasks.filter((el) => {
+      // console.log(this.dateToTimestamp(this.dateRange.start) < parseInt(el.date, 10));
+      if (el.title.indexOf(this.titleFilter) !== -1 && !this.dateRange) {
+        return true;
+      }
+      return false;
+    });
+  }
 
   blockMove(blockName: string) {
     this.$root.$emit('dragUp', this.title);
   }
+
+  dateToTimestamp = (dateString: string): number => Math.trunc(Date.parse(dateString) / 1000);
 
   getTaskItem = (item: any):any => {
     let taskItem = item;
@@ -65,6 +91,20 @@ export default class KanbanTasksTable extends Vue {
 
 <style lang="less" scoped>
 @import "../../constants.less";
+
+.filter-bar {
+  display: flex;
+  width: 100%;
+  & input {
+    flex-grow: 1;
+    width: 100%;
+  }
+  & .calendar-icon {
+    font-size: 22px;
+    color: @nav-active-line-color;
+    margin: 0 10px;
+    }
+}
 
 div {
   width: 30%;
