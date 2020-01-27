@@ -1,7 +1,8 @@
 <template lang="pug">
-div(@mousemove="blockMove(title)") {{dateRange}}
+div(@mousemove="blockMove(title)")
   p {{title}} {{this.filterdTasks.length}}/{{this.tasks.length}}
   div.filter-bar
+    span Search:
     input(v-model="titleFilter")
     v-date-picker(
       mode="range"
@@ -45,11 +46,26 @@ export default class KanbanTasksTable extends Vue {
     }
     return this.tasks.filter((el) => {
       // console.log(this.dateToTimestamp(this.dateRange.start) < parseInt(el.date, 10));
-      if (el.title.indexOf(this.titleFilter) !== -1 && !this.dateRange) {
+      if (el.title.indexOf(this.titleFilter) !== -1
+        && this.minRange < parseInt(el.date, 10) && this.maxRange > parseInt(el.date, 10)) {
         return true;
       }
       return false;
     });
+  }
+
+  get maxRange(): number {
+    if (!this.dateRange) {
+      return Infinity;
+    }
+    return this.dateToTimestamp(this.dateRange.end);
+  }
+
+  get minRange(): number {
+    if (!this.dateRange) {
+      return 0;
+    }
+    return this.dateToTimestamp(this.dateRange.start);
   }
 
   blockMove(blockName: string) {
@@ -93,11 +109,17 @@ export default class KanbanTasksTable extends Vue {
 @import "../../constants.less";
 
 .filter-bar {
+  margin-bottom: 5px;
   display: flex;
+  align-items: center;
   width: 100%;
   & input {
     flex-grow: 1;
     width: 100%;
+    border: 1px solid @nav-active-line-color;
+    border-radius: 5px;
+    padding: 1px 3px;
+    outline: none;
   }
   & .calendar-icon {
     font-size: 22px;
@@ -105,6 +127,10 @@ export default class KanbanTasksTable extends Vue {
     margin: 0 10px;
     cursor: pointer;
     }
+  & span {
+    margin-right: 3px;
+    font-weight: bold;
+  }
 }
 
 div {
@@ -115,6 +141,7 @@ div {
 p {
   font-weight: bold;
   border-bottom: 2px solid @nav-active-line-color;
+  margin: 5px 0;
 }
 
 ul {
