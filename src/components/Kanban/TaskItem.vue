@@ -82,6 +82,7 @@ export default class TaskItem extends Vue {
 div.task-item {
   position: relative;
   border-radius: 5px;
+  user-select: none;
   margin-bottom: 10px;
   width: 100%;
   box-shadow: 0px 3px 6px 1px rgba(0,0,0,0.1);
