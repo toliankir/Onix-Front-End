@@ -15,11 +15,11 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter, Action } from 'vuex-class';
-import Title from '@/components/LeftMenu/Title';
-import Loader from '@/aside/Loader.vue';
-import Profile from '@/aside/Profile.vue';
-import Task from '@/aside/Task.vue';
-import Menu from '@/aside/Menu.vue';
+import Title from '@/components/LeftMenu/Title.vue';
+import Loader from '@/components/Loader.vue';
+import Profile from '@/components/LeftMenu/Profile.vue';
+import Task from '@/components/LeftMenu/Task.vue';
+import Menu from '@/components/LeftMenu/Menu.vue';
 import { UserProfile } from '@/types';
 
 @Component({
@@ -68,17 +68,20 @@ export default class LeftMenu extends Vue {
 </script>
 
 <style lang="less" scoped>
-@import "../constants.less";
-.red {
-  color: red;
-}
+@import "../../constants.less";
+
 aside {
   width: 270px;
   min-width: 270px;
   background-color: @aside-background-color;
   display: flex;
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
   flex-direction: column;
 }
+
+
 .aside-padding {
   padding-left: 30px;
 }

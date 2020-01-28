@@ -18,7 +18,7 @@ export default class Menu extends Vue {
 </script>
 
 <style lang="less" scoped>
-@import "../constants.less";
+@import "../../constants.less";
 
 .aside-nav {
   display: flex;

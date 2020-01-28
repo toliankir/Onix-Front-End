@@ -9,6 +9,7 @@ import { Vue, Component } from 'vue-property-decorator';
 import Article from '@/content/Article.vue';
 import { Comment } from '@/types';
 
+
 @Component({
   components: {
     Article,

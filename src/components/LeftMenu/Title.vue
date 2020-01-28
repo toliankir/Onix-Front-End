@@ -13,7 +13,7 @@ export default class Title extends Vue {}
 </script>
 
 <style lang="less" scoped>
-@import "../constants.less";
+@import "../../constants.less";
 
 .aside-title {
   margin: 30px 0;

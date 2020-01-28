@@ -14,7 +14,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Content from '@/content/index.vue';
-import LeftMenu from '@/components/LeftMenu/index';
+import LeftMenu from '@/components/LeftMenu/index.vue';
 import Modal from '@/components/Modal/Modal.vue';
 
 @Component({

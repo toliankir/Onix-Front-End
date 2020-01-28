@@ -33,8 +33,10 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Watch } from 'vue-property-decorator';
-import Loader from '@/aside/Loader.vue';
+import { Vue, Component } from 'vue-property-decorator';
+import { mixins } from 'vue-class-component';
+import Loader from '@/components/Loader.vue';
+import TestMixin from '@/mixins/loadTasks.mixin';
 import randomTasks from '@/service/randomTasks';
 import { Task, TaskStatus } from '@/types';
 import { getUnixTimeStamp } from '@/service/helper';

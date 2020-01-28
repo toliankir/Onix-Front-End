@@ -24,7 +24,7 @@ export default class Profile extends Vue {
 </script>
 
 <style lang="less" scoped>
-@import "../constants.less";
+@import "../../constants.less";
 
 .aside-profile {
   padding-right: 10px;

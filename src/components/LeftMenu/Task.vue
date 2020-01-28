@@ -16,7 +16,7 @@ export default class Task extends Vue {
 </script>
 
 <style lang="less" scoped>
-@import "../constants.less";
+@import "../../constants.less";
 
 .task {
   width: 49%;
