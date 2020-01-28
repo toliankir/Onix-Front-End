@@ -89,7 +89,6 @@ export default class Kanban extends Vue {
     if (Date.now() - this.startTime < this.TIMEDELAY_FOR_MODAL_OPEN && this.dragElementId > -1) {
       this.$root.$emit('showModal', 'TaskDetails', 'Task details', this.dragElementId.toString());
     }
-    // this.dragElementId = -1;
   }
 
   get dragableTaskTitle(): string {
