@@ -1,5 +1,5 @@
 <template lang="pug">
-  aside
+  aside(:class="{'small-display-show': show}")
     Title
     Profile(v-if="this.getUserProfile.name !== '...'" :userProfile="this.getUserProfile")
     Loader(v-else)
@@ -9,11 +9,11 @@
         :count="completedTask")
       Task(@click.native="redirectToTasks"
         :title="'Open Tasks'" :count="openTask")
-    Menu
+    Menu(@hide="$emit('hide')")
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import { Getter, Action } from 'vuex-class';
 import Title from '@/components/LeftMenu/Title.vue';
 import Loader from '@/components/Loader.vue';
@@ -34,6 +34,8 @@ import { UserProfile } from '@/types';
 
 export default class LeftMenu extends Vue {
   @Getter getUserProfile!: UserProfile;
+
+  @Prop() show!: boolean;
 
   @Action('fetchCurrentUser') fetchCurrentUser: any;
 
@@ -73,12 +75,26 @@ export default class LeftMenu extends Vue {
 aside {
   width: 270px;
   min-width: 270px;
+  @media @md {
+    width: 200px;
+    min-width: 200px;
+  }
   background-color: @aside-background-color;
   display: flex;
-  @media screen and (max-width: 800px) {
+  flex-direction: column;
+  @media @sm {
     display: none;
   }
-  flex-direction: column;
+}
+
+.small-display-show {
+  @media @sm {
+    position: absolute;
+    z-index: 999;
+    height: 100vh;
+    width: 80vw;
+    display: block;
+  }
 }
 
 

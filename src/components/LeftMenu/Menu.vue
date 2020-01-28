@@ -5,6 +5,8 @@
     a(href="#") My Tasks
     a(href="#") Notifications
       span {{this.getImageNotify}}
+    a(@click="$emit('hide')")
+      b <<< Hide menu
 </template>
 
 <script lang="ts">

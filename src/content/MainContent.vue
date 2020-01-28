@@ -22,8 +22,17 @@ export default class MainContent extends Vue {}
 .container {
   background-color: white;
   width: 62%;
+  @media @sm {
+    width: 95%;
+  }
+  @media @md {
+    width: 95%;
+  }
   margin: auto;
   padding: 35px 30px 60px 30px;
+  @media @sm {
+    padding: 15px 5px 20px 5px;
+  }
   border-radius: 8px;
 }
 .container h4 {

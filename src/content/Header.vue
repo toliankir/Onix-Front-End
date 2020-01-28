@@ -43,6 +43,9 @@ header {
 
 header .header-title {
   padding-left: 2.5rem;
+  @media @sm {
+    padding-left: 10px;
+  }
   display: flex;
   align-items: center;
 }
@@ -61,10 +64,16 @@ header .header-title h1 {
   font-weight: normal;
   margin: 0 11px 0 15px;
   font-size: 32px;
+  @media @sm {
+    font-size: 18px;
+  }
 }
 
 header .header-controls {
-  display: flex;
+  display: none;
+  @media @lg {
+    display: flex;
+  }
 }
 
 header .header-controls > img {

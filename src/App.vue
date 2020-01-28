@@ -1,6 +1,7 @@
 <template lang="pug">
   div#app
-    LeftMenu
+    LeftMenu(@hide="showLeftMenu = false" :show="showLeftMenu")
+    LeftMenuCompact(@show="showLeftMenu = true")
     Content
     Modal(
       v-if="showModal"
@@ -15,17 +16,21 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Content from '@/content/index.vue';
 import LeftMenu from '@/components/LeftMenu/index.vue';
+import LeftMenuCompact from '@/components/LeftMenuCompact.vue';
 import Modal from '@/components/Modal/Modal.vue';
 
 @Component({
   components: {
     LeftMenu,
+    LeftMenuCompact,
     Content,
     Modal,
   },
 })
 export default class App extends Vue {
-  showModal: boolean = false;
+  showModal = false;
+
+  showLeftMenu = false;
 
   component!:string;
 

@@ -24,7 +24,7 @@ export default class Content extends Vue {}
 <style scoped>
 .main-wrapper {
   flex-grow: 1;
-  min-width: 900px;
+  /* min-width: 900px; */
   display: flex;
   flex-direction: column;
 }

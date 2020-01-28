@@ -2,7 +2,7 @@
 div(@mousemove="blockMove(title)")
   p {{title}} {{this.filterdTasks.length}}/{{this.tasks.length}}
   div.filter-bar
-    span Search:
+    span.search Search:
     input(v-model="titleFilter")
     v-date-picker(
       mode="range"
@@ -125,9 +125,12 @@ export default class KanbanTasksTable extends Vue {
     margin: 0 10px;
     cursor: pointer;
     }
-  & span {
+  &>.search {
     margin-right: 3px;
     font-weight: bold;
+    @media @sm {
+      display: none;
+    }
   }
 }
 

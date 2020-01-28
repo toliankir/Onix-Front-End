@@ -6,9 +6,9 @@
       thead
         tr
           td Title
-          td Description
-          td.center-text Time
-          td.center-text Exp Time
+          td.adaptive Description
+          td.center-text.adaptive Time
+          td.center-text.adaptive Exp Time
           td.center-text Status
           td.center-text Action
       transition-group(name="list" tag="tbody")
@@ -20,13 +20,13 @@
             class="title"
             @click="showModalDetails(task.id)"
             ) {{task.title}}
-          td {{task.description}}
-          td(class="center-text") {{task.date|humanDate}}
-          td(class="center-text") {{task.expdate|humanDate}}
+          td.adaptive {{task.description}}
+          td.center-text.adaptive {{task.date|humanDate}}
+          td.center-text.adaptive {{task.expdate|humanDate}}
           td.status
             span {{task.status}}
             i.fas.fa-sync(@click="changeStatus(task.id)")
-          td(class="action center-text")
+          td.action.center-text
             i(@click="deleteTaskFromArray(index)" class="fas fa-trash-alt" title="Delete")
     form
       button.btn.btn-yellow(@click.prevent="showModalAdd") Add
@@ -155,6 +155,13 @@ table {
   border-spacing: 0;
   line-height: 25px;
   margin-bottom: 10px;
+
+  & .adaptive{
+    display: table-cell;
+    @media @sm {
+      display: none;
+    }
+  }
 
   & tr:nth-child(2n) {
     background-color: @btn-dark-grey-color;
