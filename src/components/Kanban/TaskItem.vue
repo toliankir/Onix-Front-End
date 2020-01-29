@@ -85,6 +85,7 @@ div.task-item {
   user-select: none;
   margin-bottom: 10px;
   width: 100%;
+  min-width: 200px;
   box-shadow: 0px 3px 6px 1px rgba(0,0,0,0.1);
   padding: 5px;
   & p {

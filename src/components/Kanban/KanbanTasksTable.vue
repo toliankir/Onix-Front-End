@@ -136,7 +136,9 @@ export default class KanbanTasksTable extends Vue {
 
 div {
   width: 30%;
+  min-width: 200px;
   position: relative;
+  margin: 5px;
 }
 
 p {

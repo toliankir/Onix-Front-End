@@ -18,19 +18,18 @@ export default class MainContent extends Vue {}
   background-color: @main-content-background-color;
   flex-grow: 1;
   padding: 30px 0;
+  width: 100%;
 }
 .container {
   background-color: white;
   width: 62%;
-  @media @sm {
-    width: 95%;
-  }
+  margin: auto;
+  padding: 35px 30px 60px 30px;
   @media @md {
     width: 95%;
   }
-  margin: auto;
-  padding: 35px 30px 60px 30px;
   @media @sm {
+    width: 95%;
     padding: 15px 5px 20px 5px;
   }
   border-radius: 8px;
