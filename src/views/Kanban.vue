@@ -166,10 +166,13 @@ export default class Kanban extends Vue {
 @import "../constants.less";
 
 .tasks-tables {
-  width: calc(100vw - 70px);
+  width: 100%;
+  @media @sm {
+    width: calc(100vw - 70px);
+    overflow: scroll;
+  }
   justify-content: space-between;
   display: flex;
-  overflow: scroll;
 }
 
 .dragable-wrapper {

@@ -41,6 +41,10 @@ export default class KanbanTasksTable extends Vue {
 
   titleFilter = '';
 
+  test = () => {
+    console.log(123);
+  }
+
   get filterdTasks(): Task[] {
     if (!this.tasks) {
       return [];
