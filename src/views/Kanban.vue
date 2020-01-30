@@ -55,6 +55,10 @@ export default class Kanban extends Vue {
 
   darggedElemet:any = {};
 
+  test = () => {
+    console.log(123);
+  }
+
   get dragableStyle():any {
     return {
       left: `${this.dragableX}px`,

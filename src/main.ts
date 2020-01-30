@@ -1,3 +1,4 @@
+import VueTouch from 'vue2-touch-events';
 import Vue from 'vue';
 import { firestorePlugin } from 'vuefire';
 import VCalendar from 'v-calendar';
@@ -7,6 +8,7 @@ import store from './store';
 
 Vue.config.productionTip = false;
 Vue.use(firestorePlugin);
+Vue.use(VueTouch);
 Vue.use(VCalendar);
 
 Vue.filter('humanDate', (value: any) => {
