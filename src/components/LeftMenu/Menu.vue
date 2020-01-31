@@ -5,7 +5,7 @@
     a(href="#") My Tasks
     a(href="#") Notifications
       span {{this.getImageNotify}}
-    a(@click="$emit('hide')")
+    a.hide-item(@click="$emit('hide')")
       b <<< Hide menu
 </template>
 
@@ -21,6 +21,13 @@ export default class Menu extends Vue {
 
 <style lang="less" scoped>
 @import "../../constants.less";
+
+.hide-item {
+  display: none;
+  @media @sm {
+    display: block;
+  }
+}
 
 .aside-nav {
   display: flex;

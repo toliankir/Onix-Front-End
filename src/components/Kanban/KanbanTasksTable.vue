@@ -14,6 +14,7 @@ div(@mousemove="blockMove(title)")
     :taskId="task.id"
     :key="task.id"
     @mousedown.native="mouseDown(task.id, $event)"
+    @touchstart.native="mouseDown(task.id, $event)"
     )
 </template>
 
@@ -40,10 +41,6 @@ export default class KanbanTasksTable extends Vue {
   blockName = '';
 
   titleFilter = '';
-
-  test = () => {
-    console.log(123);
-  }
 
   get filterdTasks(): Task[] {
     if (!this.tasks) {

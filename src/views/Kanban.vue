@@ -4,7 +4,8 @@ div.tasks-tables(
   @mouseup="mouseUp"
   @mouseleave="mouseUp"
   @mouseenter="resetDragVariables"
-  @mousemove="mouseMove")
+  @mousemove="mouseMove"
+  )
   KanbanTasksTable(
     :tasks="todoTasks"
     :title="'Todo tasks'"
@@ -55,8 +56,8 @@ export default class Kanban extends Vue {
 
   darggedElemet:any = {};
 
-  test = () => {
-    console.log(123);
+  test = (ev: any) => {
+    console.log(ev);
   }
 
   get dragableStyle():any {
@@ -68,12 +69,25 @@ export default class Kanban extends Vue {
     };
   }
 
-  mouseMove(event: MouseEvent) {
+  mouseMove(event: any) {
     if (!this.isDragged) {
       return;
     }
     this.dragableX = event.x - 100 - this.darggedElemet.offsetX;
     this.dragableY = event.y - 100 - this.darggedElemet.offsetY;
+    // const viewportOffset = this.getTaskItem(event.target).getBoundingClientRect();
+    // this.dragableX = event.touches[0].clientX - 100;
+    // this.dragableY = event.touches[0].clientY - 100;
+    // console.log(event.touches[0].clientX, this.dragableX,
+    //   event.touches[0].clientY, this.dragableY);
+  }
+
+  getTaskItem = (item: any):any => {
+    let taskItem = item;
+    while (!taskItem.classList.contains('task-item')) {
+      taskItem = taskItem.parentElement;
+    }
+    return taskItem;
   }
 
   resetDragVariables() {
@@ -82,7 +96,7 @@ export default class Kanban extends Vue {
     this.dragElementId = -1;
   }
 
-  mousePress(event: MouseEvent) {
+  mousePress(event: any) {
     this.isDragged = true;
     this.startTime = Date.now();
     this.mouseMove(event);
@@ -140,6 +154,7 @@ export default class Kanban extends Vue {
 
   mounted() {
     this.$root.$on('dragDown', (dragElementId:number, startBlockName: string, element: any) => {
+      console.log(dragElementId);
       this.darggedElemet = element;
       this.dragElementId = dragElementId;
       this.startDragBlock = this.taskStatusByTitle(startBlockName);
@@ -173,7 +188,7 @@ export default class Kanban extends Vue {
   width: 100%;
   @media @sm {
     width: calc(100vw - 70px);
-    overflow: scroll;
+    overflow: hidden;
   }
   justify-content: space-between;
   display: flex;
