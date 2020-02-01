@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Activity from '@/views/Home.vue';
 import Tasks from '@/views/Tasks.vue';
 import Kanban from '@/views/Kanban.vue';
+import Files from '@/views/Files.vue';
 import NotFound from '@/views/NotFound.vue';
 import UnderConstruction from '@/views/UnderConstruction.vue';
 
@@ -40,7 +41,7 @@ export default new Router({
     {
       name: 'files',
       path: '/files',
-      component: UnderConstruction,
+      component: Files,
       props: { linkDescription: 'Files' },
     },
     {
