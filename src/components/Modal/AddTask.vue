@@ -17,6 +17,7 @@
           :class="[taskDescOk ? '' : 'input-warning']"
           v-model="taskDesc"
           )
+      v-date-picker(v-model="date")
       p.action
         button.btn(
           :class="[allRequiredDataEntered ? 'btn-yellow' : 'btn-grey']"
@@ -26,20 +27,26 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import randomTasks from '@/service/randomTasks';
+// import randomTasks from '@/service/randomTasks';
+import { Mutation, Getter } from 'vuex-class';
 import { Task, TaskStatus } from '@/types';
+import { getUnixTimeStamp, dateToTimestamp } from '@/service/helper';
 
 @Component
 export default class AddTask extends Vue {
-  tasks:Task[] = [];
-
   taskTitle = '';
 
   taskDesc = '';
 
+  date: any = null;
+
   taskTitleOk = true;
 
   taskDescOk = true;
+
+  @Mutation addTask: any;
+
+  @Getter getLastTaskId!: number;
 
   taskTitleCheck() {
     this.taskTitleOk = this.taskTitle.length > 0;
@@ -50,14 +57,22 @@ export default class AddTask extends Vue {
   }
 
   get allRequiredDataEntered() {
-    return (this.taskTitle.length !== 0 && this.taskDesc.length !== 0);
+    return (this.taskTitle.length !== 0 && this.taskDesc.length !== 0 && this.date !== null);
   }
 
   async addTaskToArray() {
     if (!this.allRequiredDataEntered) {
       return;
     }
-    randomTasks.addTask(this.taskTitle, this.taskDesc);
+    const task: Task = {
+      id: (this.getLastTaskId + 1).toString(),
+      title: this.taskTitle,
+      description: this.taskDesc,
+      date: getUnixTimeStamp(),
+      status: TaskStatus.todo,
+      expdate: dateToTimestamp(this.date).toString(),
+    };
+    this.addTask(task);
     this.$emit('close');
   }
 }

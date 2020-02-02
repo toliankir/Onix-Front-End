@@ -37,12 +37,6 @@ export default class LeftMenu extends Vue {
 
   @Prop() show!: boolean;
 
-  @Action('fetchCurrentUser') fetchCurrentUser: any;
-
-  mounted() {
-    this.fetchCurrentUser();
-  }
-
   private openTask: number = 22;
 
   private completedTask: number = 3;

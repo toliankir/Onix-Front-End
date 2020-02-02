@@ -1,11 +1,12 @@
 <template lang="pug">
   div
     h4 Tasks
-    Loader(v-if="this.tasks.length === 0")
-    table(v-if="this.tasks.length !== 0")
+    Loader(v-if="this.getTasks.length === 0")
+    table(v-if="this.getTasks.length !== 0")
       thead
         tr
           td Title
+          td
           td.adaptive Description
           td.center-text.adaptive Time
           td.center-text.adaptive Exp Time
@@ -13,9 +14,10 @@
           td.center-text Action
       transition-group(name="list" tag="tbody")
         tr(
-          v-for="(task, index) of tasks"
+          v-for="(task, index) of getTasks"
           :key="task.id"
           :ref="'refTasks'")
+          td {{index}}
           td(
             class="title"
             @click="showModalDetails(task.id)"
@@ -34,12 +36,9 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import { mixins } from 'vue-class-component';
+import { Action, Getter } from 'vuex-class';
 import Loader from '@/components/Loader.vue';
-import TestMixin from '@/mixins/loadTasks.mixin';
-import randomTasks from '@/service/randomTasks';
 import { Task, TaskStatus } from '@/types';
-import { getUnixTimeStamp } from '@/service/helper';
 
 @Component({
   components: {
@@ -51,12 +50,14 @@ export default class Tasks extends Vue {
     refTasks: HTMLElement[],
   }
 
+  @Action('fetchTasks') fetchTasks: any;
+
+  @Getter getTasks!: Task[];
+
   enlargeOnStart: boolean = true;
 
-  tasks:Task[] = [];
-
   changeStatus(id: string) {
-    const task = this.tasks.find(el => el.id === id);
+    const task = this.getTasks.find(el => el.id === id);
     if (!task) {
       return;
     }
@@ -77,11 +78,11 @@ export default class Tasks extends Vue {
   }
 
   deleteTaskFromArray(id: number) {
-    this.tasks.splice(id, 1);
+    this.getTasks.splice(id, 1);
   }
 
-  async created() {
-    this.tasks = await randomTasks.getRandomTasks();
+  created() {
+    this.fetchTasks();
   }
 
   showModalAdd() {
@@ -93,7 +94,7 @@ export default class Tasks extends Vue {
   }
 
   runStartupAnimation() {
-    if (!this.enlargeOnStart || this.tasks.length === 0) {
+    if (!this.enlargeOnStart || this.getTasks.length === 0) {
       return;
     }
     this.enlargeOnStart = false;
@@ -107,10 +108,6 @@ export default class Tasks extends Vue {
         el.classList.remove('enlarge-animation');
       });
     }, this.$refs.refTasks.length * 200 + 1000);
-  }
-
-  mounted() {
-    this.runStartupAnimation();
   }
 
   updated() {

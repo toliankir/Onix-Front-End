@@ -10,18 +10,20 @@ div.task-item(:class="itemColorClass")
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Action, Getter } from 'vuex-class';
 import { Task, TaskStatus } from '@/types';
-import randomTasks from '@/service/randomTasks';
 import { getUnixTimeStamp } from '@/service/helper';
 
 @Component
 export default class TaskItem extends Vue {
   @Prop() taskId!: string;
 
-  tasks:Task[] = [];
+  @Action fetchTasks: any;
+
+  @Getter getTasks!: Task[];
 
   get task():Task | undefined {
-    return this.tasks.find(el => el.id === this.taskId);
+    return this.getTasks.find(el => el.id === this.taskId);
   }
 
   get timeColorClass(): any {
@@ -60,18 +62,8 @@ export default class TaskItem extends Vue {
     return parseInt(this.task.expdate, 10) - parseInt(getUnixTimeStamp(), 10);
   }
 
-  async fetchTasck() {
-    if (!randomTasks.getFetching) {
-      this.tasks = await randomTasks.getRandomTasks();
-      return;
-    }
-    setTimeout(async () => {
-      this.fetchTasck();
-    }, 500);
-  }
-
   async created() {
-    this.fetchTasck();
+    this.fetchTasks();
   }
 }
 </script>

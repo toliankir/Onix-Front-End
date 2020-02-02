@@ -11,21 +11,17 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import randomTasks from '@/service/randomTasks';
+import { Getter } from 'vuex-class';
 import { Task } from '@/types';
 
 @Component
 export default class TaskDetailsView extends Vue {
-  tasks: Task[] = [];
+  @Getter getTasks!: Task[];
 
   @Prop() taskId!: string;
 
   get task(): Task | undefined {
-    return this.tasks.find(el => el.id === this.taskId);
-  }
-
-  async created() {
-    this.tasks = await randomTasks.getRandomTasks();
+    return this.getTasks.find(el => el.id === this.taskId);
   }
 }
 </script>
