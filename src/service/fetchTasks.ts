@@ -24,7 +24,7 @@ const getRandomExpdate = (): string => {
 
 const getRandomCreatingTime = (): string => {
   const nowTime = parseInt(getUnixTimeStamp(), 10);
-  const daysBefore = Math.trunc(Math.random() * 259200);
+  const daysBefore = Math.trunc(Math.random() * 5 * 24 * 60 * 60);
   return (nowTime - daysBefore).toString();
 };
 

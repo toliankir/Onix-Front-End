@@ -35,7 +35,7 @@ export default class Day extends Vue {
   }
 
   get isMonthCurrent(): boolean {
-    return (new Date(this.date * 1000)).getMonth() + 1 === this.month;
+    return (new Date(this.date * 1000)).getMonth() === this.month;
   }
 
   get getDayTasks(): Task[] {
@@ -50,7 +50,7 @@ export default class Day extends Vue {
 </script>
 
 <style lang="less" scoped>
-@import "../constants.less";
+@import "../../constants.less";
 
   td {
     vertical-align: top;
