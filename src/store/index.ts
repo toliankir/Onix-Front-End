@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
 import {
   createModule, action, mutation, extractVuexModule, createProxy,
 } from 'vuex-class-component';
@@ -7,7 +8,6 @@ import {
   Task, UserProfile, Comment,
 } from '@/types';
 import fetchRandomTasks from '@/service/fetchTasks';
-
 
 Vue.use(Vuex);
 
@@ -114,6 +114,7 @@ const store = new Vuex.Store({
   modules: {
     ...extractVuexModule(TestStore),
   },
+  plugins: [createPersistedState()],
 });
 
 export default store;
