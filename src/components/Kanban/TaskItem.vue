@@ -1,7 +1,7 @@
 <template lang="pug">
 div.task-item(:class="itemColorClass")
   div.task-container(v-if="task")
-   p.title {{task.id}} - {{task.title}}
+   p.title {{task.title}}
    p.start-time created: {{task.date|humanDate}}
    p.exp-time exp: {{task.expdate|humanDate}}
    p.remain-time(:class="timeColorClass") remain: {{timeRemain|periodDate}}

@@ -5,6 +5,8 @@ div
     tr(v-for="week in 6" :key="week")
       day(
         v-for="day in 7"
+        :comment="comment"
+        @showComment="showComment"
         :key="day"
         :date="monthTS[((week - 1) * 7) + day - 1]"
         :month="month"
@@ -24,6 +26,12 @@ export default class Calendar extends Vue {
   monthTS: number[] = [];
 
   month = 2;
+
+  comment = -1;
+
+  showComment(id: number) {
+    this.comment = id;
+  }
 
   mounted() {
     const year = 2020;
