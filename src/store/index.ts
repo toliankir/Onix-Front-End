@@ -18,6 +18,10 @@ class TestStore extends VuexModule {
 
   private tasks: Task[] = [];
 
+  private dateRange: any = null;
+
+  private titleFilter: string = '';
+
   private currentUser = {
     name: 'Jean Gonzales',
     group: 'Product Owner',
@@ -52,6 +56,14 @@ class TestStore extends VuexModule {
     },
   ];
 
+  get getDateRange(): any {
+    return this.dateRange;
+  }
+
+  get getTitleFilter(): string {
+    return this.titleFilter;
+  }
+
   get getTasks(): Task[] {
     return this.tasks;
   }
@@ -78,6 +90,14 @@ class TestStore extends VuexModule {
 
   get getLastTaskId(): number {
     return parseInt(this.tasks[this.tasks.length - 1].id, 10);
+  }
+
+  @mutation setTitleFilter(filter: string) {
+    this.titleFilter = filter;
+  }
+
+  @mutation setDateRange(range: any) {
+    this.dateRange = range;
   }
 
   @mutation setTasks(tasks: Task[]) {

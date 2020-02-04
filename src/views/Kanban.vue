@@ -30,6 +30,7 @@ import { Vue, Component } from 'vue-property-decorator';
 import { Task, TaskStatus } from '@/types';
 import KanbanTasksTable from '@/components/Kanban/KanbanTasksTable.vue';
 import TaskItem from '@/components/Kanban/TaskItem.vue';
+
 import FilterBar from '@/components/Kanban/FilterBar.vue';
 
 @Component({

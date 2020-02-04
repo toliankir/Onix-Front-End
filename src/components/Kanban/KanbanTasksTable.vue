@@ -1,14 +1,6 @@
 <template lang="pug">
 div(@mousemove="blockMove(title)")
   p {{title}} {{this.filterdTasks.length}}/{{this.tasks.length}}
-  div.filter-bar
-    span.search Search:
-    input(v-model="titleFilter")
-    v-date-picker(
-      mode="range"
-      v-model="dateRange"
-      :popover="{placement: 'bottom', visibility: 'click'}")
-       i.far.fa-calendar-alt.calendar-icon
   TaskItem(
     v-for="(task, index) of filterdTasks"
     :taskId="task.id"
@@ -20,6 +12,7 @@ div(@mousemove="blockMove(title)")
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Getter } from 'vuex-class';
 import { Task, TaskStatus } from '@/types';
 import TaskItem from '@/components/Kanban/TaskItem.vue';
 import { dateToTimestamp } from '@/service/helper';
@@ -34,20 +27,20 @@ export default class KanbanTasksTable extends Vue {
 
   @Prop() title!: string;
 
+  @Getter('getDateRange') dateRange!: any;
+
+  @Getter('getTitleFilter') titleFilter!: string;
+
   draggedElementId:number = -1;
 
-  dateRange: any = null;
-
   blockName = '';
-
-  titleFilter = '';
 
   get filterdTasks(): Task[] {
     if (!this.tasks) {
       return [];
     }
     return this.tasks.filter((el) => {
-      if (el.title.indexOf(this.titleFilter) !== -1
+      if (el.title.toLowerCase().indexOf(this.titleFilter.toLowerCase()) !== -1
         && this.minRange < parseInt(el.date, 10) && this.maxRange > parseInt(el.date, 10)) {
         return true;
       }
